@@ -16,9 +16,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "docs:publish":"gh-pages -d distdocs",
-    "setnpm": "npm config set registry https://registry.npmjs.org/",
-    "publish": "npm publish",
-    "setnpmtb": "npm config set registry http://registry.npm.taobao.org/",
+    "publish": "npm config set registry https://registry.npmjs.org/ && npm publish && npm config set registry http://registry.npm.taobao.org/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

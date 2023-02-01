@@ -24,7 +24,7 @@ export default defineUserConfig({
       },
       {
         text: 'Github',
-        link: 'https://github.com/element-plus/element-plus',
+        link: 'https://github.com/agrass-GitHub/element-plus-crx',
       },
     ],
     sidebarDepth: 1,
