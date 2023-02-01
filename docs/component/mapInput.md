@@ -47,5 +47,5 @@ export default {
 | clearable    | boolean         | false  | 是否可清空                |  
 | editable     | boolean         | false  | 是否可编辑                |  
 | destroyDialogOnClose| boolean  | false  | dialog 关闭时是否销毁     |
-| ......       | ......  | - | [ElInput 属性](https://element-plus.gitee.io/zh-CN/component/input.html)
+| ......       | -  | - | [ElInput 属性](https://element-plus.gitee.io/zh-CN/component/input.html)
 

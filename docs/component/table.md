@@ -47,7 +47,7 @@
 
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
-| ...... | ......  | - | [ElTable 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-%E5%B1%9E%E6%80%A7)
+| ...... | -  | - | [ElTable 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-%E5%B1%9E%E6%80%A7)
 | loading | boolean | - | 是否加载中
 | columns | ColumnProps[] | - | 表格配置项 
 | page | PageProps  | - | 分页排序参数  |
@@ -57,7 +57,7 @@
 
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
-| ...... |...... |-|  [ElTableColumn 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7) |
+| ...... | -  |-|  [ElTableColumn 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7) |
 | label | string \| RenderFunction | - | 列标题 
 | slot | string  \| RenderFunction | - | 列插槽
 | hidden | boolean | - | 列是否不可见

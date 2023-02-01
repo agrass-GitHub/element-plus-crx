@@ -29,7 +29,7 @@
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | ...... | -    | - | [AgelFormItem 属性](/component/formItem.html#属性)
-| type, index, align, headerAlign, width, minWidth, fixed, showOverflowTooltip |...... |-|  [ElTableColumn 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7) |
+| type, index, align, headerAlign, width, minWidth, fixed, showOverflowTooltip | -  |-|  [ElTableColumn 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7) |
 
 ## 方法
 

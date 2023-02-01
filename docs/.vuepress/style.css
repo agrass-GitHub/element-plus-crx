@@ -1,9 +1,16 @@
 /* api 文档样式美化 */
 :root {
+  --c-brand: var(--el-color-primary);
+  --c-tip:var(--el-color-primary);
+  --c-brand-light: var(--el-color-primary-light-3);
   --c-text-lighter: var(--c-text-accent) !important;
-  /* --content-width:1000px */
-  /* --c-brand: var(--el-color-primary); */
-  /* --c-text-accent:var(--el-color-primary) */
+}
+
+.home .hero .description{
+  color: var(--c-text-light);
+}
+.home .feature p{
+  color: var(--c-text-light);
 }
 
 table tr:nth-child(2n) {
@@ -113,10 +120,10 @@ table tr:nth-child(2n) {
   width: 100% !important;
 }
 
-.fullscreen{
+.fullscreen {
   width: 100vw;
   height: 100vh;
-  top:0px;
+  top: 0px;
   left: 0px;
   z-index: 99;
   background: #fff;

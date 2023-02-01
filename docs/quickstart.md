@@ -1,5 +1,7 @@
 # 快速开始
 
+[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
+
 ## 安装
 
 `npm install element-plus-crx -s` 

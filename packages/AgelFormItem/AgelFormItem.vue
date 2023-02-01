@@ -10,7 +10,7 @@
       </slot>
     </div>
 
-    <template #label v-bind="renderScopeProps">
+    <template #label>
       <slot name="label">
         <FormItemLabel></FormItemLabel>
       </slot>
@@ -113,7 +113,7 @@ const FormItemLabel: FunctionalComponent = () => {
   if (typeof props.label == 'string') {
     return h('span', props.label)
   } else if (typeof props.label == 'function') {
-    return props.label({ ...renderScopeProps.value })
+    return props.label()
   }
 }
 

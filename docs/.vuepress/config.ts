@@ -27,7 +27,7 @@ export default defineUserConfig({
         link: 'https://github.com/element-plus/element-plus',
       },
     ],
-    sidebarDepth: 0,
+    sidebarDepth: 1,
     sidebar: [
       {
         text: 'Guide 使用指南',
