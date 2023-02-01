@@ -8,6 +8,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
+  dest: './distdocs',
+  base: '/element-plus-crx/',
   title: 'Element Plus Crx',
   description: '一个基于 element plus 的扩展组件库',
   theme: defaultTheme({
