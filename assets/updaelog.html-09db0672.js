@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-617a3fc9","path":"/updaelog.html","title":"更新日志","lang":"en-US","frontmatter":{"title":"更新日志","sidebar":"auto"},"headers":[],"git":{"updatedTime":1675249946000,"contributors":[{"name":"agrass","email":"992951674@qq.com","commits":1}]},"filePathRelative":"updaelog.md"}');export{t as data};
