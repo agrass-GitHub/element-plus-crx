@@ -1,0 +1,194 @@
+/* api 文档样式美化 */
+:root {
+  --c-text-lighter: var(--c-text-accent) !important;
+  /* --content-width:1000px */
+  /* --c-brand: var(--el-color-primary); */
+  /* --c-text-accent:var(--el-color-primary) */
+}
+
+table tr:nth-child(2n) {
+  background-color: inherit;
+}
+
+.sidebar-item:not(.sidebar-heading) {
+  font-size: .9em;
+  color: var(--el-text-color-regular);
+}
+
+[tabindex="-1"]+table {
+  display: table;
+  width: 100%;
+}
+
+[tabindex="-1"]+table th,
+[tabindex="-1"]+table td {
+  border: 0px;
+  text-align: left;
+  max-width: 280px;
+}
+
+[tabindex="-1"]+table tr td {
+  font-family: monospace;
+}
+
+[tabindex="-1"]+table tr td:last-child {
+  font-family: inherit;
+}
+
+
+[tabindex="-1"]+table thead tr {
+  border-top: 0px;
+}
+
+[tabindex="-1"]+table thead th {
+  white-space: nowrap;
+}
+
+[tabindex="-1"]+table td a {
+  display: block;
+}
+
+
+/* 修复 vuepress 默认样式对 组件样式的破坏 */
+
+.el-date-table {
+  display: table;
+}
+
+.el-date-table th,
+.el-date-table td {
+  text-align: center;
+  border: 1px solid var(--c-border-dark)
+}
+
+.desc-hide-border tr {
+  border-top: 0px;
+}
+
+.el-table__body,
+.el-table__header {
+  margin: 0px;
+}
+
+.el-table td,
+.el-table th {
+  border: 0px;
+}
+
+.theme-default-content .el-menu img {
+  max-width: inherit;
+}
+
+.el-descriptions__body .el-descriptions__table {
+  display: table;
+}
+
+/* example 常用 class */
+.demo {
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  padding: 1.5rem;
+  margin: 30px 0px;
+}
+
+.border {
+  border: 1px solid var(--el-border-color);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w100 {
+  width: 100% !important;
+}
+
+.fullscreen{
+  width: 100vw;
+  height: 100vh;
+  top:0px;
+  left: 0px;
+  z-index: 99;
+  background: #fff;
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+}
+
+
+
+/** example navTabs  */
+.common-layout {
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  margin: 40px 0px;
+  position: relative;
+  height: 400px;
+}
+
+.common-layout .el-header,
+.common-layout .el-footer,
+.common-layout .el-main,
+.common-layout .el-aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-layout .el-aside {
+  background-color: var(--el-color-primary-light-8);
+  color: var(--el-text-color-primary);
+  text-align: center;
+}
+
+.common-layout .el-main {
+  color: var(--el-text-color-primary);
+  text-align: center;
+  background: var(--c-bg);
+}
+
+.common-layout .el-main .el-table .el-table__cell {
+  padding: 5px 0;
+}
+
+.common-layout .el-header,
+.common-layout .el-footer {
+  background-color: var(--el-color-primary-light-7);
+  color: var(--el-text-color-primary);
+  text-align: center;
+}
+
+.common-layout .el-main.full-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.common-layout .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+}
+
+/** example menuBase  */
+.demo-menu.el-menu--vertical:not(.el-menu--collapse) {
+  width: 200px;
+}
+
+.el-menu--horizontal .el-sub-menu .el-sub-menu__icon-arrow {
+  right: 0px;
+}

@@ -1,0 +1,20 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [
+    "env.d.ts",
+    "packages/**/*",
+    "packages/**/*.vue",
+    "example/**/*",
+    "example/**/*.vue",
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "types": [
+      "element-plus/global"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [ "./packages/*"]
+    }
+  },
+}
