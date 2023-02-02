@@ -5,11 +5,15 @@ sidebar: auto
 
 
 :::tip
-[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
-有使用上的问题可联系作者:agrass-weixin。
+有使用上的问题可联系作者:agrass-weixin。[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 :::
 
-## v.1.0.2 （2023-02-02）
+## v.1.0.3 
+
+### Bug Fixes
+- __ElementPlusCrx：__ 修复全局组件声明无效的问题
+
+## v.1.0.2
 
 ### Bug Fixes
 
@@ -22,7 +26,7 @@ sidebar: auto
 - __FormItems：__ 添加组件
 - __FormItem：__ 添加 class 属性
 
-## v.1.0.1（2023-02-01）
+## v.1.0.1
 
 ### Bug Fixes
 

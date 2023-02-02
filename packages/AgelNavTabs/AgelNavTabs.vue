@@ -220,7 +220,7 @@ function setPopoverVirtualRef(index: number) {
   width: 100%;
 }
 
-.agel-nav-tabs .agel-table {
+.agel-nav-tabs .agel-tab {
   display: flex;
   align-items: center;
 }

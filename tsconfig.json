@@ -2,10 +2,11 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
     "env.d.ts",
+    "global.d.ts",
     "packages/**/*",
     "packages/**/*.vue",
     "example/**/*",
-    "example/**/*.vue",
+    "example/**/*.vue", "global.ts", "global.ts",
   ],
   "compilerOptions": {
     "allowJs": true,
