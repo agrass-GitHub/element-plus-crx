@@ -20,7 +20,7 @@ export default defineUserConfig({
       },
       {
         text: '更新日志',
-        link: '/updaelog.md',
+        link: '/updatelog.md',
       },
       {
         text: 'Github',
