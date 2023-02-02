@@ -1,6 +1,6 @@
 <template>
   <ElForm :model="model" label-width="auto" class="demo">
-    <AgelFormGrid :items="items"></AgelFormGrid>
+    <AgelFormItems :items="items"></AgelFormItems>
   </ElForm>
 </template>
 
@@ -28,6 +28,7 @@ const items = ref([
     loading: computed(() => options.value.length == 0),
     slot: 'agel-select',
     attrs: {
+      class:'w100',
       options: computed(() => options.value)
     }
   },

@@ -15,7 +15,7 @@ export default defineUserConfig({
   theme: defaultTheme({
     navbar: [
       {
-        text: '文档',
+        text: '使用文档',
         link: '/quickstart.md',
       },
       {
@@ -40,7 +40,7 @@ export default defineUserConfig({
       {
         text: 'Form 表单组件',
         children: [
-          '/component/formItem.md',
+          '/component/formItems.md',
           '/component/formGrid.md',
           '/component/formDesc.md',
           '/component/formTableditor.md',

@@ -35,6 +35,14 @@
 | ...... | -    | - | [AgelFormItem 属性](/component/formItem.html#属性)
 | span, className, labelClassName | -   |-|  [ElDescriptionsItem 属性](https://element-plus.gitee.io/zh-CN/component/descriptions.html#descriptions-item-%E5%B1%9E%E6%80%A7) |
 
+## 方法
+
+| 名称            | 参数  |   说明                                   | 
+| -----------    | ------- | -----------------------------  |
+| getRef    | prop  |  获取组件实例        |
+| validate  | (callback)=>Promise  | 对整个 items 表单进行验证        |
+| resetFields | props | 重置表单
+
 ## 插槽
 
 | 名称            | 插槽作用域|   说明                                   | 

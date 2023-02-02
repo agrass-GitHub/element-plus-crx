@@ -1,16 +1,15 @@
 <template>
-  <ElForm ref="formRef" :model="form.model" label-width="auto" class="demo">
-    <AgelFormItem v-for="item, i in form.items" v-bind="item" :key="i"></AgelFormItem>
+  <ElForm :model="form.model" label-width="auto" class="demo">
+    <AgelFormItems ref="formLayoutRef" :items="form.items"></AgelFormItems>
   </ElForm>
 </template>
 
 <script lang="tsx" setup>
 import { reactive, ref } from 'vue'
-import type { FormInstance } from 'element-plus'
 
-const formRef = ref<FormInstance>()
+const formLayoutRef = ref()
 const form = reactive({
-  model: {  },
+  model: {},
   items: [
     {
       prop: 'name',
@@ -63,7 +62,8 @@ const form = reactive({
       attrs: {
         type: 'primary',
         onClick: () => {
-          formRef.value?.validate()
+          formLayoutRef.value?.validate()
+          formLayoutRef.value?.getRef('zone').focus()
         }
       },
     }

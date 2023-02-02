@@ -1,4 +1,5 @@
 import AgelFormItem from './AgelFormItem'
+import AgelFormItems from './AgelFormItems'
 import AgelFormGrid from './AgelFormGrid'
 import AgelFormDesc from './AgelFormDesc'
 import AgelFormTableditor from './AgelFormTableditor'
@@ -17,6 +18,7 @@ import type { ElementPlusCrxConfig } from './utils/useCrxGlobalConfig'
 export {
   ElementPlusCrxConfig,
   AgelFormItem,
+  AgelFormItems,
   AgelFormGrid,
   AgelFormDesc,
   AgelFormTableditor,
@@ -36,6 +38,7 @@ export default {
   install: function (app: any) {
     const components = [
       AgelFormItem,
+      AgelFormItems,
       AgelFormGrid,
       AgelFormDesc,
       AgelFormTableditor,

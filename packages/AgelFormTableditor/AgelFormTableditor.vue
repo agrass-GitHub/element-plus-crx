@@ -48,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {})
 
 const elTable = ref<TableInstance>()
 
-const { formContext, getFormItemEl, getRequiredAsteriskClass } = useFormItems<ItemProps>(props)
+const { formContext, getRequiredAsteriskClass } = useFormItems<ItemProps>(props)
 
 const tableData = formContext.model ? getProp(formContext.model, props.modelProp, []) : ref([])
 
@@ -73,7 +73,7 @@ const AgelFormColumns: FunctionalComponent<{ columns: ItemProps[] }> = ({ column
       const prop = getFormItemProp(column.prop, $index)
       const scope = { rowData: row, rowIndex: $index }
       const viewModel = typeof column.viewModel == 'boolean' ? column.viewModel : row._view_
-      return h(AgelFormItem, { ...column, ...scope, prop, el: getFormItemEl(column.slot), viewModel, })
+      return h(AgelFormItem, { ...scope, ...column, prop, viewModel, })
     }
 
     const columnProps = getIncludeAttrs(tableColumnPropKeys, column)

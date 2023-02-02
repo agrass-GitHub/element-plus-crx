@@ -55,7 +55,7 @@ app.component(AgelTable.name, AgelTable)
     AgelIcon,
   ]
 ```
-### Typescript 支持
+## Typescript 支持
 
 如果您使用 Volar，请在 `tsconfig.json` 中通过 `compilerOptions.type` 指定全局组件类型。
 
@@ -70,5 +70,5 @@ app.component(AgelTable.name, AgelTable)
 
 ```
 :::tip
-组件源码是用 Typescript 编写，如果你用的不是官方 vite 脚手架创建的vue3 项目，则需要考虑添加 typescript 支持。
+组件源码是用 Typescript 编写，未做打包处理，如果你用的不是官方 vite 脚手架创建的vue3 项目，则需要考虑添加 typescript 支持。
 :::

@@ -27,40 +27,6 @@ grid 的 `span` 属性为表单设置全局的排版，item 的栅格属性优�
 @[code](@example/formGridResponsive.vue)
 :::
 
-## 联动表单
-
-得益于 vue3 的 进步，数据化配置也可以通过 `computed` 简单快速的实现表单之间的联动。
-
-<ClientOnly><formIGridChain/></ClientOnly>
-
-::: details 点击查看代码
-@[code](@example/formIGridChain.vue)
-:::
-
-## 动态增减表单
-
-设置 `modelProp` 为表单项提供动态 prop，值得注意是 v-for 的 key 需指定为 index。
-
-设置 `scope` 属性为 `slot` 渲染函数/插槽 提供作用域参数。
-
-<ClientOnly><formGirdDynamic/></ClientOnly>
-
-::: details 点击查看代码
-@[code vue{4}](@example/formGirdDynamic.vue)
-:::
-
-## 模板插槽
-
-在所有布局表单下，`slot` 属性可额外支持模板插槽，需要指定模板名称。
-
-开启模板插槽，`slot` 属性必须 `slot-` 开头，否则会被识别为组件名称。
-
-<ClientOnly><formGridTemplateSlot/></ClientOnly>
-
-::: details 点击查看代码
-@[code vue{5-7,20}](@example/formGridTemplateSlot.vue)
-:::
-
 
 ## 属性
 

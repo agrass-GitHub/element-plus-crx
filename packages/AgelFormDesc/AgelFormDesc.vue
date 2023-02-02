@@ -27,9 +27,8 @@ export default { name: 'AgelFormDesc', inheritAttrs: false }
 import AgelFormItem, { type AgelFormItemProps } from "../AgelFormItem"
 import useFormItems from "../utils/useFormItems"
 import { computed, h, onBeforeUnmount, watchEffect } from "vue"
-import { getIncludeAttrs, dynamicStyleRule, guid } from "../utils/utils"
+import { dynamicStyleRule, guid } from "../utils/utils"
 import type { ElDescriptions, ElDescriptionsItem, } from "element-plus"
-
 
 type DescItemProps = Pick<InstanceType<typeof ElDescriptionsItem>["$props"], 'span' | 'className' | 'labelClassName'>
 type ItemProps = AgelFormItemProps & DescItemProps
@@ -49,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const styleId = 'decs-' + guid()
 
-const { formContext, formItems, getFormItemProps, getRequiredAsteriskClass } = useFormItems<ItemProps>(props)
+const { formContext, formItems, getFormItemProps, getRequiredAsteriskClass, getRef, validate, resetFields, } = useFormItems<ItemProps>(props)
 
 const direction = computed(() => {
   return formContext?.labelPosition == 'top' ? 'vertical' : 'horizontal'
@@ -108,6 +107,8 @@ watchEffect(() => {
 onBeforeUnmount(() => {
   dynamicStyleRule(styleId, null)
 })
+
+defineExpose({ getRef, validate, resetFields, })
 </script>
 
 

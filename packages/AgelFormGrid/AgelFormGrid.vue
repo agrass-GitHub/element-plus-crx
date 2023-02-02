@@ -27,20 +27,13 @@ type ItemProps = AgelFormItemProps & PickColProps & { display?: boolean }
 interface Props extends Partial<RowProps> {
   // 表单配置项
   items: ItemProps[],
-  // 表单 model 键名
   modelProp?: string,
-  // 表单项插槽作用域参数
-  scope?: { [k: string]: any },
-  // 是否开启视图模式
   viewModel?: boolean,
-  // 是否开启自适应容器
-  responsive?: boolean,
-  // 自定义自适应容器方法
-  responsiveMethod?: (width: number) => number,
-  // el-row gutter
+  scope?: Record<string, any>,
   gutter?: number,
-  // el-row span
   span?: number,
+  responsive?: boolean,
+  responsiveMethod?: (width: number) => number,
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -48,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
   span: 24,
 })
 
-const { formItems, getFormItemProps } = useFormItems<ItemProps>(props)
+const { formItems, getFormItemProps, getRef, validate, resetFields, } = useFormItems<ItemProps>(props)
 const rowRef = ref()
 const resizeSpan = ref(24)
 const resizeObserver = new ResizeObserver(function () {
@@ -83,6 +76,7 @@ onBeforeUnmount(() => {
   props.responsive && resizeObserver.unobserve(rowRef.value.$el)
 })
 
+defineExpose({ getRef, validate, resetFields, })
 </script>
 
 

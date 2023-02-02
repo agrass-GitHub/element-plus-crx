@@ -1,8 +1,8 @@
 <template >
-  <ViewModelEL v-if="hidden !== true && viewModel"></ViewModelEL>
-  <ElFormItem v-if="hidden !== true" v-show="!viewModel" :prop="prop"
-    :label-width="labelWidth === 0 ? '0px' : labelWidth" :show-message="showMessage" :inline-message="inlineMessage"
-    :error="error" :rules="formItemRules" ref="formItemRef" class="agel-form-item">
+  <ViewModelEL v-if="viewModel"></ViewModelEL>
+  <ElFormItem v-show="!viewModel" :prop="prop" :label-width="labelWidth === 0 ? '0px' : labelWidth"
+    :show-message="showMessage" :inline-message="inlineMessage" :error="error" :rules="formItemRules" ref="formItemRef"
+    :class="className">
 
     <div class="vloading__content el-form-item__content" v-loading="loading">
       <slot v-bind="renderScopeProps">
@@ -28,11 +28,14 @@ export default { name: 'AgelFormItem', inheritAttrs: false }
 </script>
 
 <script setup lang='ts'>
-import { computed, inject, ref, h, resolveComponent, useAttrs, type Component, type VNodeChild, type FunctionalComponent, } from 'vue'
+import { computed, inject, ref, h, resolveComponent, useAttrs, watchEffect, onMounted } from 'vue'
 import { formContextKey, type FormContext, type FormItemRule } from 'element-plus'
 import { getProp } from "element-plus/es/utils/objects"
 import useCrxGlobalConfig from "../utils/useCrxGlobalConfig"
 import useLocale from "../utils/useLocale"
+import { formLayoutContextKey, type FormLayoutContext } from "../utils/useFormItems"
+import type { Component, VNodeChild, FunctionalComponent } from "vue"
+
 
 type RenderFunction = ((scope?: any) => VNodeChild)
 type Props = {
@@ -48,6 +51,7 @@ type Props = {
   vmodel?: '.trim' | '.number',
   loading?: boolean,
   hidden?: boolean,
+  class?: string,
   // form-item props 方便 ts 提示
   labelWidth?: string | number,
   rules?: FormItemRule | FormItemRule[],
@@ -62,13 +66,14 @@ const props = withDefaults(defineProps<Props>(), {
   inlineMessage: false,
 })
 
-const otherProps = useAttrs()
+const scopeProps = useAttrs()
 const AgelFormItemConfig = useCrxGlobalConfig().AgelFormItem
-const formContext = inject(formContextKey) as FormContext
-const modelValue = formContext?.model && props.prop ? getProp(formContext.model, props.prop) : ref()
+const formContext = inject<FormContext>(formContextKey)
+const FormLayoutContext = inject<FormLayoutContext>(formLayoutContextKey)
+
+const model = ref<{ value: any }>({ value: undefined })
 const elRef = ref()
 const formItemRef = ref()
-
 const locale = useLocale({
   'zh-cn': {
     required: '必填',
@@ -78,6 +83,7 @@ const locale = useLocale({
   }
 })
 
+const className = computed(() => 'agel-form-item ' + props.class)
 const formItemRules = computed(() => {
   if (props.required) {
     const label = (props.label && typeof props.label == 'string' ? props.label : props.prop) || ''
@@ -98,16 +104,15 @@ const formItemRules = computed(() => {
 const renderScopeProps = computed(() => {
   return {
     ...props,
-    ...otherProps,
-    modelValue: modelValue.value,
+    ...scopeProps,
+    modelValue: model.value.value,
     label: typeof props.label == 'string' ? props.label : '',
   }
 })
 
 const ViewModelEL: FunctionalComponent = () => {
-  return props.viewFormat ? props.viewFormat({ ...renderScopeProps.value }) : h('span', {}, modelValue.value)
+  return props.viewFormat ? props.viewFormat({ ...renderScopeProps.value }) : h('span', {}, model.value.value)
 }
-
 
 const FormItemLabel: FunctionalComponent = () => {
   if (typeof props.label == 'string') {
@@ -121,8 +126,13 @@ const FormItemLabel: FunctionalComponent = () => {
 const FormItemEl: FunctionalComponent = () => {
 
   // 渲染函数
-  if (typeof props.slot === 'function') {
+  if (typeof props.slot == 'function') {
     return (props.slot as RenderFunction)({ ...renderScopeProps.value })
+  }
+
+  // 模板插槽
+  if (typeof props.slot == 'string' && props.slot.indexOf('slot-') == 0 && FormLayoutContext && FormLayoutContext.slots[props.slot]) {
+    return FormLayoutContext.slots[props.slot]({ ...renderScopeProps.value })
   }
 
   // 组件/组件名称
@@ -135,7 +145,7 @@ const FormItemEl: FunctionalComponent = () => {
     ...componentConfig || {},
     ...props.attrs || {},
     'ref': elRef,
-    "modelValue": modelValue.value,
+    "modelValue": model.value.value,
     "onUpdate:modelValue": updateModelValue,
   }
   const componentSlots = typeof props.slots == 'function' ? { default: props.slots } : props.slots
@@ -151,7 +161,7 @@ function updateModelValue(value: any) {
       value = parseFloat(value)
     }
   }
-  modelValue.value = value
+  model.value.value = value
 }
 
 function resetField() {
@@ -162,7 +172,20 @@ function clearValidate() {
   formItemRef.value.clearValidate()
 }
 
-defineExpose({ modelValue, elRef, formItemRef, resetField, clearValidate })
+
+onMounted(() => {
+  if (FormLayoutContext && props.prop) {
+    FormLayoutContext.refs[props.prop] = elRef.value
+  }
+})
+
+watchEffect(() => {
+  if (formContext && formContext.model && props.prop) {
+    model.value = getProp(formContext.model, props.prop)
+  }
+})
+
+defineExpose({ elRef, resetField, clearValidate })
 </script>
 
 
@@ -228,5 +251,10 @@ defineExpose({ modelValue, elRef, formItemRef, resetField, clearValidate })
 .vloading__content .el-loading-mask {
   --el-loading-spinner-size: 24px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* label-width 去掉 padding */
+.el-form-item__label[style="width: 0px;"] {
+  display: none;
 }
 </style>
