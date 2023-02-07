@@ -6,12 +6,12 @@
 
 <script lang="tsx" setup>
 import { reactive, onMounted, ref } from 'vue'
-import { ElMessage, type TableInstance } from 'element-plus'
+import { ElMessage, } from 'element-plus'
 import http from "./utils/http"
 
 type Row = { name: string, date: string, address: string }
 
-const tableRef = ref<{ elTable: TableInstance }>()
+const tableRef = ref()
 const table = reactive({
   loading: false,
   data: [] as Row[],
@@ -44,7 +44,7 @@ const table = reactive({
     })
   },
   onSelectionChange: () => {
-    const names = tableRef.value?.elTable.getSelectionRows().map((v: Row) => v.name).join()
+    const names = tableRef.value?.getRef().getSelectionRows().map((v: Row) => v.name).join()
     names.length > 0 && ElMessage.success('选中：' + names)
   }
 })

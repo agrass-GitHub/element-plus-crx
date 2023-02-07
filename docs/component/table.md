@@ -70,6 +70,13 @@
 | sortOrder | 'ascending'\|'descending'\|null | - | 排序列方式
 | ... | -  | - | [ElPagination 属性](https://element-plus.gitee.io/zh-CN/component/pagination.html#%E5%B1%9E%E6%80%A7)
 
+## 方法
+
+| 名称            | 参数  |   说明       | 
+| -----------    | ------- | -----------------------------  |
+| getRef    | -  |  获取 elTabl e组件实例        |
+
+
 ## 插槽
 
 | 名称            | 插槽作用域 |   说明                                   | 

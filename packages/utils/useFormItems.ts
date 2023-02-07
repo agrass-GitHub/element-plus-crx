@@ -83,6 +83,7 @@ export function useFormItems<T>(props: Props<T>) {
   return {
     formContext,
     formSlots,
+    formRefs,
     formItems,
     validate,
     resetFields,

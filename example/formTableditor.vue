@@ -104,7 +104,7 @@ function addRow() {
 }
 
 function selectionChange() {
-  const names = tablediorRef.value?.elTable.getSelectionRows().map((v: any) => v.name).join()
+  const names = tablediorRef.value?.getRef('elTable').getSelectionRows().map((v: any) => v.name).join()
   names.length > 0 && ElMessage.success('选中：' + names)
 }
 </script>

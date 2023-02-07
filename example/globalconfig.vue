@@ -38,19 +38,20 @@ const ElementPlusCrx: ElementPlusCrxConfig = {
       }
     },
     ElDatePicker: function (props: any) {
-      if (props.type == undefined || props.type == 'date' || props.type == "daterange") {
-        return { valueFormat: "yyyy-MM-dd", }
-      }
+      let valueFormat = 'yyyy-MM-dd'
       if (props.type == "datetime" || props.type == "datetimerange") {
-        return { valueFormat: "yyyy-MM-dd HH:mm:ss" }
+        valueFormat = "yyyy-MM-dd HH:mm:ss"
       }
       if (props.type == "month" || props.type == "monthrange") {
-        return { valueFormat: "yyyy-MM" }
+        valueFormat = "yyyy-MM"
       }
       if (props.type == "year") {
-        return { valueFormat: "yyyy" }
+        valueFormat = "yyyy"
       }
-      return {}
+      return {
+        valueFormat,
+        placeholder: '请选择' + props.label,
+      }
     }
   },
 }

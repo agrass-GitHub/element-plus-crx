@@ -8,6 +8,12 @@ sidebar: auto
 有使用上的问题可联系作者:agrass-weixin。[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 :::
 
+## v.1.0.4
+
+### Features
+- __FormTableitor：__  添加 getRef 方法
+- __Table：__  添加 getRef 方法
+
 ## v.1.0.3 
 
 ### Bug Fixes
@@ -22,9 +28,8 @@ sidebar: auto
 
 ### Features
 - __FormGird,FormDesc：__ 添加 getRef, validate, resetFields 方法
-- __FormTableitor：__  添加 getRef 方法
 - __FormItems：__ 添加组件
-- __FormItem：__ 添加 class 属性
+- __FormItem：__ 支持 class 属性
 
 ## v.1.0.1
 

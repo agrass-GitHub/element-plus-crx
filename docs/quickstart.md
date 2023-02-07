@@ -15,7 +15,7 @@ import ElementPlus from 'element-plus'
 import ElementPlusCrx from 'element-plus-crx'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-app.use(ElementUI)
+app.use(ElementPlus)
 app.use(ElementPlusCrx)
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -28,9 +28,9 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 每个组件有对应依赖的组件，需按照文档全局注册。
 
 ```js
-import { AgelFormItem, AgelFormGrid, AgelTable } from 'element-plus-crx'
+import { AgelFormItems, AgelFormGrid, AgelTable } from 'element-plus-crx'
 
-app.component(AgelFormItem.name, AgelFormItem)
+app.component(AgelFormItems.name, AgelFormItems)
 app.component(AgelFormGrid.name, AgelFormGrid)
 app.component(AgelTable.name, AgelTable)
 ```
@@ -39,7 +39,7 @@ app.component(AgelTable.name, AgelTable)
 
 ```js
   const components = [
-    AgelFormItem,
+    AgelFormItems,
     AgelFormGrid,
     AgelFormDesc,
     AgelFormTableditor,
@@ -52,7 +52,6 @@ app.component(AgelTable.name, AgelTable)
     AgelTable,
     AgelMenu,
     AgelNavTabs,
-    AgelIcon,
   ]
 ```
 ## Typescript 支持

@@ -1,6 +1,6 @@
 {
   "name": "element-plus-crx",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "packages/index.ts",
   "description": "a easy extension component package based on element-plus",
   "homepage": "https://github.com/agrass-GitHub/element-plus-crx",

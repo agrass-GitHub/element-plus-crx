@@ -105,7 +105,11 @@ function sortChange({ column, prop, order }: SortParams) {
   }
 }
 
-defineExpose({ elTable })
+function getRef() {
+  return elTable.value
+}
+
+defineExpose({  getRef })
 </script>
 
 <style >

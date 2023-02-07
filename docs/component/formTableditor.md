@@ -35,7 +35,7 @@
 
 | 名称            | 参数  |   说明       | 
 | -----------    | ------- | -----------------------------  |
-| getRef    | prop  |  获取组件实例        |
+| getRef    | prop \| 'elTable'  |  获取组件实例        |
 | validateRow    | index,callback |   验证某一行表单       |
 
 

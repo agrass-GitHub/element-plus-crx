@@ -1,5 +1,5 @@
 <template>
-  <ElTable ref="elTable" class="agel-form-table __hidelabel __inlinemsg __fullwidth" v-bind="$attrs"
+  <ElTable :ref="(v) => formRefs.elTable = v" class="agel-form-table __hidelabel __inlinemsg __fullwidth" v-bind="$attrs"
     :data="tableData.value">
     <slot name="prepend"></slot>
     <slot>
@@ -46,9 +46,9 @@ interface Props extends Omit<TableProps<any>, 'data'>, TableEmits<any> {
 
 const props = withDefaults(defineProps<Props>(), {})
 
-const elTable = ref<TableInstance>()
+// const elTable = ref<TableInstance>()
 
-const { formContext, getRequiredAsteriskClass } = useFormItems<ItemProps>(props)
+const { formContext, formRefs, getRequiredAsteriskClass, getRef } = useFormItems<ItemProps>(props)
 
 const tableData = formContext.model ? getProp(formContext.model, props.modelProp, []) : ref([])
 
@@ -95,6 +95,7 @@ function validateRow(rowIndex: number, callback?: any) {
   return formContext.validateField(propKeys, callback)
 }
 
-defineExpose({ validateRow, elTable })
+
+defineExpose({ getRef, validateRow, })
 
 </script>
