@@ -223,6 +223,7 @@ function setPopoverVirtualRef(index: number) {
 .agel-nav-tabs .agel-tab {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .agel-nav-tabs .el-tabs {
@@ -243,6 +244,8 @@ function setPopoverVirtualRef(index: number) {
 .agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__nav {
   margin-top: -1.5px;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 .agel-nav-tabs .el-icon {

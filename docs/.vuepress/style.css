@@ -1,9 +1,16 @@
 /* api 文档样式美化 */
-:root {
+/* :root {
   --c-brand: var(--el-color-primary);
   --c-tip:var(--el-color-primary);
   --c-brand-light: var(--el-color-primary-light-3);
   --c-text-lighter: var(--c-text-accent) !important;
+} */
+
+
+
+.navbar .site-name{
+  color: var(--el-color-primary);
+  font-size: 1.4rem;
 }
 
 .home .hero .description{

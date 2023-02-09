@@ -8,6 +8,13 @@ sidebar: auto
 有使用上的问题可联系作者:agrass-weixin。[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 :::
 
+## v.1.0.5
+
+### Bug Fixes
+- __AgelFormItem：__  完善 getRef 的逻辑
+- __AgelMapInput：__  完善经纬度的 prepend 样式
+- __NavTabs：__  完善 tab 样式竖向对齐
+
 ## v.1.0.4
 
 ### Features

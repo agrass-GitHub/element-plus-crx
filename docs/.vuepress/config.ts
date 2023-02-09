@@ -13,6 +13,7 @@ export default defineUserConfig({
   title: 'Element Plus Crx',
   description: '一个基于 element plus 的扩展组件库',
   theme: defaultTheme({
+    logo: 'https://element-plus.gitee.io/images/element-plus-logo-small.svg',
     navbar: [
       {
         text: '使用文档',
@@ -22,9 +23,19 @@ export default defineUserConfig({
         text: '更新日志',
         link: '/updatelog.md',
       },
+
       {
         text: 'Github',
-        link: 'https://github.com/agrass-GitHub/element-plus-crx',
+        children: [
+          {
+            text: "element-plus-crx",
+            link: 'https://github.com/agrass-GitHub/element-plus-crx',
+          },
+          {
+            text: "agel-admin",
+            link: 'https://github.com/agrass-GitHub/agel-admin',
+          },
+        ],
       },
     ],
     sidebarDepth: 1,

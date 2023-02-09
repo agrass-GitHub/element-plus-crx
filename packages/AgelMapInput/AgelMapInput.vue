@@ -21,8 +21,8 @@
         <div class="addr-row">
           <div class="addr-label">{{ locale.address }}</div>
           <ElInput v-model="address" :readonly="!editable">
-            <template #append>
-              <span v-if="Array.isArray(modelValue)">
+            <template #append  v-if="Array.isArray(modelValue)">
+              <span>
                 {{ lnglat? lnglat.lng + ' , ' + lnglat.lat: locale.nolnglat }}
               </span>
             </template>

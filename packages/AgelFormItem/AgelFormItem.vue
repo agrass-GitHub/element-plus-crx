@@ -28,7 +28,7 @@ export default { name: 'AgelFormItem', inheritAttrs: false }
 </script>
 
 <script setup lang='ts'>
-import { computed, inject, ref, h, resolveComponent, useAttrs, watchEffect, onMounted } from 'vue'
+import { computed, inject, ref, h, resolveComponent, useAttrs, watchEffect, onMounted, onUnmounted } from 'vue'
 import { formContextKey, type FormContext, type FormItemRule } from 'element-plus'
 import { getProp } from "element-plus/es/utils/objects"
 import useCrxGlobalConfig from "../utils/useCrxGlobalConfig"
@@ -176,6 +176,12 @@ function clearValidate() {
 onMounted(() => {
   if (FormLayoutContext && props.prop) {
     FormLayoutContext.refs[props.prop] = elRef.value
+  }
+})
+
+onUnmounted(() => {
+  if (FormLayoutContext && props.prop) {
+    FormLayoutContext.refs[props.prop] = undefined
   }
 })
 

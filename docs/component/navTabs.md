@@ -10,6 +10,8 @@
 
 在 `Tab` 标签栏上右键操作可打开导航功能菜单。
 
+若想保持刷新保留 tabs，可通过 `localStorage` 等将数据持久化存储在本地。   
+
 <ClientOnly><navTabs/></ClientOnly>
 
 ::: details 点击查看代码
