@@ -1,5 +1,5 @@
 <template>
-  <div ref="tabsRef" :class="['agel-nav-tabs', isBackground ? 'is-background' : 'concise']" @contextmenu.prevent
+  <div ref="tabsRef" :class="['agel-nav-tabs', isBackground ? '__is-background' : '__concise',{'__has-more':more}]" @contextmenu.prevent
     @mouseleave="hidePopover()">
     <ElTabs :model-value="routePath" type="card" @tab-change="(v) => changeTab(v as string)">
       <ElTabPane v-for="(item, index) in filterTabsList" :key="(item.path + index)" :label="item.title"
@@ -210,7 +210,7 @@ function setPopoverVirtualRef(index: number) {
 
 <style>
 .agel-nav-tabs {
-  --tab-height: 24px;
+  --tab-height: 26px;
 
   height: 40px;
   border-bottom: 1px solid var(--el-border-color-light);
@@ -220,25 +220,18 @@ function setPopoverVirtualRef(index: number) {
   width: 100%;
 }
 
-.agel-nav-tabs .agel-tab {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
 
 .agel-nav-tabs .el-tabs {
   --el-tabs-header-height: var(--tab-height);
-  flex: 1;
 }
 
-.agel-nav-tabs .el-tabs__nav-next,
-.agel-nav-tabs .el-tabs__nav-prev {
-  line-height: calc(var(--tab-height) + 4px);
+.agel-nav-tabs.__has-more .el-tabs{
+  width: calc(100% - 95px);
 }
 
-.agel-nav-tabs .el-tabs--card>.el-tabs__header {
-  margin: 0px;
-  border-bottom: 0px;
+.agel-nav-tabs .el-tabs .el-tabs__nav-wrap{
+  display: flex;
+  align-items: center;
 }
 
 .agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__nav {
@@ -246,6 +239,30 @@ function setPopoverVirtualRef(index: number) {
   border: none;
   display: flex;
   align-items: center;
+}
+
+.agel-nav-tabs .el-tabs--card>.el-tabs__header {
+  margin: 0px;
+  border-bottom: 0px;
+}
+
+.agel-nav-tabs .el-tabs__nav-next,
+.agel-nav-tabs .el-tabs__nav-prev {
+  line-height: inherit;
+  height: var(--tab-height);
+  display: flex;
+  align-items: center;
+}
+
+.agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__item .is-icon-close{
+  top:inherit;
+  right: inherit;
+}
+
+.agel-nav-tabs .agel-tab {
+  display: flex;
+  align-items: center;
+  height: var(--tab-height);
 }
 
 .agel-nav-tabs .el-icon {
@@ -258,9 +275,11 @@ function setPopoverVirtualRef(index: number) {
 
 .agel-nav-tabs .tabs-more-button {
   margin: 0px 10px;
+  width: 75px;
   font-size: var(--el-font-size-small);
-  height: var(--tab-height);
+  height: calc(var(--tab-height) - 2px);
 }
+
 
 /* 隐藏默认 关闭标签 */
 .agel-nav-tabs .agel-tab+.is-icon-close {
@@ -277,21 +296,26 @@ function setPopoverVirtualRef(index: number) {
 }
 
 /*  简洁风格 */
-.agel-nav-tabs.concise .el-tabs--card>.el-tabs__header .el-tabs__item {
+.agel-nav-tabs.__concise .el-tabs--card>.el-tabs__header .el-tabs__item {
   font-size: var(--el-font-size-small);
-  padding: 0px 15px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
   border-bottom: 0px;
 }
 
 /* 背景圆角风格 */
-.agel-nav-tabs.is-background .el-tabs--card>.el-tabs__header .el-tabs__item {
+.agel-nav-tabs.__is-background {
+  --tab-height: 28px;
+}
+
+.agel-nav-tabs.__is-background .el-tabs--card>.el-tabs__header .el-tabs__item {
   font-size: var(--el-font-size-small);
+  border-radius: var(--el-border-radius-base);
   border-bottom: 0px;
   margin-left: 10px;
   padding-left: 10px !important;
   padding-right: 10px !important;
   border-left: 0px;
-  border-radius: 4px;
   background: #eceef5;
 }
 
