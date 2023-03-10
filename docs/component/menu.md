@@ -29,6 +29,6 @@
 | index  | index | - | 路由地址，必须
 | icon  | string | - | 菜单图标或图片地址
 | disabled | boolean | - | 是否禁用
-| hidden | boolean | - | 是否显示
+| hidden | boolean | - | 是否隐藏
 | children | MenuItemProps[] | - | 菜单配置
 | ...... | -  | - | [ElSubMenu 属性](https://element-plus.gitee.io/zh-CN/component/menu.html#submenu-%E5%B1%9E%E6%80%A7)

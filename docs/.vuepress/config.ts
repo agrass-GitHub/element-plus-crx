@@ -73,11 +73,10 @@ export default defineUserConfig({
         text: 'Navigation 导航',
         children: [
           '/component/menu.md',
+          '/component/contextMenu.md',
           '/component/navTabs.md'
         ]
       },
-      // '/component/table.md',
-
     ]
   }),
   markdown: {
