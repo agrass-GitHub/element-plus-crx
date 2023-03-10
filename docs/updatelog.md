@@ -8,7 +8,7 @@ sidebar: auto
 有使用上的问题可联系作者:agrass-weixin。[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 :::
 
-## v.1.0.7 
+## v.1.0.7 （2023-03-10）
 
 ### feat
 - __AgelMapInput：__  适配 AMap 2.0

@@ -16,10 +16,12 @@
 - Vue 3 Composition AP
 - TypeScript 编写
 
-一个基于 vue3 + element plus 的扩展组件库，提供数据配置表单，表格，菜单等扩展组件。
+一个基于 vue3 + element plus 的扩展组件库，提供数据配置表单，表格，菜单等丰富的扩展组件，也许会有意外之喜噢。
 
-极简的思想，完全的数据驱动，拥有绝对的灵活性，内置双语言，完整的 typescript 提示，方便的全局配置，帮助你快速开发！！up! up! up!
+极简的思想，完全的数据驱动，拥有绝对的灵活性，内置双语言，适配黑暗模式，完整的 typescript 提示，方便的全局配置，帮助你快速开发！！up! up! up!
 
+
+![docs](https://s1.ax1x.com/2023/03/10/ppuN6Ej.jpg)
 
 ## 如此简单
 

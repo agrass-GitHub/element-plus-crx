@@ -16,14 +16,17 @@ export default defineUserConfig({
     logo: 'https://element-plus.gitee.io/images/element-plus-logo-small.svg',
     navbar: [
       {
-        text: '使用文档',
+        text: '文档',
         link: '/quickstart.md',
       },
       {
-        text: '更新日志',
+        text: '更新',
         link: '/updatelog.md',
       },
-
+      {
+        text: '赞助',
+        link: '/sponsor.md',
+      },
       {
         text: 'Github',
         children: [
