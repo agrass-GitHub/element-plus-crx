@@ -161,7 +161,7 @@ function loadMap() {
   }
   map.Instance = new map.AMap.Map('map-' + map.id, { zoom: 12 })
   map.Geocoder = new map.AMap.Geocoder()
-  map.Autocomplete = new map.AMap.Autocomplete()
+  map.Autocomplete = new (map.AMap.Autocomplete || map.AMap.AutoComplete)()
   map.PlaceSearch = new map.AMap.PlaceSearch({
     map: map.Instance,
     pageSize: 5,

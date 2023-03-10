@@ -13,6 +13,7 @@ import AgelTable from './AgelTable'
 import AgelMenu from './AgelMenu'
 import AgelNavTabs from './AgelNavTabs'
 import AgelIcon from './AgelIcon'
+import AgelContextMenu from './AgelContextMenu'
 import type { ElementPlusCrxConfig } from './utils/useCrxGlobalConfig'
 
 export {
@@ -32,6 +33,7 @@ export {
   AgelMenu,
   AgelNavTabs,
   AgelIcon,
+  AgelContextMenu,
 }
 
 export default {
@@ -52,6 +54,7 @@ export default {
       AgelMenu,
       AgelNavTabs,
       AgelIcon,
+      AgelContextMenu,
     ]
     components.forEach(el => app.component(el.name, el))
   },
