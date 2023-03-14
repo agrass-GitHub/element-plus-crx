@@ -15,6 +15,7 @@ import AgelNavTabs from './AgelNavTabs'
 import AgelIcon from './AgelIcon'
 import AgelContextMenu from './AgelContextMenu'
 import AgelCountTo from './AgelCountTo'
+import AgelEllipsis from './AgelEllipsis'
 import type { ElementPlusCrxConfig } from './utils/useCrxGlobalConfig'
 
 export {
@@ -36,6 +37,7 @@ export {
   AgelIcon,
   AgelContextMenu,
   AgelCountTo,
+  AgelEllipsis,
 }
 
 export default {
@@ -58,6 +60,7 @@ export default {
       AgelIcon,
       AgelContextMenu,
       AgelCountTo,
+      AgelEllipsis,
     ]
     components.forEach(el => app.component(el.name, el))
   },

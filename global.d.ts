@@ -14,6 +14,9 @@ declare module '@vue/runtime-core' {
     AgelMenu: typeof import('./packages')['AgelMenu'],
     AgelNavTabs: typeof import('./packages')['AgelNavTabs'],
     AgelIcon: typeof import('./packages')['AgelIcon'],
+    AgelContextMenu: typeof import('./packages')['AgelContextMenu'],
+    AgelCountTo: typeof import('./packages')['AgelCountTo'],
+    AgelEllipsis: typeof import('./packages')['AgelEllipsis'],
   }
 }
 export { };
