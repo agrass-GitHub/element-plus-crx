@@ -12,7 +12,7 @@
             <AgelIcon v-if="hasSubMenu(item.children)" icon="ArrowRight" class="agel-context-menu_arrow"></AgelIcon>
           </div>
           <AgelContextMenu v-if="hasSubMenu(item.children)" :model-value="hoverIndex === index" :menus="item.children"
-            :transition="transition" :submenu="true" @select="onSelect" />
+            :transition="transition" :submenu="true" :x="0" :y="0" @select="onSelect" />
         </div>
       </div>
     </transition>
@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-export default { name: "AgelContextMenu", inheritAttrs: false }
+export default { name: "AgelContextMenu" }
 </script>
 
 <script setup lang="ts">
@@ -39,10 +39,10 @@ interface MenuItem {
 }
 
 interface Props {
-  modelValue?: boolean,
-  x?: number,
-  y?: number,
-  menus?: MenuItem[],
+  modelValue: boolean,
+  x: number,
+  y: number,
+  menus: MenuItem[],
   transition?: string,
 }
 
