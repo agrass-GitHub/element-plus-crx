@@ -12,7 +12,7 @@
             <AgelIcon v-if="hasSubMenu(item.children)" icon="ArrowRight" class="agel-context-menu_arrow"></AgelIcon>
           </div>
           <AgelContextMenu v-if="hasSubMenu(item.children)" :model-value="hoverIndex === index" :menus="item.children"
-            :transition="transition" :submenu="true" :x="0" :y="0" @select="onSelect" />
+            :transition="transition" :x="submenuXY" :y="submenuXY" @select="onSelect" />
         </div>
       </div>
     </transition>
@@ -24,7 +24,7 @@ export default { name: "AgelContextMenu" }
 </script>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, useAttrs } from "vue"
+import { ref, onMounted, onUnmounted, computed } from "vue"
 import { useZIndex } from "element-plus/es/hooks/index"
 
 interface MenuItem {
@@ -56,7 +56,8 @@ const emits = defineEmits(["update:modelValue", "select"])
 const { nextZIndex } = useZIndex()
 const zIndex = ref(nextZIndex())
 const hoverIndex = ref(-1)
-const isSubMenu = useAttrs().hasOwnProperty('submenu')
+const submenuXY = -1000
+const isSubMenu = props.x === submenuXY && props.y === submenuXY
 
 const menuStyle = computed(() => {
   const zindexStyle = {
