@@ -11,14 +11,22 @@
 
 `npm install element-plus-crx --save`
 
-## 介绍
+## 特性
 
 - Vue 3 Composition AP
 - TypeScript 编写
 
-一个基于 vue3 + element plus 的扩展组件库，提供数据配置表单，表格，菜单等丰富的扩展组件，也许会有意外之喜噢。
+### 数据配置
 
-极简的思想，完全的数据驱动，拥有绝对的灵活性，内置双语言，适配黑暗模式，完整的 typescript 提示，方便的全局配置，帮助你快速开发！！up! up! up!
+数据配置表单/表格，极简的思想，完全的数据驱动，拥有绝对的灵活性。
+
+### 扩展组件
+
+更多丰富的扩展组件，在 ElementPlus 没有找到的这里或许会有。
+
+### 快捷使用
+
+适配双语言，黑暗模式，完整的typescript提示，更方便的全局配置。
 
 
 ![docs](https://s1.ax1x.com/2023/03/10/ppuN6Ej.jpg)

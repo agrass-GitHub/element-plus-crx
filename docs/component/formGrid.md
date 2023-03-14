@@ -33,11 +33,11 @@ grid 的 `span` 属性为表单设置全局的排版，item 的栅格属性优�
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | items | ItemProps[] | - | 表单配置项 
-| modelProp | string | - | 表单 model 键名 
+| model-prop | string | - | 表单 model 键名 
 | scope | object | - | 表单项插槽作用域参数 
-| viewModel | boolean | - | 视图模式，只渲染 value
+| view-model | boolean | - | 视图模式，只渲染 value
 | responsive | boolean | - | 是否开启自适应容器
-| responsiveMethod | (width: number) => number | - | 自定义自适应容器方法
+| responsive-method | (width: number) => number | - | 自定义自适应容器方法
 | span | number | 24 | 珊格列
 | gutter | number | 18 | 珊格间距
 | ...... | RowProps | - | [ElRow 属性](https://element-plus.gitee.io/zh-CN/component/layout.html#row-attributes)

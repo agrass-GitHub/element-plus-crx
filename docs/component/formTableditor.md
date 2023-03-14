@@ -20,7 +20,7 @@
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | items | ItemProps[] | - | 表单配置项 
-| modelProp | string | - | 表单 model 键名，必需 
+| model-prop | string | - | 表单 model 键名，必需 
 | ...... | TableProps | - | [ElTable 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-%E5%B1%9E%E6%80%A7)
 
 

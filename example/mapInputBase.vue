@@ -6,7 +6,7 @@
     </ElRow>
     <ElRow type="flex">
       <ElCol :span="4">纯文本地址：</ElCol>
-      <AgelMapInput v-model="address"></AgelMapInput>
+      <AgelMapInput v-model="address" destroy-dialog-on-close></AgelMapInput>
     </ElRow>
   </div>
 </template>

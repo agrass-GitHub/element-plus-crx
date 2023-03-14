@@ -4,9 +4,12 @@ sidebar: auto
 ---
 
 
-:::tip
-有使用上的问题可联系作者:agrass-weixin。[![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
-:::
+## v.1.0.8 （2023-03-14）
+
+### feat
+- __AgelCountTo：__  新增滚动计数组件
+- __AgelEllipsis：__  新增滚动计数组件
+
 
 ## v.1.0.7 （2023-03-10）
 

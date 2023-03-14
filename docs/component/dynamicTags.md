@@ -21,6 +21,6 @@
 | createable   | boolean         | true   | 是否可创建标签                |  
 | closable     | boolean         | true   | 是否可关闭标签     |
 | repeatable   | boolean         | false  | 是否可创建重复签                |  
-| customTagProp | (tag: string, index: number) => TagProps |  -    | 自定义每个标签的 prop
-| validateEvent   | boolean     | true  | 是否触发表单验证                | 
+| custom-tag-prop | (tag: string, index: number) => TagProps |  -    | 自定义每个标签的 prop
+| validate-event   | boolean     | true  | 是否触发表单验证                | 
 | type, hit, color, effect, round   | -  | - | [ElTag 属性](https://element-plus.gitee.io/zh-CN/component/tag.html#tag-%E5%B1%9E%E6%80%A7)

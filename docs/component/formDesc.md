@@ -22,9 +22,9 @@
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | items | ItemProps[] | - | 表单配置项 
-| modelProp | string | - | 表单 model 键名 
+| model-prop | string | - | 表单 model 键名 
 | scope | object | - | 表单项插槽作用域参数 
-| viewModel | boolean | - | 视图模式，只渲染 value
+| view-model | boolean | - | 视图模式，只渲染 value
 | border | boolean | true | 开启边框
 | column, border, title, extra | -  | - | [ElDescriptions 属性](https://element-plus.gitee.io/zh-CN/component/descriptions.html#descriptions-%E5%B1%9E%E6%80%A7)
 

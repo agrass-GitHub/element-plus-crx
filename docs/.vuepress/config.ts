@@ -11,7 +11,10 @@ export default defineUserConfig({
   dest: './distdocs',
   base: '/element-plus-crx/',
   title: 'Element Plus Crx',
-  description: '一个基于 element plus 的扩展组件库',
+  description: '一个基于 ElementPlus 的扩展组件库',
+  head: [
+    [ 'link', { rel: 'icon', href: 'https://element-plus.org/images/element-plus-logo-small.svg' } ]
+  ],
   theme: defaultTheme({
     logo: 'https://element-plus.gitee.io/images/element-plus-logo-small.svg',
     navbar: [
@@ -70,6 +73,8 @@ export default defineUserConfig({
         text: 'Data 数据展示',
         children: [
           '/component/table.md',
+          '/component/countTo.md',
+          '/component/ellipsis.md',
         ]
       },
       {

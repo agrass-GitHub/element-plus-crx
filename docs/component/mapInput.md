@@ -8,14 +8,19 @@
 
 `value` 支持 `array` `string` 两种类型，区别在于是否包含经纬度信息。
 
-<ClientOnly><agelMapInputWrap/></ClientOnly>
+<ClientOnly><mapInputWrap/></ClientOnly>
 
 
 ::: details 点击查看代码
 @[code](@example/agelMapInputBase.vue)
 :::
 
+:::tip
 不管是使用 JSAPI Loader 还是 CDN 方式，首先要确认 `AMap` 及对应的插件正确的被引用，组件默认是取 `Window.AMap`，若你想按需加载高德地图，可使用 `AMap` 属性。
+
+若使用的是高德地图v.2.0，则需要把 `AMap.Autocomplete` 修改为 `AMap.AutoComplete`。
+:::
+
 
 ```vue
 <template>
@@ -26,10 +31,10 @@
 import AMapLoader from "@amap/amap-jsapi-loader";
 export default {
   methods: {
-    mapLoader(reslove, plugins) {
+    mapLoader(reslove) {
       AMapLoader.load({
         key: "xxxxxxxx",    // map key
-        plugins: plugins,   // 所需要插件列表
+        plugins:["AMap.PlaceSearch", "AMap.Autocomplete", "AMap.Geocoder"],   // 所需要插件列表
       }).then((AMap) => reslove(AMap));
     },
   },
@@ -37,15 +42,16 @@ export default {
 </script>
 ```
 
+
 ## 属性
 
 | 属性         | 类型            |  默认值  | 说明                                 | 
 | ------------ | ------------    | ------ | ------------------------------------ | 
 | value        | array / string    | []     | 绑定值                |  
 | AMap         | function        | (cb)=> cb(Window.AMap)      | AMap Loader       |
-| keywordSearch| boolean         | true   | 是否可关键字检索            |  
+| keyword-search| boolean         | true   | 是否可关键字检索            |  
 | clearable    | boolean         | false  | 是否可清空                |  
 | editable     | boolean         | false  | 是否可编辑                |  
-| destroyDialogOnClose| boolean  | false  | dialog 关闭时是否销毁     |
+| destroy-dialog-on-close| boolean  | false  | dialog 关闭时是否销毁     |
 | ......       | -  | - | [ElInput 属性](https://element-plus.gitee.io/zh-CN/component/input.html)
 

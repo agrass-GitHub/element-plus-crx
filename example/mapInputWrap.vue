@@ -1,10 +1,10 @@
 <template>
-  <AgelMapInputBase v-if="load"></AgelMapInputBase>
+  <mapInputBase v-if="load"></mapInputBase>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
-import AgelMapInputBase from "./agelMapInputBase.vue";
+import mapInputBase from "./mapInputBase.vue";
 const load = ref(false)
 onMounted(() => {
   import("@amap/amap-jsapi-loader").then((module) => {

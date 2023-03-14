@@ -1,6 +1,6 @@
-# ContextMenu 右键菜单
+# ContextMenu 右键菜单 <Badge text="v.1.0.7+" />  
 
-快速的数据化配置一个右键菜单，用于交互逻辑较多的页面。`v.1.0.7+`
+快速的数据化配置一个右键菜单，用于交互逻辑较多的页面。
 
 ## 基础使用
 
@@ -20,7 +20,7 @@
 | x | number | - | 菜单出现的 x 坐标
 | y | number | - | 菜单出现的 y 坐标
 | menus | MenuItemProps[] | - | 菜单配置
-| transition | string | - | 过渡动画，transition 组件的 name 名称
+| transition | string | 'el-zoom-in-top' | 过渡动画，transition 组件的 name 名称
 
 ### MenuItemProps
 

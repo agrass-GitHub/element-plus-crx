@@ -64,8 +64,8 @@
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | items | ItemProps[] | - | 表单配置项 
-| viewModel | boolean | - | 视图模式，只渲染 value
-| modelProp | string | - | 表单 model 键名 
+| view-model | boolean | - | 视图模式，只渲染 value
+| model-prop | string | - | 表单 model 键名 
 | scope | object | - | 表单项插槽作用域参数 
 
 ### ItemProps

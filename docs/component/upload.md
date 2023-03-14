@@ -26,8 +26,8 @@
 | v-model:modelValue | UploadUserFile[] | - | 上传文件列表
 | preview | boolean | true | 是否开启文件预览
 | message | boolean | true | 上传错误时候智能提示
-| limitHide | boolean | - | 超出上传个数限制隐藏上传按钮
-| limitSize | number | - | 上传大小限制，kb
+| limit-hide | boolean | - | 超出上传个数限制隐藏上传按钮
+| limit-size | number | - | 上传大小限制，kb
 | tip | string | - | 上传提示语
 | ...... | -  | - | [ElUpload 属性](https://element-plus.gitee.io/zh-CN/component/upload.html#%E5%B1%9E%E6%80%A7)
 
