@@ -25,7 +25,7 @@
 | line-clamp | number | 1 | 超出文本行数省略
 | word-clamp | number | - | 超出文本字数省略
 | title-tip | boolean | false | 使用 title 属性的 tootip
-| effect, placement, enterable, offset, popperClass, showArrow, showAfter, hideAfter     | -  |-|  [ELTooltip 属性](https://element-plus.gitee.io/zh-CN/component/layout.html#col-attributes) |
+| effect, placement, enterable, offset, popperClass, showArrow, showAfter, hideAfter     | -  |-|  [ELTooltip 属性](https://element-plus.gitee.io/zh-CN/component/tooltip.html) |
 
 
 

@@ -3,22 +3,26 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.0.9 （2023-03-15）
+
+### fix
+- __NavTabs：__  修复在 useStorage(tabs) 的情况下，tab loading 不会停止
 
 ## v.1.0.8 （2023-03-14）
 
 ### feat
-- __AgelCountTo：__  新增滚动计数组件
-- __AgelEllipsis：__  新增滚动计数组件
+- __CountTo：__  新增滚动计数组件
+- __Ellipsis：__  新增滚动计数组件
 
 
 ## v.1.0.7 （2023-03-10）
 
 ### feat
-- __AgelMapInput：__  适配 AMap 2.0
-- __AgelContextMenu：__  新增右键菜单组件
+- __MapInput：__  适配 AMap 2.0
+- __ContextMenu：__  新增右键菜单组件
 
 ### chore
-- __AgelTable：__  修复 ts contextmenu 事件的提示错误
+- __Table：__  修复 ts contextmenu 事件的提示错误
 
 ## v.1.0.6 （2023-02-09）
 
