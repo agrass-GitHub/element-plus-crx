@@ -1,9 +1,9 @@
 <template>
-  <div ref="tabsRef" :class="['agel-nav-tabs', isBackground ? '__is-background' : '__concise',{'__has-more':more}]" @contextmenu.prevent
-    @mouseleave="hidePopover()">
+  <div ref="tabsRef" :class="['agel-nav-tabs', isBackground ? '__is-background' : '__concise', { '__has-more': more }]"
+    @contextmenu.prevent @mouseleave="hidePopover()">
     <ElTabs :model-value="routePath" type="card" @tab-change="(v) => changeTab(v as string)">
-      <ElTabPane v-for="(item, index) in filterTabsList" :key="(item.path + index)" :label="item.title"
-        :name="item.path" :closable="isClosable(item)">
+      <ElTabPane v-for="(item, index) in filterTabsList" :key="(item.path + index)" :label="item.title" :name="item.path"
+        :closable="isClosable(item)">
         <template #label>
           <span :class="['agel-tab', { 'fold-fixed-tab': item.fixed }]" @mouseenter="setPopoverVirtualRef(index)"
             :title="item.title">
@@ -25,21 +25,21 @@
       virtual-triggering popper-class="agel-tabs-menu" :hide-after="0" :show-after="0" :teleported="false"
       :offset="popoverRefOption.offset">
       <div class="agel-tabs-menu-box" v-if="menuTab" @click="hidePopover()">
-        <div v-if="reload" @click="onReload(menuTab)">
+        <div v-if="reload" @click="onReload">
           <AgelIcon icon="Refresh"></AgelIcon>
           <span>{{ locale.reload }}</span>
         </div>
-        <div v-if="fixed && menuTab.path !== homePath" @click="fixedTab(menuTab)">
+        <div v-if="fixed && menuTab.path !== homePath" @click="fixedTab">
           <AgelIcon v-if="menuTab.fixed" icon="StarFilled" color="#f7ba2a"></AgelIcon>
           <AgelIcon v-else icon="Star"></AgelIcon>
           <span>{{ menuTab.fixed ? locale.fixedCancel : locale.fixed }}</span>
         </div>
         <slot name="menu" :item="menuTab"></slot>
-        <div v-show="popoverRefOption.trigger == 'contextmenu' || !homePath" @click="removeOtherTab(menuTab)">
+        <div v-show="popoverRefOption.trigger == 'contextmenu' || !homePath" @click="removeOtherTab">
           <AgelIcon icon="Close"></AgelIcon>
           <span>{{ locale.close }}</span>
         </div>
-        <div v-show="homePath && popoverRefOption.trigger == 'click'" @click="removeAllTab()">
+        <div v-show="homePath && popoverRefOption.trigger == 'click'" @click="removeAllTab">
           <AgelIcon icon="Close"></AgelIcon>
           <span>{{ locale.closeAll }}</span>
         </div>
@@ -140,24 +140,24 @@ function removeTab(path: string) {
   emits('update:tabs', tabs)
 }
 
-function removeOtherTab(tab: TabProps) {
+function removeOtherTab() {
   const tabs = props.tabs.filter(item => {
-    return !isClosable(item) || item.path === tab.path
+    return !isClosable(item) || item.path === menuTab.value.path
   })
   emits('update:tabs', tabs)
-  changeTab(tab.path)
+  changeTab(menuTab.value.path)
 }
 
 function removeAllTab() {
   const homeTab = props.tabs.find(v => v.path == props.homePath)
-  if(homeTab){
+  if (homeTab) {
     emits('update:tabs', [homeTab])
-  changeTab(homeTab.path)
+    changeTab(homeTab.path)
   }
 }
 
-function fixedTab(tab: TabProps) {
-  tab.fixed = !tab.fixed
+function fixedTab() {
+  menuTab.value.fixed = !menuTab.value.fixed
 }
 
 function changeTab(path: string) {
@@ -166,12 +166,12 @@ function changeTab(path: string) {
   }
 }
 
-function onReload(tab: TabProps) {
-  tab.loading = true
+function onReload() {
+  menuTab.value.loading = true
   setTimeout(() => {
-    tab.loading = false
+    menuTab.value.loading = false
   }, 300)
-  emits('reload', tab)
+  emits('reload', menuTab.value)
 }
 
 function isClosable(tab: TabProps) {
@@ -225,11 +225,11 @@ function setPopoverVirtualRef(index: number) {
   --el-tabs-header-height: var(--tab-height);
 }
 
-.agel-nav-tabs.__has-more .el-tabs{
+.agel-nav-tabs.__has-more .el-tabs {
   width: calc(100% - 95px);
 }
 
-.agel-nav-tabs .el-tabs .el-tabs__nav-wrap{
+.agel-nav-tabs .el-tabs .el-tabs__nav-wrap {
   display: flex;
   align-items: center;
 }
@@ -253,8 +253,8 @@ function setPopoverVirtualRef(index: number) {
   align-items: center;
 }
 
-.agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__item .is-icon-close{
-  top:inherit;
+.agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__item .is-icon-close {
+  top: inherit;
   right: inherit;
 }
 
