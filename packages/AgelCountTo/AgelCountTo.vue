@@ -9,7 +9,6 @@ export default { name: "AgelCountTo" }
 
 <script setup lang='ts'>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { requestAnimationFrame, cancelAnimationFrame } from "./requestAnimationFrame"
 
 interface Props {
   from?: number,
