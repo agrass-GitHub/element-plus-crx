@@ -12,7 +12,7 @@
 
 
 ::: details 点击查看代码
-@[code](@example/agelMapInputBase.vue)
+@[code](@example/mapInputBase.vue)
 :::
 
 :::tip

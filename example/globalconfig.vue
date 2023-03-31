@@ -39,13 +39,14 @@ const ElementPlusCrx: ElementPlusCrxConfig = {
     },
     ElDatePicker: function (props: any) {
       let valueFormat = 'yyyy-MM-dd'
-      if (props.type == "datetime" || props.type == "datetimerange") {
+      let dateType = props?.attrs?.type
+      if (dateType == "datetime" || dateType == "datetimerange") {
         valueFormat = "yyyy-MM-dd HH:mm:ss"
       }
-      if (props.type == "month" || props.type == "monthrange") {
+      if (dateType == "month" || dateType == "monthrange") {
         valueFormat = "yyyy-MM"
       }
-      if (props.type == "year") {
+      if (dateType == "year") {
         valueFormat = "yyyy"
       }
       return {
