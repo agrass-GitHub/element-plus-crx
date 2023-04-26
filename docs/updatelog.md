@@ -3,6 +3,11 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.0.10 （2023-04-26）
+
+### patch
+- __AgelTable:__ 针对 ELTable defaltSort 无效的补丁 [issues/10077](https://github.com/element-plus/element-plus/issues/10077)
+
 ## v.1.0.9 （2023-03-15）
 
 ### fix
