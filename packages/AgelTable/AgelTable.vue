@@ -1,6 +1,6 @@
 <template>
-  <ElTable ref="elTable" class="agel-table" v-loading="loading" :data="data" :span-method="autoMerage"
-    :default-sort="defaultSort" @sortChange="sortChange" v-bind="{...ElTableConfig,...$attrs}" style="width: 100%;">
+  <ElTable ref="elTable" class="agel-table" v-loading="loading" :data="data" :span-method="spanMethod"
+    :default-sort="defaultSort" @sortChange="sortChange" v-bind="{ ...ElTableConfig, ...$attrs }" style="width: 100%;">
     <slot name="prepend"></slot>
     <slot>
       <AgelTableColumns :columns="columns"></AgelTableColumns>
@@ -10,14 +10,14 @@
     <template #empty>
       <slot name="empty"></slot>
     </template>
+
     <template #append>
       <slot name="append-row"></slot>
     </template>
 
   </ElTable>
-  <ElPagination v-if="showPagination" layout="->,total,prev, pager, next, sizes"
-    @update:current-page="currentPageChange" @update:page-size="pageSizeChange" :disabled="loading"
-    v-bind="{ ...ElPaginationConfig, ...page }">
+  <ElPagination v-if="showPagination" layout="->,total,prev, pager, next, sizes" @update:current-page="currentPageChange"
+    @update:page-size="pageSizeChange" :disabled="loading" v-bind="{ ...ElPaginationConfig, ...page }">
   </ElPagination>
 </template>
 
@@ -26,8 +26,8 @@ export default { name: 'AgelTable', inheritAttrs: false }
 </script>
 
 <script setup lang='ts'>
-import { h, ref, computed, resolveComponent, useSlots, type FunctionalComponent } from 'vue'
-import { getExcludeAttrs } from '../utils/utils'
+import { h, ref, computed, resolveComponent, useSlots, nextTick, watch, type FunctionalComponent } from 'vue'
+import { getExcludeAttrs, getFlatArray } from '../utils/utils'
 import useAutoMerge from "./autoMerge"
 import useCrxGlobalConfig from "../utils/useCrxGlobalConfig"
 import type { TableProps, TableInstance } from "element-plus"
@@ -66,7 +66,7 @@ const defaultSort = computed(() => {
   }
 })
 
-const autoMerage = props.merge ? useAutoMerge(props) : undefined
+const spanMethod = props.merge ? useAutoMerge(props) : undefined
 
 const AgelTableColumns: FunctionalComponent<{ columns: ColumnProps[] }> = ({ columns }) => {
   return columns.filter(v => v.hidden !== true).map((column, key) => {
@@ -99,7 +99,7 @@ function pageSizeChange(val: number) {
 }
 
 function sortChange({ column, prop, order }: SortParams) {
-  if (column.sortable == 'custom') {
+  if (typeof column.sortable === 'string') {
     emits('update:page', { ...props.page, currentPage: 1, sortProp: prop, sortOrder: order })
     props.request?.()
   }
@@ -109,7 +109,24 @@ function getRef() {
   return elTable.value
 }
 
-defineExpose({  getRef })
+function sortTable() {
+  nextTick(() => {
+    if (elTable.value && props.data.length > 1) {
+      const prop = defaultSort.value?.prop
+      const order = defaultSort.value?.order
+      const sortColumn = getFlatArray<ColumnProps>(props.columns).find((v) => v.prop === prop)
+      if (prop && order && typeof sortColumn?.sortable === 'boolean') {
+        elTable.value.sort(prop, order)
+      }
+    }
+  })
+}
+
+// patch: invalid default-srot
+// https://github.com/element-plus/element-plus/issues/10077
+watch(() => props.data, sortTable)
+
+defineExpose({ getRef })
 </script>
 
 <style >
