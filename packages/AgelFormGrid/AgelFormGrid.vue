@@ -24,7 +24,7 @@ const ColPropKeys = ['span', 'push', 'pull', 'offset']
 type PickColProps = Partial<Pick<ColProps, 'span' | 'push' | 'pull' | 'offset'>>
 type ItemProps = AgelFormItemProps & PickColProps & { display?: boolean }
 
-interface Props extends Partial<RowProps> {
+interface Props extends  /* @vue-ignore */  Partial<RowProps> {
   // 表单配置项
   items: ItemProps[],
   modelProp?: string,

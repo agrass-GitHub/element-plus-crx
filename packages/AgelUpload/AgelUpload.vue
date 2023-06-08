@@ -42,7 +42,7 @@ import useLocale from "../utils/useLocale"
 import type { UploadUserFile, UploadProps, UploadFile, UploadRawFile, messageType, UploadInstance, UploadStatus } from "element-plus"
 
 
-interface Props extends Partial<Omit<UploadProps, 'fileList'>> {
+interface Props extends  /* @vue-ignore */  Partial<Omit<UploadProps, 'fileList'>> {
   modelValue: UploadProps['fileList'],
   preview?: boolean,
   message?: boolean,

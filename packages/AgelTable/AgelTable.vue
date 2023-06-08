@@ -50,6 +50,7 @@ const emits = defineEmits(['update:page'])
 const slots = useSlots()
 const elTable = ref<TableInstance>()
 const ElTableConfig = useCrxGlobalConfig().AgelTable?.ElTable || {}
+const ElTableColumnConfig = useCrxGlobalConfig().AgelTable?.ElTableColumn || {}
 const ElPaginationConfig = useCrxGlobalConfig().AgelTable?.ElPagination || {}
 
 const showPagination = computed(() => {
@@ -69,9 +70,9 @@ const defaultSort = computed(() => {
 const spanMethod = props.merge ? useAutoMerge(props) : undefined
 
 const AgelTableColumns: FunctionalComponent<{ columns: ColumnProps[] }> = ({ columns }) => {
-  return columns.filter(v => v.hidden !== true).map((column, key) => {
+  return columns.filter(v => v.hidden !== true).map((column) => {
     const extendPropKeys = ['hidden', 'children', 'slot']
-    const columnProps = getExcludeAttrs(extendPropKeys, column)
+    const columnProps = { ...ElTableColumnConfig, ...getExcludeAttrs(extendPropKeys, column) }
     const columnlots = {} as any
     if (typeof column.label === 'function') {
       columnlots.header = column.label

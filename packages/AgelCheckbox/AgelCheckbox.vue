@@ -19,7 +19,7 @@ import type { CheckboxGroupProps } from 'element-plus'
 
 type CheckboxProps = { label?: string, value?: string | number | boolean, disabled?: boolean, checked?: boolean, [k: string]: any }
 
-interface Props extends Partial<CheckboxGroupProps> {
+interface Props extends  /* @vue-ignore */  Partial<CheckboxGroupProps> {
   options: CheckboxProps[] | string[],
   props?: { label: string, value: string },
   button?: boolean,

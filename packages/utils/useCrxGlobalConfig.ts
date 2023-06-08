@@ -1,16 +1,12 @@
 import { useGlobalConfig } from 'element-plus'
-import type { PaginationProps, TableProps } from 'element-plus'
+import type { PaginationProps, TableProps, ElTableColumn } from 'element-plus'
+type ElTableColumnProps = InstanceType<typeof ElTableColumn>["$props"]
 
 export interface ElementPlusCrxConfig {
   AgelTable?: {
-    ElTable?: Pick<
-      TableProps<any>,
-      'border' | 'height' | 'maxHeight' | 'stripe' | 'size' | 'highlightCurrentRow' | 'emptyText' | 'tooltipEffect' | 'tooltipOptions' | 'sumText' | 'indent' | 'scrollbarAlwaysOn' | 'tableLayout' | 'flexible'
-    >,
-    ElPagination?: Partial<Pick<
-      PaginationProps,
-      'small' | 'background' | 'layout' | 'pageSizes' | 'popperClass' | 'prevIcon' | 'nextIcon' | 'prevText' | 'nextText' | 'hideOnSinglePage'
-    >>
+    ElTable?: Partial<TableProps<any>>,
+    ElTableColumn?: Partial<ElTableColumnProps>,
+    ElPagination?: Partial<PaginationProps>,
   },
   AgelFormItem?: {
     [ComponentName: string]: (ComponentProps: any) => { [ComponentProp: string]: any }

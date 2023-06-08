@@ -19,7 +19,7 @@ import type { RadioGroupProps } from 'element-plus'
 
 type RadioProps = { label?: string, value?: string | number | boolean, disabled?: boolean, [k: string]: any }
 
-interface Props extends Partial<RadioGroupProps> {
+interface Props extends /* @vue-ignore */ Partial<RadioGroupProps> {
   options: RadioProps[] | string[],
   props?: { label: string, value: string },
   button?: boolean,
@@ -45,6 +45,4 @@ const radioComponet = computed(() => props.button ? 'ElRadioButton' : 'ElRadio')
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

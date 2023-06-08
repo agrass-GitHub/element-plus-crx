@@ -15,7 +15,7 @@ export default function (props: any) {
   const mergeData = computed(() => {
     // 遍历表格中需要合并的所有单元格
     const tableData = props.data
-    const direction = props.merge.direction || 'vertical'
+    const direction = props.merge.direction || 'auto'
     const mergeColumns = mergeArr.value
     const mergeData: { [k: string]: [number, number] } = {}
 
@@ -26,7 +26,7 @@ export default function (props: any) {
           let rowIndex = 1
           let columnIndex = 1
 
-          if (direction === 'vertical') {
+          if (direction === 'vertical' || direction === 'auto') {
             // 比较纵坐标上方的第一个元素
             if (i > 0 && tableData[i][mergeColumns[j]['name']] === tableData[i - 1][mergeColumns[j]['name']]) {
               rowIndex = 0
@@ -37,7 +37,7 @@ export default function (props: any) {
             }
           }
 
-          if (direction === 'horizontal') {
+          if (direction === 'horizontal' || direction === 'auto') {
             // 比较横坐标左方的第一个元素
             if (j > 0 && tableData[i][mergeColumns[j]['name']] === tableData[i][mergeColumns[j - 1]['name']]) {
               columnIndex = 0

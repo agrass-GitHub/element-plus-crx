@@ -34,7 +34,7 @@ type DescItemProps = Pick<InstanceType<typeof ElDescriptionsItem>["$props"], 'sp
 type ItemProps = AgelFormItemProps & DescItemProps
 type DescProps = Omit<InstanceType<typeof ElDescriptions>["$props"], 'column' | 'title' | 'extra'>
 
-interface Props extends Partial<DescProps> {
+interface Props extends  /* @vue-ignore */  Partial<DescProps> {
   items: ItemProps[],
   modelProp?: string,
   scope?: { [k: string]: any },

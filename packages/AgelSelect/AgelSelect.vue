@@ -2,8 +2,8 @@
   <ElSelect ref="elSelectRef" class="agel-select" v-bind="$attrs">
     <template #default>
       <template v-for="(item, index) in proxyOptions" :key="index">
-        <ElOptionGroup v-if="item.options && item.options.length > 0"
-          :label="String(item[props.props.label as 'label'])" :disabled="item.disabled">
+        <ElOptionGroup v-if="item.options && item.options.length > 0" :label="String(item[props.props.label as 'label'])"
+          :disabled="item.disabled">
           <ElOption v-for="(option, index) in item.options" :key="index" :label="option[props.props.label as 'label']"
             :value="option[props.props.value as any]" :disabled="option.disabled">
             <slot :item="option" :index="index"></slot>
@@ -42,7 +42,7 @@ type OptionProps = {
 
 type SelectProps = InstanceType<typeof ElSelect>["$props"]
 
-interface Props extends Partial<SelectProps> {
+interface Props extends  /* @vue-ignore */ Partial<SelectProps> {
   options: OptionProps[] | string[],
   props?: { label: string, value: string },
 }

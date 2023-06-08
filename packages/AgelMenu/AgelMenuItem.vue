@@ -18,7 +18,7 @@
 </template>
 
 <script lang='ts'>
-export default { name: 'AgelMenuItem', inheritAttrs: false  }
+export default { name: 'AgelMenuItem', inheritAttrs: false }
 </script>
 
 <script setup lang='ts'>
@@ -28,7 +28,7 @@ import type { SubMenuProps } from 'element-plus'
 
 const extendPropKeys = ['title', 'icon', 'children', 'hidden']
 
-interface MenuItem extends Partial<SubMenuProps> {
+interface MenuItem extends  /* @vue-ignore */  Partial<SubMenuProps> {
   index: string,
   title: string,
   icon?: string,
@@ -41,7 +41,5 @@ const props = defineProps<MenuItem>()
 
 
 </script>
-<style>
-
-</style>
+<style></style>
 
