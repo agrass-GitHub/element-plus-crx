@@ -4,7 +4,6 @@
     <AgelTable border :data="data" :columns="columns" :merge="merge">
     </AgelTable>
   </div>
-
 </template>
 
 <script lang="tsx" setup>
@@ -14,6 +13,7 @@ const direction = ref('vertical')
 const options = [
   { label: '竖向合并', value: 'vertical', },
   { label: '横向合并', value: 'horizontal', },
+  { label: '自动合并', value: 'auto', },
 ]
 const merge = computed(() => {
   return { keys: ['name', 'date', 'address'], direction: direction.value }
@@ -26,12 +26,11 @@ const columns = [
 ]
 
 const data = [
-  { date: "---", name: "---", address: "---" },
-  { date: "---", name: "---", address: "---" },
-  { date: '2016-05-03', name: 'Tom', address: 'Los Angeles', },
-  { date: '2016-05-02', name: 'Tom', address: 'Los Angeles' },
-  { date: '2016-05-04', name: 'Tom', address: 'Los Angeles' },
-  { date: '2016-05-01', name: 'Tom', address: 'Los Angeles' },
+  { date: "Apple", name: "Apple", address: "Apple" },
+  { date: '2016-05-03', name: 'Xiaomi', address: 'Samsung', },
+  { date: '2016-05-02', name: 'Xiaomi', address: 'Samsung' },
+  { date: '2016-05-04', name: 'Xiaomi', address: 'Samsung' },
+  { date: '2016-05-01', name: 'Xiaomi', address: 'Samsung' },
 ]
 
 </script>

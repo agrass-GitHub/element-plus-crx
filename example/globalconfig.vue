@@ -23,6 +23,10 @@ const ElementPlusCrx: ElementPlusCrxConfig = {
       layout: 'prev, pager, next, sizes, ->, total',
       pageSizes: [10, 20, 50, 100],
       background: true,
+    },
+    ElTableColumn: {
+      align: "center",
+      showOverflowTooltip: true,
     }
   },
   AgelFormItem: {
