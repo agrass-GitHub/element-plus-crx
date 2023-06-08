@@ -12,11 +12,11 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
-    'vue/multi-word-component-names': 'off',
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    'vue/multi-word-component-names': 0,
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": 0,
     'semi': [1, 'never'],
-    'no-undef':'off',
+    'no-undef': 0,
   }
 }
 
