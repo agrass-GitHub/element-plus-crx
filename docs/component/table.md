@@ -35,7 +35,7 @@
 
 设置 `merge.keys` 选择要自动合并列的 prop。
 
-设置 `merge.direction` 选择合并方向。 
+设置 `merge.direction` 选择合并方向，也可设置 `auto` 自动合并。
 
 <ClientOnly><tableMerge/></ClientOnly>
 
@@ -44,13 +44,13 @@
 :::
 
 ## 属性
-
+{ keys: string[], direction: 'vertical' \| 'horizontal'\| 'auto' } 
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | loading | boolean | - | 是否加载中
 | columns | ColumnProps[] | - | 表格配置项 
 | page | PageProps  | - | 分页排序参数  |
-| merge| { keys: string[], direction: 'vertical' \| 'horizontal' } | - | 自动合并单元格
+| merge| | MergeProps | 自动合并单元格
 | ...... | -  | - | [ElTable 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-%E5%B1%9E%E6%80%A7)
 
 ### ColumnProps
@@ -69,6 +69,12 @@
 | sortProp  | string | - | 排序列 prop
 | sortOrder | 'ascending'\|'descending'\|null | - | 排序列方式
 | ... | -  | - | [ElPagination 属性](https://element-plus.gitee.io/zh-CN/component/pagination.html#%E5%B1%9E%E6%80%A7)
+
+### MergeProps
+| 属性 | 类型  | 默认值 | 说明  
+| --- | ---   | ---   | --- 
+| keys  | string[] | - | 合并列的prop集合
+| direction | 'vertical' \| 'horizontal'\| 'auto' | 'auto' | 合并方向
 
 ## 方法
 

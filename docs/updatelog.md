@@ -3,10 +3,21 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.0.11 （2023-06-08）
+
+### feat
+- __Table：__ 新增合并方向可选为 auto
+- __Table：__ 新增 ElTableColumn 列的全局配置
+
+
 ## v.1.0.10 （2023-04-26）
 
 ### patch
-- __AgelTable:__ 针对 ELTable defaltSort 无效的补丁 [issues/10077](https://github.com/element-plus/element-plus/issues/10077)
+- __Table:__ 针对 ELTable defaltSort 无效的补丁 [issues/10077](https://github.com/element-plus/element-plus/issues/10077)
+
+### fix
+- __CountTo：__  修复打包时 ts 的错误
+
 
 ## v.1.0.9 （2023-03-15）
 
@@ -17,7 +28,7 @@ sidebar: auto
 
 ### feat
 - __CountTo：__  新增滚动计数组件
-- __Ellipsis：__  新增滚动计数组件
+- __Ellipsis：__  新增省略文本组件
 
 
 ## v.1.0.7 （2023-03-10）
@@ -44,7 +55,7 @@ sidebar: auto
 - __ElementPlusCrx：__ 修复全局组件声明无效的问题
 
 
-## v.1.0.2（2023-02-02）
+## v.1.0.2 （2023-02-02）
 
 ### fix
 
@@ -56,7 +67,7 @@ sidebar: auto
 ### feat
 - __FormGird,FormDesc：__ 添加 getRef, validate, resetFields 方法
 - __FormItems：__ 添加组件
-- __FormItem：__ 支持 class 属性
+- __FormItem：__ 新增 class 属性
 
 
 ## v.1.0.0 （2023-02-01）
