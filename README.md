@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 
+提示：因 vue3.3 及以上版本 api 变动，存在props部分不兼容，正在开发中...，
+
 ## 文档
 
 - [使用文档 github](https://agrass-github.github.io/element-plus-crx/)
