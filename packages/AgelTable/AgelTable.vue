@@ -1,36 +1,38 @@
 <template>
-  <ElTable
-    ref="elTable"
-    class="agel-table"
-    v-loading="loading"
-    v-bind="elTablePorps"
-    :span-method="spanMethod"
-    :default-sort="defaultSort"
-    @sortChange="sortChange"
-  >
-    <slot name="prepend"></slot>
-    <slot>
-      <AgelTableColumns :columns="columns"></AgelTableColumns>
-    </slot>
-    <slot name="append"></slot>
+  <div class="agel-table agel-table-resize">
+    <ElTable
+      class="agel-table-resize"
+      ref="elTable"
+      v-loading="loading"
+      v-bind="elTablePorps"
+      :span-method="spanMethod"
+      :default-sort="defaultSort"
+      @sortChange="sortChange"
+    >
+      <slot name="prepend"></slot>
+      <slot>
+        <AgelTableColumns :columns="columns"></AgelTableColumns>
+      </slot>
+      <slot name="append"></slot>
 
-    <template #empty>
-      <slot name="empty"></slot>
-    </template>
+      <template #empty>
+        <slot name="empty"></slot>
+      </template>
 
-    <template #append>
-      <slot name="append-row"></slot>
-    </template>
-  </ElTable>
-  <ElPagination
-    v-if="showPagination"
-    layout="->,total,prev, pager, next, sizes"
-    :disabled="loading"
-    v-bind="elPaginationProps"
-    @update:current-page="currentPageChange"
-    @update:page-size="pageSizeChange"
-  >
-  </ElPagination>
+      <template #append>
+        <slot name="append-row"></slot>
+      </template>
+    </ElTable>
+    <ElPagination
+      v-if="showPagination"
+      layout="->,total,prev, pager, next, sizes"
+      :disabled="loading"
+      v-bind="elPaginationProps"
+      @update:current-page="currentPageChange"
+      @update:page-size="pageSizeChange"
+    >
+    </ElPagination>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -169,10 +171,9 @@ defineExpose({ getRef })
 </script>
 
 <style>
-.agel-table {
+.agel-table-resize {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   flex: 1;
 }
 
