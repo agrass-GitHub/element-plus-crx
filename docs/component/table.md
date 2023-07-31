@@ -44,7 +44,7 @@
 :::
 
 ## 属性
-{ keys: string[], direction: 'vertical' \| 'horizontal'\| 'auto' } 
+
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
 | loading | boolean | - | 是否加载中
@@ -80,7 +80,7 @@
 
 | 名称            | 参数  |   说明       | 
 | -----------    | ------- | -----------------------------  |
-| getRef    | -  |  获取 elTabl e组件实例        |
+| getRef    | -  |  获取 elTable 组件实例        |
 
 
 ## 插槽
