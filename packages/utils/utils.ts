@@ -4,7 +4,7 @@ type AnyObj = { [k: string]: any }
 
 // 从目标对象获取指定属性
 export function getIncludeAttrs(keys: string[], target: AnyObj) {
-  let obj = {} as AnyObj
+  let obj: AnyObj = {}
   keys.forEach((key) => {
     let value = target[key]
     if (value !== undefined) obj[key] = value
@@ -16,7 +16,8 @@ export function getIncludeAttrs(keys: string[], target: AnyObj) {
 export function getExcludeAttrs(keys: string[], target: AnyObj) {
   let obj: AnyObj = {}
   for (const key in target) {
-    if (!keys.includes(key)) obj[key] = target[key]
+    let value = target[key]
+    if (value !== undefined && !keys.includes(key)) obj[key] = target[key]
   }
   return obj
 }

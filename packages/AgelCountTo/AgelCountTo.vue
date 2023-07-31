@@ -3,22 +3,20 @@
   <span class="agel-count-to"> {{ displayValue }} </span>
 </template>
 
-<script lang="ts">
-export default { name: "AgelCountTo" }
-</script>
-
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 
+defineOptions({ name: 'AgelCountTo' })
+
 interface Props {
-  from?: number,
-  to: number,
-  duration?: number,
-  precision?: number,
-  prefix?: string,
-  suffix?: string,
-  autoplay?: boolean,
-  showSeparator?: boolean,
+  from?: number
+  to: number
+  duration?: number
+  precision?: number
+  prefix?: string
+  suffix?: string
+  autoplay?: boolean
+  showSeparator?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -29,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
   prefix: '',
   suffix: '',
   autoplay: true,
-  showSeparator: true,
+  showSeparator: true
 })
 
 let displayValue = ref(formatNumber(props.from))
@@ -69,7 +67,6 @@ function pauseResume() {
   }
 }
 
-
 function resume() {
   startTime = 0
   localDuration = remaining
@@ -104,22 +101,22 @@ function count(val: number) {
 
 function formatNumber(num: number) {
   let value = num.toFixed(props.precision)
-  value += ""
-  const x = value.split(".")
+  value += ''
+  const x = value.split('.')
   const decimal = '.'
   let x1 = x[0]
-  const x2 = x.length > 1 ? decimal + x[1] : ""
+  const x2 = x.length > 1 ? decimal + x[1] : ''
   const rgx = /(\d+)(\d{3})/
   if (props.showSeparator) {
     while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, "$1" + ',' + "$2")
+      x1 = x1.replace(rgx, '$1' + ',' + '$2')
     }
   }
   return props.prefix + x1 + x2 + props.suffix
 }
 
 function easingFn(t: number, b: number, c: number, d: number) {
-  return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b
+  return (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b
 }
 
 onMounted(() => {
@@ -130,17 +127,21 @@ onUnmounted(() => {
   cancelAnimationFrame(frameID)
 })
 
-watch(() => props.from, () => {
-  if (props.autoplay) start()
-})
+watch(
+  () => props.from,
+  () => {
+    if (props.autoplay) start()
+  }
+)
 
-watch(() => props.to, () => {
-  if (props.autoplay) start()
-})
+watch(
+  () => props.to,
+  () => {
+    if (props.autoplay) start()
+  }
+)
 
 defineExpose({ start, pause, resume, pauseResume, reset })
-
-
 </script>
 
 <style>

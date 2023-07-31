@@ -1,17 +1,33 @@
 <template>
-  <div ref="tabsRef" :class="['agel-nav-tabs', isBackground ? '__is-background' : '__concise', { '__has-more': more }]"
-    @contextmenu.prevent @mouseleave="hidePopover()">
+  <div
+    ref="tabsRef"
+    :class="['agel-nav-tabs', isBackground ? '__is-background' : '__concise', { '__has-more': more }]"
+    @contextmenu.prevent
+    @mouseleave="hidePopover()"
+  >
     <ElTabs :model-value="routePath" type="card" @tab-change="(v) => changeTab(v as string)">
-      <ElTabPane v-for="(item, index) in filterTabsList" :key="(item.path + index)" :label="item.title" :name="item.path"
-        :closable="isClosable(item)">
+      <ElTabPane
+        v-for="(item, index) in filterTabsList"
+        :key="item.path + index"
+        :label="item.title"
+        :name="item.path"
+        :closable="isClosable(item)"
+      >
         <template #label>
-          <span :class="['agel-tab', { 'fold-fixed-tab': item.fixed }]" @mouseenter="setPopoverVirtualRef(index)"
-            :title="item.title">
+          <span
+            :class="['agel-tab', { 'fold-fixed-tab': item.fixed }]"
+            @mouseenter="setPopoverVirtualRef(index)"
+            :title="item.title"
+          >
             <AgelIcon v-if="item.loading" class="is-loading" icon="Loading"></AgelIcon>
             <AgelIcon v-else-if="item.icon || item.fixed" :icon="item.icon || 'Menu'"></AgelIcon>
             <span class="tab-title">{{ item.title }}</span>
-            <AgelIcon v-show="item.path != homePath && filterTabsList.length > 1" class="is-icon-close"
-              @click.stop="removeTab(item.path)" icon="Close"></AgelIcon>
+            <AgelIcon
+              v-show="item.path != homePath && filterTabsList.length > 1"
+              class="is-icon-close"
+              @click.stop="removeTab(item.path)"
+              icon="Close"
+            ></AgelIcon>
           </span>
         </template>
       </ElTabPane>
@@ -21,9 +37,17 @@
       <AgelIcon icon="ArrowDown"></AgelIcon>
     </ElButton>
 
-    <ElPopover ref="popoverRef" :virtual-ref="popoverRefOption.ref" :trigger="(popoverRefOption.trigger as any)"
-      virtual-triggering popper-class="agel-tabs-menu" :hide-after="0" :show-after="0" :teleported="false"
-      :offset="popoverRefOption.offset">
+    <ElPopover
+      ref="popoverRef"
+      :virtual-ref="popoverRefOption.ref"
+      :trigger="popoverRefOption.trigger as any"
+      virtual-triggering
+      popper-class="agel-tabs-menu"
+      :hide-after="0"
+      :show-after="0"
+      :teleported="false"
+      :offset="popoverRefOption.offset"
+    >
       <div class="agel-tabs-menu-box" v-if="menuTab" @click="hidePopover()">
         <div v-if="reload" @click="onReload">
           <AgelIcon icon="Refresh"></AgelIcon>
@@ -48,46 +72,44 @@
   </div>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelNavTabs', inheritAttrs: false }
-</script>
-
-<script setup lang='ts'>
+<script setup lang="ts">
 import { computed, nextTick, reactive, ref } from 'vue'
-import AgelIcon from "../AgelIcon"
-import useLocale from "../utils/useLocale"
+import AgelIcon from '../AgelIcon'
+import useLocale from '../utils/useLocale'
+
+defineOptions({ name: 'AgelNavTabs' })
 
 type TabProps = {
-  title: string,
-  path: string,
-  icon?: string,
-  fixed?: boolean,
+  title: string
+  path: string
+  icon?: string
+  fixed?: boolean
   loading?: boolean
 }
 
 interface Props {
-  tabs: TabProps[]     // v-model tabs
-  routePath: string    // 当前路由 path
-  homePath?: string,  // 首页
-  more?: boolean,     // 更多按钮
-  fixed?: boolean,    // 固定按钮
-  reload?: boolean,   // 刷新按钮
-  isBackground?: boolean,
+  tabs: TabProps[] // v-model tabs
+  routePath: string // 当前路由 path
+  homePath?: string // 首页
+  more?: boolean // 更多按钮
+  fixed?: boolean // 固定按钮
+  reload?: boolean // 刷新按钮
+  isBackground?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   tabs: () => [],
-  more: true,
+  more: true
 })
 
-const emits = defineEmits(['update:tabs', 'pathChange', 'reload',])
+const emits = defineEmits(['update:tabs', 'pathChange', 'reload'])
 
 const tabsRef = ref()
 const popoverRef = ref()
 const popoverRefOption = reactive({
   trigger: 'click',
   ref: null as any,
-  offset: 5,
+  offset: 5
 })
 const menuCurrentPath = ref('')
 
@@ -103,7 +125,7 @@ const filterTabsList = computed(() => {
 })
 
 const menuTab = computed(() => {
-  return props.tabs.find(v => v.path === menuCurrentPath.value) as TabProps
+  return props.tabs.find((v) => v.path === menuCurrentPath.value) as TabProps
 })
 
 const locale = useLocale({
@@ -115,13 +137,13 @@ const locale = useLocale({
     close: '关闭其他标签',
     closeAll: '关闭所有标签'
   },
-  'en': {
+  en: {
     more: 'More',
     reload: 'Reload',
     fixed: 'Fixed tab',
     fixedCancel: 'Cancel fixed tab',
     close: 'Close other tab',
-    closeAll: 'Close all tab',
+    closeAll: 'Close all tab'
   }
 })
 
@@ -141,7 +163,7 @@ function removeTab(path: string) {
 }
 
 function removeOtherTab() {
-  const tabs = props.tabs.filter(item => {
+  const tabs = props.tabs.filter((item) => {
     return !isClosable(item) || item.path === menuTab.value.path
   })
   emits('update:tabs', tabs)
@@ -149,7 +171,7 @@ function removeOtherTab() {
 }
 
 function removeAllTab() {
-  const homeTab = props.tabs.find(v => v.path == props.homePath)
+  const homeTab = props.tabs.find((v) => v.path == props.homePath)
   if (homeTab) {
     emits('update:tabs', [homeTab])
     changeTab(homeTab.path)
@@ -185,7 +207,7 @@ function hidePopover(callback?: () => void) {
 
 function setPopoverVirtualRef(index: number) {
   if (tabsRef.value && tabsRef.value.querySelectorAll) {
-    // 使用 refs 有延迟，改为 dom 操作 
+    // 使用 refs 有延迟，改为 dom 操作
     if (index === -1) {
       let dom = tabsRef.value.querySelector('.tabs-more-button')
       if (dom) {
@@ -202,11 +224,8 @@ function setPopoverVirtualRef(index: number) {
       }
     }
   }
-
 }
-
-
-</script >
+</script>
 
 <style>
 .agel-nav-tabs {
@@ -219,7 +238,6 @@ function setPopoverVirtualRef(index: number) {
   position: relative;
   width: 100%;
 }
-
 
 .agel-nav-tabs .el-tabs {
   --el-tabs-header-height: var(--tab-height);
@@ -234,13 +252,13 @@ function setPopoverVirtualRef(index: number) {
   align-items: center;
 }
 
-.agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__nav {
+.agel-nav-tabs .el-tabs--card > .el-tabs__header .el-tabs__nav {
   border: none;
   display: flex;
   align-items: center;
 }
 
-.agel-nav-tabs .el-tabs--card>.el-tabs__header {
+.agel-nav-tabs .el-tabs--card > .el-tabs__header {
   margin: 0px;
   border-bottom: 0px;
 }
@@ -253,7 +271,7 @@ function setPopoverVirtualRef(index: number) {
   align-items: center;
 }
 
-.agel-nav-tabs .el-tabs--card>.el-tabs__header .el-tabs__item .is-icon-close {
+.agel-nav-tabs .el-tabs--card > .el-tabs__header .el-tabs__item .is-icon-close {
   top: inherit;
   right: inherit;
 }
@@ -279,9 +297,8 @@ function setPopoverVirtualRef(index: number) {
   height: var(--tab-height);
 }
 
-
 /* 隐藏默认 关闭标签 */
-.agel-nav-tabs .agel-tab+.is-icon-close {
+.agel-nav-tabs .agel-tab + .is-icon-close {
   display: none;
 }
 
@@ -295,7 +312,7 @@ function setPopoverVirtualRef(index: number) {
 }
 
 /*  简洁风格 */
-.agel-nav-tabs.__concise .el-tabs--card>.el-tabs__header .el-tabs__item {
+.agel-nav-tabs.__concise .el-tabs--card > .el-tabs__header .el-tabs__item {
   font-size: var(--el-font-size-small);
   padding-left: 15px !important;
   padding-right: 15px !important;
@@ -307,7 +324,7 @@ function setPopoverVirtualRef(index: number) {
   --tab-height: 28px;
 }
 
-.agel-nav-tabs.__is-background .el-tabs--card>.el-tabs__header .el-tabs__item {
+.agel-nav-tabs.__is-background .el-tabs--card > .el-tabs__header .el-tabs__item {
   font-size: var(--el-font-size-small);
   border-radius: var(--el-border-radius-base);
   border-bottom: 0px;
@@ -323,7 +340,7 @@ function setPopoverVirtualRef(index: number) {
   --el-popover-padding: 0px;
 }
 
-.agel-tabs-menu-box>div {
+.agel-tabs-menu-box > div {
   display: flex;
   align-items: center;
   font-size: var(--el-font-size-small);
@@ -334,7 +351,7 @@ function setPopoverVirtualRef(index: number) {
   white-space: nowrap;
 }
 
-.agel-tabs-menu-box>div:hover {
+.agel-tabs-menu-box > div:hover {
   color: var(--el-color-primary);
 }
 

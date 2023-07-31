@@ -13,7 +13,7 @@ export type SortParams = Sort & { column: TableColumnCtx<any> }
 
 export type PageProps = { sortProp?: string, sortOrder?: string | null } & Partial<PaginationProps>
 
-export type MergeProps = { keys: string[], direction: string } // 'vertical' | 'horizontal'
+export type MergeProps = { keys: string[], direction: 'vertical' | 'horizontal' | 'auto' } // 'vertical' | 'horizontal'
 
 export interface ColumnProps extends ElColumnProps {
   label?: string | (() => VNodeChild),
@@ -42,5 +42,3 @@ export interface TableEmits<T> {
   onHeaderDragend?: (newWidth: number, oldWidth: number, column: TableColumnCtx<T>, event: MouseEvent) => void
   onExpandChange?: (row: T, rowsOrExpand: T[] | boolean) => void,
 }
-
-

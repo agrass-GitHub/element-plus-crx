@@ -1,33 +1,37 @@
 <template>
-  <ElTooltip :disabled="disabledTootip" :placement="placement" append-to="body" :content="content" :enterable="enterable"
-    :offset="offset" :popper-class="popperClassName" :show-after="showAfter" :hide-after="hideAfter"
-    :show-arrow="showArrow">
+  <ElTooltip
+    :disabled="disabledTootip"
+    :placement="placement"
+    :content="content"
+    :enterable="enterable"
+    :offset="offset"
+    :popper-class="popperClassName"
+    :show-after="showAfter"
+    :hide-after="hideAfter"
+    :show-arrow="showArrow"
+    append-to="body"
+  >
     <div ref="wrapper" :class="className" :style="style" v-bind="$attrs" :title="title">
       <EllipsisContent></EllipsisContent>
     </div>
   </ElTooltip>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelEllipsis', }
-</script>
+<script setup lang="ts">
+import { computed, ref, useSlots, nextTick, type VNode, type FunctionalComponent } from 'vue'
+import type { ElTooltipProps } from 'element-plus'
 
-<script setup lang='ts'>
-import { computed, ref, useSlots, nextTick, type VNode, type FunctionalComponent } from "vue"
-import type { ElTooltipProps, } from "element-plus"
+defineOptions({ name: 'AgelEllipsis' })
 
-interface Props {
-  lineClamp?: number,
-  wordClamp?: number,
-  titleTip?: boolean,
-  effect?: ElTooltipProps['effect'],
-  placement?: ElTooltipProps['placement'],
-  enterable?: ElTooltipProps['enterable'],
-  offset?: ElTooltipProps['offset'],
-  popperClass?: ElTooltipProps['popperClass'],
-  showArrow?: ElTooltipProps['showArrow'],
-  showAfter?: ElTooltipProps['showAfter'],
-  hideAfter?: ElTooltipProps['hideAfter'],
+type TooltipProps = Pick<
+  ElTooltipProps,
+  'effect' | 'placement' | 'enterable' | 'offset' | 'popperClass' | 'showArrow' | 'showAfter' | 'hideAfter'
+>
+
+interface Props extends Partial<TooltipProps> {
+  lineClamp?: number
+  wordClamp?: number
+  titleTip?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -107,11 +111,9 @@ function getFirstNode(nodes: VNode[]): VNode {
   }
   return node
 }
-
-
 </script>
 
-<style >
+<style>
 .agel-ellipsis {
   display: inline-block;
   overflow: hidden;

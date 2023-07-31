@@ -2,56 +2,68 @@
   <Teleport v-if="menuData.length > 0" to="body" :disabled="isSubMenu">
     <transition :name="transition">
       <div class="agel-context-menu" v-show="modelValue" :style="menuStyle" @mouseleave="hoverIndex = -1">
-        <div v-for="(item, index) in menuData" :key="index"
-          :class="['agel-context-menu-item', item.className, { __divided: item.divided, __disabled: item.disabled, __hasicon: hasIcon }]"
-          @mouseenter="hoverIndex = index">
+        <div
+          v-for="(item, index) in menuData"
+          :key="index"
+          :class="[
+            'agel-context-menu-item',
+            item.className,
+            { __divided: item.divided, __disabled: item.disabled, __hasicon: hasIcon }
+          ]"
+          @mouseenter="hoverIndex = index"
+        >
           <div class="agel-menu-item_content" @click="onSelect(item, $event)">
             <AgelIcon v-if="item.icon" :icon="item.icon" class="agel-context-menu-item_icon"></AgelIcon>
             <span class="agel-context-menu-item_title">{{ item.title }}</span>
             <span class="agel-context-menu-item_remark">{{ item.remark }}</span>
             <AgelIcon v-if="hasSubMenu(item.children)" icon="ArrowRight" class="agel-context-menu_arrow"></AgelIcon>
           </div>
-          <AgelContextMenu v-if="hasSubMenu(item.children)" :model-value="hoverIndex === index" :menus="item.children"
-            :transition="transition" :x="submenuXY" :y="submenuXY" @select="onSelect" />
+          <AgelContextMenu
+            v-if="hasSubMenu(item.children)"
+            :model-value="hoverIndex === index"
+            :menus="item.children"
+            :transition="transition"
+            :x="submenuXY"
+            :y="submenuXY"
+            @select="onSelect"
+          />
         </div>
       </div>
     </transition>
   </Teleport>
 </template>
 
-<script lang="ts">
-export default { name: "AgelContextMenu" }
-</script>
-
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from "vue"
-import { useZIndex } from "element-plus/es/hooks/index"
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useZIndex } from 'element-plus/es/hooks/index'
+
+defineOptions({ name: 'AgelContextMenu' })
 
 interface MenuItem {
-  title: string, // 名称
-  remark?: string, // 备注
-  icon?: string,   // 图标
-  divided?: boolean, // 分隔下划线
-  disabled?: boolean, // 禁用
-  hidden?: boolean, // 隐藏
-  children?: MenuItem[], // 下级菜单
-  className?: string,
+  title: string // 名称
+  remark?: string // 备注
+  icon?: string // 图标
+  divided?: boolean // 分隔下划线
+  disabled?: boolean // 禁用
+  hidden?: boolean // 隐藏
+  children?: MenuItem[] // 下级菜单
+  className?: string
 }
 
 interface Props {
-  modelValue: boolean,
-  x: number,
-  y: number,
-  menus: MenuItem[],
-  transition?: string,
+  modelValue: boolean
+  x: number
+  y: number
+  menus: MenuItem[]
+  transition?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   menus: () => [],
-  transition: "el-zoom-in-top",
+  transition: 'el-zoom-in-top'
 })
 
-const emits = defineEmits(["update:modelValue", "select"])
+const emits = defineEmits(['update:modelValue', 'select'])
 
 const { nextZIndex } = useZIndex()
 const zIndex = ref(nextZIndex())
@@ -61,12 +73,12 @@ const isSubMenu = props.x === submenuXY && props.y === submenuXY
 
 const menuStyle = computed(() => {
   const zindexStyle = {
-    zIndex: zIndex.value,
+    zIndex: zIndex.value
   }
   const positionStyle = {
     top: props.y + 'px',
     left: props.x + 'px',
-    position: 'fixed',
+    position: 'fixed'
   }
   return isSubMenu ? zindexStyle : { ...zindexStyle, ...positionStyle }
 })
@@ -76,7 +88,7 @@ const menuData = computed(() => {
 })
 
 const hasIcon = computed(() => {
-  return props.menus.some(v => v.icon != undefined)
+  return props.menus.some((v) => v.icon != undefined)
 })
 
 function hasSubMenu(menus: MenuItem[] = []) {
@@ -84,29 +96,28 @@ function hasSubMenu(menus: MenuItem[] = []) {
 }
 
 function filterMenu(menus: MenuItem[] = []) {
-  return menus.filter(v => v.hidden !== true)
+  return menus.filter((v) => v.hidden !== true)
 }
 
 function hideMenu() {
-  emits("update:modelValue", false)
+  emits('update:modelValue', false)
 }
 
 function onSelect(menuItem: MenuItem, e?: MouseEvent) {
   if (hasSubMenu(menuItem.children)) {
     e && e.stopPropagation()
   } else {
-    emits("select", menuItem)
+    emits('select', menuItem)
   }
 }
 
 onMounted(() => {
-  document.addEventListener("click", hideMenu)
+  document.addEventListener('click', hideMenu)
 })
 
 onUnmounted(() => {
-  document.removeEventListener("click", hideMenu)
+  document.removeEventListener('click', hideMenu)
 })
-
 </script>
 
 <style>
@@ -156,7 +167,7 @@ onUnmounted(() => {
   display: block;
   width: 100%;
   height: 0;
-  content: "";
+  content: '';
   border-bottom: 1px solid var(--el-border-color);
 }
 
@@ -166,12 +177,12 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-.agel-context-menu-item:hover> :not(.agel-context-menu) {
+.agel-context-menu-item:hover > :not(.agel-context-menu) {
   background-color: var(--hover-bg);
   color: var(--hover-color);
 }
 
-.agel-context-menu-item.__hasicon>.agel-menu-item_content {
+.agel-context-menu-item.__hasicon > .agel-menu-item_content {
   padding-left: 25px;
 }
 
@@ -190,13 +201,13 @@ onUnmounted(() => {
   right: 0px;
 }
 
-.agel-context-menu-item>.agel-context-menu {
+.agel-context-menu-item > .agel-context-menu {
   position: absolute;
   left: 100%;
   top: -5px;
 }
 
-.agel-context-menu-item:hover>.agel-context-menu {
+.agel-context-menu-item:hover > .agel-context-menu {
   display: inline-block;
 }
 </style>

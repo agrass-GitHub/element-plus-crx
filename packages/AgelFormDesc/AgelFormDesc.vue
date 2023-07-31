@@ -1,6 +1,14 @@
 <template>
-  <ElDescriptions v-bind="$attrs" border :direction="direction" :size="size" :id="styleId"
-    :class="['agel-form-decs __hidelabel __inlinemsg __fullwidth __fixed-clearable ', { 'desc-hide-border': !border }]">
+  <ElDescriptions
+    border
+    :title="title"
+    :extra="extra"
+    :column="column"
+    :direction="direction"
+    :size="size"
+    :id="styleId"
+    :class="['agel-form-decs __hidelabel __inlinemsg __fullwidth __fixed-clearable ', { 'desc-hide-border': !border }]"
+  >
     <slot name="prepend"></slot>
     <ElDescriptionsItem v-for="(item, index) in formItems" :key="index" v-bind="getDescrItem(item, index)">
       <template #label>
@@ -19,27 +27,29 @@
   </ElDescriptions>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelFormDesc', inheritAttrs: false }
-</script>
+<script setup lang="ts">
+import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
+import useFormItems from '../utils/useFormItems'
+import { computed, h, onBeforeUnmount, watchEffect } from 'vue'
+import { dynamicStyleRule, guid } from '../utils/utils'
 
-<script setup lang='ts'>
-import AgelFormItem, { type AgelFormItemProps } from "../AgelFormItem"
-import useFormItems from "../utils/useFormItems"
-import { computed, h, onBeforeUnmount, watchEffect } from "vue"
-import { dynamicStyleRule, guid } from "../utils/utils"
-import type { ElDescriptions, ElDescriptionsItem, } from "element-plus"
+defineOptions({ name: 'AgelFormDesc' })
 
-type DescItemProps = Pick<InstanceType<typeof ElDescriptionsItem>["$props"], 'span' | 'className' | 'labelClassName'>
-type ItemProps = AgelFormItemProps & DescItemProps
-type DescProps = Omit<InstanceType<typeof ElDescriptions>["$props"], 'column' | 'title' | 'extra'>
+interface ItemProps extends AgelFormItemProps {
+  span?: number
+  className?: string
+  labelClassName?: string
+}
 
-interface Props extends  /* @vue-ignore */  Partial<DescProps> {
-  items: ItemProps[],
-  modelProp?: string,
-  scope?: { [k: string]: any },
-  viewModel?: boolean,
-  border?: boolean, // 是否显示边框
+interface Props {
+  items: ItemProps[]
+  modelProp?: string
+  scope?: { [k: string]: any }
+  viewModel?: boolean
+  border?: boolean
+  title?: string
+  extra?: string
+  column?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -48,7 +58,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 const styleId = 'decs-' + guid()
 
-const { formContext, formItems, getFormItemProps, getRequiredAsteriskClass, getRef, validate, resetFields, } = useFormItems<ItemProps>(props)
+const { formContext, formItems, getFormItemProps, getRequiredAsteriskClass, getRef, validate, resetFields } =
+  useFormItems<ItemProps>(props)
 
 const direction = computed(() => {
   return formContext?.labelPosition == 'top' ? 'vertical' : 'horizontal'
@@ -61,7 +72,7 @@ const size = computed(() => {
 const DescItemLabel = function (item: ItemProps) {
   const label = typeof item.label == 'function' ? item.label() : h('span', item.label)
   const attrs = {
-    class: getRequiredAsteriskClass(item),
+    class: getRequiredAsteriskClass(item)
   }
   return h('div', attrs, [label])
 }
@@ -84,7 +95,7 @@ function getDescrItem(item: ItemProps, i: number) {
 }
 
 function getLabelStyleRule() {
-  let styleRules = ""
+  let styleRules = ''
   let classNames: (string | number)[] = []
   formItems.value.forEach((item, i) => {
     let { labelClassName, labelWidth } = getLabelWidth(item)
@@ -95,7 +106,6 @@ function getLabelStyleRule() {
           width:${labelWidth} 
         }  `
     }
-
   })
   return styleRules
 }
@@ -108,9 +118,8 @@ onBeforeUnmount(() => {
   dynamicStyleRule(styleId, null)
 })
 
-defineExpose({ getRef, validate, resetFields, })
+defineExpose({ getRef, validate, resetFields })
 </script>
-
 
 <style>
 /** 兼容没有 border 样式 */

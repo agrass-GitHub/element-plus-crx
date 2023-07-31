@@ -1,6 +1,18 @@
 <template>
   <div class="agel-map-input">
-    <ElInput :model-value="proxyValue" :prefixIcon="prefixIcon" v-bind="$attrs" @clear="clear" @click.stop="loadDialog">
+    <ElInput
+      :model-value="proxyValue"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      :clearable="clearable"
+      :prefixIcon="prefixIcon"
+      :suffix-icon="suffixIcon"
+      :size="size"
+      :validate-event="validateEvent"
+      @clear="clear"
+      @click.stop="loadDialog"
+    >
       <template v-slot:prefix>
         <slot name="prefix"></slot>
       </template>
@@ -15,15 +27,24 @@
       </template>
     </ElInput>
     <!-- 地图选择器 -->
-    <ElDialog v-if="dialog" width="800px" :title="locale.title" v-model="open" append-to-body
-      class="agel-map-input-dialog" :close-on-press-escape="false" @opened="loadMapInstance" @closed="dialogClosed">
+    <ElDialog
+      v-if="dialog"
+      width="800px"
+      :title="locale.title"
+      v-model="open"
+      append-to-body
+      class="agel-map-input-dialog"
+      :close-on-press-escape="false"
+      @opened="loadMapInstance"
+      @closed="dialogClosed"
+    >
       <div class="ag-dialog-body">
         <div class="addr-row">
           <div class="addr-label">{{ locale.address }}</div>
           <ElInput v-model="address" :readonly="!editable">
-            <template #append  v-if="Array.isArray(modelValue)">
+            <template #append v-if="Array.isArray(modelValue)">
               <span>
-                {{ lnglat? lnglat.lng + ' , ' + lnglat.lat: locale.nolnglat }}
+                {{ lnglat ? lnglat.lng + ' , ' + lnglat.lat : locale.nolnglat }}
               </span>
             </template>
           </ElInput>
@@ -31,9 +52,17 @@
         </div>
         <div class="addr-row">
           <div class="addr-label">{{ locale.keyword }}</div>
-          <ElAutocomplete style="width:100%" v-model="search" popper-class="agel-map-input-popper"
-            :fetch-suggestions="autocompleteFetch" :placeholder="locale.keywordPlaceholder" value-key="name" clearable
-            @select="autocompleteSelected" @clear="drawMarker">
+          <ElAutocomplete
+            style="width: 100%"
+            v-model="search"
+            popper-class="agel-map-input-popper"
+            :fetch-suggestions="autocompleteFetch"
+            :placeholder="locale.keywordPlaceholder"
+            value-key="name"
+            clearable
+            @select="autocompleteSelected"
+            @clear="drawMarker"
+          >
             <template #default="{ item }">
               <span><i :class="item.location ? 'el-icon-location-information' : 'el-icon-search'"></i></span>
               <span class="name">{{ item.name }}</span>
@@ -41,8 +70,8 @@
             </template>
           </ElAutocomplete>
         </div>
-        <div class="agel-map-box" v-loading="loading" style="width:100%;height:400px;position:relative">
-          <div :id="'map-' + map.id" style="width:100%;height:100%"></div>
+        <div class="agel-map-box" v-loading="loading" style="width: 100%; height: 400px; position: relative">
+          <div :id="'map-' + map.id" style="width: 100%; height: 100%"></div>
           <div :id="'panel-' + map.id" class="agel-map-panel"></div>
         </div>
       </div>
@@ -55,31 +84,36 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 export default { name: 'AgelMapInput', inheritAttrs: false }
 </script>
 
-<script setup lang='ts'>
-import type { InputProps, } from "element-plus"
-import { ref, computed, nextTick } from "vue"
-import useLocale from "../utils/useLocale"
+<script setup lang="ts">
+import type { InputProps } from 'element-plus'
+import { ref, computed, nextTick } from 'vue'
+import useLocale from '../utils/useLocale'
 
-type mapInputProps = Partial<Pick<InputProps, 'placeholder' | 'disabled' | 'readonly' | 'clearable' | 'suffixIcon' | 'size' | 'validateEvent'>>
+type mapInputProps = Partial<
+  Pick<
+    InputProps,
+    'placeholder' | 'disabled' | 'readonly' | 'clearable' | 'prefixIcon' | 'suffixIcon' | 'size' | 'validateEvent'
+  >
+>
 
 type resloveAMap = (AMap: any) => void
 interface Props extends mapInputProps {
-  modelValue: string | (string | number)[],
-  editable?: boolean,
-  keywordSearch?: boolean,
-  destroyDialogOnClose?: boolean,
-  AMap?: (reslove: resloveAMap, plugins: string[]) => void,
-  prefixIcon?: InputProps['prefixIcon'],
+  modelValue: string | (string | number)[]
+  editable?: boolean
+  keywordSearch?: boolean
+  destroyDialogOnClose?: boolean
+  AMap?: (reslove: resloveAMap, plugins: string[]) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
   prefixIcon: 'MapLocation',
   keywordSearch: true,
-  AMap: (reslove: resloveAMap) => reslove((window as any).AMap)
+  AMap: (reslove: resloveAMap) => reslove((window as any).AMap),
+  validateEvent: true
 })
 
 const emits = defineEmits(['update:modelValue'])
@@ -99,7 +133,7 @@ const map = {
   Marker: null as any,
   PlaceSearch: null as any,
   Autocomplete: null as any,
-  Geocoder: null as any,
+  Geocoder: null as any
 }
 
 const proxyValue = computed(() => {
@@ -114,22 +148,22 @@ const locale = useLocale({
     error: '请先选择地点',
     keyword: '关键字检索',
     keywordPlaceholder: '请输入关键字检索地址',
-    confrim: '确 定',
+    confrim: '确 定'
   },
-  'en': {
+  en: {
     title: 'Map selector',
     address: 'Address',
     keyword: 'Keyword',
     nolnglat: 'No latitude and longitude',
     error: 'Please select the location first',
     keywordPlaceholder: 'Please input keyword search',
-    confrim: 'Confrim',
+    confrim: 'Confrim'
   }
 })
 
 function loadDialog() {
   dialog.value = true
-  nextTick(() => open.value = true)
+  nextTick(() => (open.value = true))
 }
 
 function loadMapInstance() {
@@ -137,11 +171,7 @@ function loadMapInstance() {
     loadMap()
     return
   }
-  const plugins = [
-    "AMap.PlaceSearch",
-    "AMap.Autocomplete",
-    "AMap.Geocoder",
-  ]
+  const plugins = ['AMap.PlaceSearch', 'AMap.Autocomplete', 'AMap.AutoComplete', 'AMap.Geocoder']
   loading.value = true
   props.AMap((AMap) => {
     loading.value = false
@@ -149,7 +179,7 @@ function loadMapInstance() {
       map.AMap = AMap
       loadMap()
     } else {
-      console.error("Error:AMap is not valid", AMap)
+      console.error('Error:AMap is not valid', AMap)
     }
   }, plugins)
 }
@@ -166,20 +196,20 @@ function loadMap() {
     map: map.Instance,
     pageSize: 5,
     pageIndex: 1,
-    panel: "panel-" + map.id,
-    autoFitView: true,
+    panel: 'panel-' + map.id,
+    autoFitView: true
   })
 
-  map.PlaceSearch.on("selectChanged", placeSearchSelected)
-  map.Instance.on("click", mapSelected)
+  map.PlaceSearch.on('selectChanged', placeSearchSelected)
+  map.Instance.on('click', mapSelected)
   valueSelected()
 }
 
 function dialogClosed() {
   lnglat.value = null
-  address.value = ""
-  search.value = ""
-  error.value = ""
+  address.value = ''
+  search.value = ''
+  error.value = ''
   map.PlaceSearch && map.PlaceSearch.clear()
   drawMarker(false)
   if (props.destroyDialogOnClose) {
@@ -191,12 +221,11 @@ function dialogClosed() {
 }
 
 function autocompleteFetch(query: string, cb: (arr: []) => void) {
-  if (!query || query.trim() == "") return cb([])
+  if (!query || query.trim() == '') return cb([])
   map.Autocomplete.search(query, (status: string, result: any) => {
-    cb(status == "complete" ? result.tips : [])
+    cb(status == 'complete' ? result.tips : [])
   })
 }
-
 
 function valueSelected() {
   const value = props.modelValue
@@ -213,9 +242,9 @@ function valueSelected() {
 
 function mapSelected(e: any) {
   map.Geocoder.getAddress(e.lnglat, (status: string, result: any) => {
-    if (status === "complete" && result.regeocode) {
-      search.value = ""
-      error.value = ""
+    if (status === 'complete' && result.regeocode) {
+      search.value = ''
+      error.value = ''
       address.value = result.regeocode.formattedAddress
       lnglat.value = e.lnglat
       drawMarker()
@@ -228,7 +257,7 @@ function autocompleteSelected(item: any) {
   if (item.location) {
     address.value = item.name
     lnglat.value = item.location
-    error.value = ""
+    error.value = ''
   }
   drawMarker(false)
   map.PlaceSearch.search(item.district + item.name)
@@ -237,10 +266,9 @@ function autocompleteSelected(item: any) {
 function placeSearchSelected(e: any) {
   address.value = e.selected.data.name
   lnglat.value = e.selected.data.location
-  error.value = ""
+  error.value = ''
   drawMarker(false)
 }
-
 
 function drawMarker(draw = true) {
   if (map.Marker) {
@@ -252,9 +280,9 @@ function drawMarker(draw = true) {
     map.Marker = new map.AMap.Marker({
       position: lnglat.value,
       label: {
-        direction: "bottom",
-        content: address.value,
-      },
+        direction: 'bottom',
+        content: address.value
+      }
     })
     map.Instance.add(map.Marker)
   }
@@ -263,11 +291,11 @@ function drawMarker(draw = true) {
 function confrim() {
   const value = props.modelValue
   if (address.value && lnglat.value) {
-    error.value = ""
+    error.value = ''
     if (Array.isArray(value)) {
-      emits("update:modelValue", [address.value, lnglat.value.lng, lnglat.value.lat])
+      emits('update:modelValue', [address.value, lnglat.value.lng, lnglat.value.lat])
     } else {
-      emits("update:modelValue", address.value)
+      emits('update:modelValue', address.value)
     }
     open.value = false
   } else {
@@ -276,12 +304,11 @@ function confrim() {
 }
 
 function clear() {
-  emits('update:modelValue', Array.isArray(props.modelValue) ? [] : "")
+  emits('update:modelValue', Array.isArray(props.modelValue) ? [] : '')
 }
-
 </script>
 
-<style >
+<style>
 .agel-map-input-dialog .amap-marker-label {
   background: #409eff;
   border: 1px solid white;

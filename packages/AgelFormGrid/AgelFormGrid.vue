@@ -1,47 +1,51 @@
 <template>
-  <ElRow ref="rowRef" class="agel-form-grid" v-bind="$attrs" :gutter="gutter">
+  <ElRow ref="rowRef" class="agel-form-grid" :gutter="gutter" :justify="justify" :align="align" :tag="tag">
     <slot name="prepend"></slot>
-    <ElCol v-for="(item, index) in formItems" :key="index" v-bind="getIncludeAttrs(ColPropKeys, item)"
-      :span="getSpan(item.span)">
+    <ElCol
+      v-for="(item, index) in formItems"
+      :key="index"
+      :span="getSpan(item.span)"
+      :push="item.push"
+      :pull="item.pull"
+      :offset="item.offset"
+    >
       <AgelFormItem v-bind="getFormItemProps(item)" />
     </ElCol>
     <slot name="append"></slot>
   </ElRow>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelFormGrid', inheritAttrs: false }
-</script>
+<script setup lang="ts">
+import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import useFormItems from '../utils/useFormItems'
+import type { RowProps } from 'element-plus'
 
-<script setup lang='ts'>
-import AgelFormItem, { type AgelFormItemProps } from "../AgelFormItem"
-import { ref, onMounted, onBeforeUnmount } from "vue"
-import { getIncludeAttrs } from "../utils/utils"
-import useFormItems from "../utils/useFormItems"
-import type { ColProps, RowProps } from "element-plus"
+defineOptions({ name: 'AgelFormGrid' })
 
-const ColPropKeys = ['span', 'push', 'pull', 'offset']
-type PickColProps = Partial<Pick<ColProps, 'span' | 'push' | 'pull' | 'offset'>>
-type ItemProps = AgelFormItemProps & PickColProps & { display?: boolean }
+interface ItemProps extends AgelFormItemProps {
+  span?: number
+  push?: number
+  pull?: number
+  offset?: number
+}
 
-interface Props extends  /* @vue-ignore */  Partial<RowProps> {
-  // 表单配置项
-  items: ItemProps[],
-  modelProp?: string,
-  viewModel?: boolean,
-  scope?: Record<string, any>,
-  gutter?: number,
-  span?: number,
-  responsive?: boolean,
-  responsiveMethod?: (width: number) => number,
+interface Props extends Partial<RowProps> {
+  items: ItemProps[]
+  modelProp?: string
+  viewModel?: boolean
+  scope?: Record<string, any>
+  span?: number
+  responsive?: boolean
+  responsiveMethod?: (width: number) => number
 }
 
 const props = withDefaults(defineProps<Props>(), {
   gutter: 18,
-  span: 24,
+  span: 24
 })
 
-const { formItems, getFormItemProps, getRef, validate, resetFields, } = useFormItems<ItemProps>(props)
+const { formItems, getFormItemProps, getRef, validate, resetFields } = useFormItems<ItemProps>(props)
 const rowRef = ref()
 const resizeSpan = ref(24)
 const resizeObserver = new ResizeObserver(function () {
@@ -67,7 +71,6 @@ function responsiveMethod(width: number) {
   return span
 }
 
-
 onMounted(() => {
   props.responsive && resizeObserver.observe(rowRef.value.$el)
 })
@@ -76,15 +79,14 @@ onBeforeUnmount(() => {
   props.responsive && resizeObserver.unobserve(rowRef.value.$el)
 })
 
-defineExpose({ getRef, validate, resetFields, })
+defineExpose({ getRef, validate, resetFields })
 </script>
-
 
 <style>
 /** 避免在 内联 form ，grid 显示不正常 */
 .el-form--inline .agel-form-grid .el-form-item {
   display: flex;
-  margin-right: 0px
+  margin-right: 0px;
 }
 
 .agel-form-grid .el-date-editor.el-input,

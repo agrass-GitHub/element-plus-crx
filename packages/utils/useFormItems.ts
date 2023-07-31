@@ -6,7 +6,7 @@ import type { AgelFormItemProps } from '../AgelFormItem';
 export const formLayoutContextKey = 'formLayoutContext'
 
 type Props<T> = {
-  items: (AgelFormItemProps & T)[],
+  items: (AgelFormItemProps & { hidden?: boolean } & T)[],
   modelProp?: string,
   viewModel?: boolean,
   scope?: Record<string, any>,

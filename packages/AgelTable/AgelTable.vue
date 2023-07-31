@@ -1,6 +1,13 @@
 <template>
-  <ElTable ref="elTable" class="agel-table" v-loading="loading" :data="data" :span-method="spanMethod"
-    :default-sort="defaultSort" @sortChange="sortChange" v-bind="{ ...ElTableConfig, ...$attrs }" style="width: 100%;">
+  <ElTable
+    ref="elTable"
+    class="agel-table"
+    v-loading="loading"
+    v-bind="elTablePorps"
+    :span-method="spanMethod"
+    :default-sort="defaultSort"
+    @sortChange="sortChange"
+  >
     <slot name="prepend"></slot>
     <slot>
       <AgelTableColumns :columns="columns"></AgelTableColumns>
@@ -14,79 +21,105 @@
     <template #append>
       <slot name="append-row"></slot>
     </template>
-
   </ElTable>
-  <ElPagination v-if="showPagination" layout="->,total,prev, pager, next, sizes" @update:current-page="currentPageChange"
-    @update:page-size="pageSizeChange" :disabled="loading" v-bind="{ ...ElPaginationConfig, ...page }">
+  <ElPagination
+    v-if="showPagination"
+    layout="->,total,prev, pager, next, sizes"
+    :disabled="loading"
+    v-bind="elPaginationProps"
+    @update:current-page="currentPageChange"
+    @update:page-size="pageSizeChange"
+  >
   </ElPagination>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelTable', inheritAttrs: false }
-</script>
-
-<script setup lang='ts'>
+<script setup lang="ts">
 import { h, ref, computed, resolveComponent, useSlots, nextTick, watch, type FunctionalComponent } from 'vue'
 import { getExcludeAttrs, getFlatArray } from '../utils/utils'
-import useAutoMerge from "./autoMerge"
-import useCrxGlobalConfig from "../utils/useCrxGlobalConfig"
-import type { TableProps, TableInstance } from "element-plus"
-import type { ColumnProps, TableEmits, MergeProps, PageProps, SortParams } from "./type"
+import useAutoMerge from './autoMerge'
+import useCrxGlobalConfig from '../utils/useCrxGlobalConfig'
+import type { TableProps, TableInstance } from 'element-plus'
+import type { ColumnProps, TableEmits, MergeProps, PageProps, SortParams } from './type'
+
+defineOptions({ name: 'AgelTable' })
 
 interface Props extends Omit<TableProps<any>, 'default-sort'>, TableEmits<any> {
-  data: any[],
-  columns?: ColumnProps[],
-  page?: PageProps,
-  merge?: MergeProps,
-  loading?: boolean,
-  request?: () => void,
+  columns?: ColumnProps[]
+  page?: PageProps
+  merge?: MergeProps
+  loading?: boolean
+  request?: () => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  width: '100%',
+  fit: true,
+  showHeader: true,
+  selectOnIndeterminate: true,
   data: () => [],
   columns: () => []
 })
+
 const emits = defineEmits(['update:page'])
 const slots = useSlots()
-const elTable = ref<TableInstance>()
-const ElTableConfig = useCrxGlobalConfig().AgelTable?.ElTable || {}
-const ElTableColumnConfig = useCrxGlobalConfig().AgelTable?.ElTableColumn || {}
-const ElPaginationConfig = useCrxGlobalConfig().AgelTable?.ElPagination || {}
+
+const elTableConfig = useCrxGlobalConfig().AgelTable?.ElTable || {}
+const elTableColumnConfig = useCrxGlobalConfig().AgelTable?.ElTableColumn || {}
+const elPaginationConfig = useCrxGlobalConfig().AgelTable?.ElPagination || {}
+const elTableRef = ref<TableInstance>()
+const elTablePorps = computed(() => {
+  const omitColumnPropKeys = ['columns', 'page', 'merge', 'loading', 'request']
+  return {
+    ...elTableConfig,
+    ...getExcludeAttrs(omitColumnPropKeys, props)
+  }
+})
+const elPaginationProps = computed(() => {
+  return { ...elPaginationConfig, ...props.page }
+})
 
 const showPagination = computed(() => {
   if (!props.page) return false
   const { currentPage, pageSize, total, pageCount } = props.page
-  return typeof currentPage == 'number' && typeof pageSize == 'number' && (typeof total == 'number' || typeof pageCount == 'number')
+  return (
+    typeof currentPage == 'number' &&
+    typeof pageSize == 'number' &&
+    (typeof total == 'number' || typeof pageCount == 'number')
+  )
 })
-
 const defaultSort = computed(() => {
   if (!props.page) return
   return {
     prop: props.page.sortProp,
-    order: props.page.sortOrder,
+    order: props.page.sortOrder
   }
 })
 
-const spanMethod = props.merge ? useAutoMerge(props) : undefined
+const spanMethod = props.merge ? useAutoMerge(props) : props.spanMethod
 
 const AgelTableColumns: FunctionalComponent<{ columns: ColumnProps[] }> = ({ columns }) => {
-  return columns.filter(v => v.hidden !== true).map((column) => {
-    const extendPropKeys = ['hidden', 'children', 'slot']
-    const columnProps = { ...ElTableColumnConfig, ...getExcludeAttrs(extendPropKeys, column) }
-    const columnlots = {} as any
-    if (typeof column.label === 'function') {
-      columnlots.header = column.label
-      columnProps.label = ''
-    }
-    if (column.children && column.children.length > 0) {
-      columnlots.default = () => h(AgelTableColumns as any, { columns: column.children })
-    } else if (typeof column.slot === 'function') {
-      columnlots.default = column.slot
-    } else if (typeof column.slot === 'string' && column.slot.indexOf('slot-') === 0 && slots[column.slot]) {
-      columnlots.default = slots[column.slot]
-    }
-    return h(resolveComponent('ElTableColumn') as any, columnProps, columnlots)
-  })
+  return columns
+    .filter((v) => v.hidden !== true)
+    .map((column) => {
+      const extendPropKeys = ['hidden', 'children', 'slot']
+      const columnProps = {
+        ...elTableColumnConfig,
+        ...getExcludeAttrs(extendPropKeys, column)
+      }
+      const columnlots = {} as any
+      if (typeof column.label === 'function') {
+        columnlots.header = column.label
+        columnProps.label = ''
+      }
+      if (column.children && column.children.length > 0) {
+        columnlots.default = () => h(AgelTableColumns as any, { columns: column.children })
+      } else if (typeof column.slot === 'function') {
+        columnlots.default = column.slot
+      } else if (typeof column.slot === 'string' && column.slot.indexOf('slot-') === 0 && slots[column.slot]) {
+        columnlots.default = slots[column.slot]
+      }
+      return h(resolveComponent('ElTableColumn') as any, columnProps, columnlots)
+    })
 }
 
 function currentPageChange(val: number) {
@@ -101,23 +134,28 @@ function pageSizeChange(val: number) {
 
 function sortChange({ column, prop, order }: SortParams) {
   if (typeof column.sortable === 'string') {
-    emits('update:page', { ...props.page, currentPage: 1, sortProp: prop, sortOrder: order })
+    emits('update:page', {
+      ...props.page,
+      currentPage: 1,
+      sortProp: prop,
+      sortOrder: order
+    })
     props.request?.()
   }
 }
 
 function getRef() {
-  return elTable.value
+  return elTableRef.value
 }
 
 function sortTable() {
   nextTick(() => {
-    if (elTable.value && props.data.length > 1) {
+    if (elTableRef.value && props.data.length > 1) {
       const prop = defaultSort.value?.prop
       const order = defaultSort.value?.order
       const sortColumn = getFlatArray<ColumnProps>(props.columns).find((v) => v.prop === prop)
       if (prop && order && typeof sortColumn?.sortable === 'boolean') {
-        elTable.value.sort(prop, order)
+        elTableRef.value.sort(prop, order)
       }
     }
   })
@@ -130,7 +168,7 @@ watch(() => props.data, sortTable)
 defineExpose({ getRef })
 </script>
 
-<style >
+<style>
 .agel-table {
   display: flex;
   flex-direction: column;
@@ -145,7 +183,7 @@ defineExpose({ getRef })
   transform: translate(-50%, -50%);
 }
 
-.agel-table+.el-pagination {
+.agel-table + .el-pagination {
   margin-top: 10px;
 }
 </style>

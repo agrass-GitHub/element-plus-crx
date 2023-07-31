@@ -1,24 +1,24 @@
 <template>
-  <AgelFormItem v-for="item, i in formItems" v-bind="getFormItemProps(item)" :key="i"></AgelFormItem>
+  <div class="agel-form-items">
+    <AgelFormItem v-for="(item, i) in formItems" v-bind="getFormItemProps(item)" :key="i"></AgelFormItem>
+  </div>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelFormItems', inheritAttrs: false }
-</script>
+<script setup lang="ts">
+import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
+import useFormItems from '../utils/useFormItems'
 
-<script setup lang='ts'>
-import AgelFormItem, { type AgelFormItemProps } from "../AgelFormItem"
-import useFormItems from "../utils/useFormItems"
+defineOptions({ name: 'AgelFormItems' })
 
 interface Props {
-  items: AgelFormItemProps[],
-  modelProp?: string,
-  viewModel?: boolean,
-  scope?: Record<string, any>,
+  items: AgelFormItemProps[]
+  modelProp?: string
+  viewModel?: boolean
+  scope?: Record<string, any>
 }
 const props = withDefaults(defineProps<Props>(), {})
 
-const { formItems, getFormItemProps, getRef, validate, resetFields, } = useFormItems(props)
+const { formItems, getFormItemProps, getRef, validate, resetFields } = useFormItems(props)
 
-defineExpose({ getRef, validate, resetFields, })
+defineExpose({ getRef, validate, resetFields })
 </script>

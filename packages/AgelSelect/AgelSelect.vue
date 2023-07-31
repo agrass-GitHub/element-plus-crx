@@ -1,16 +1,38 @@
 <template>
-  <ElSelect ref="elSelectRef" class="agel-select" v-bind="$attrs">
+  <ElSelect
+    ref="elSelectRef"
+    class="agel-select"
+    v-bind="elSelectPorps"
+    @update:model-value="emits('update:model-value', $event)"
+    @visible-change="emits('visible-change', $event)"
+    @remove-tag="emits('remove-tag', $event)"
+    @clear="emits('clear', $event)"
+    @blur="emits('blur', $event)"
+    @focus="emits('focus', $event)"
+  >
     <template #default>
       <template v-for="(item, index) in proxyOptions" :key="index">
-        <ElOptionGroup v-if="item.options && item.options.length > 0" :label="String(item[props.props.label as 'label'])"
-          :disabled="item.disabled">
-          <ElOption v-for="(option, index) in item.options" :key="index" :label="option[props.props.label as 'label']"
-            :value="option[props.props.value as any]" :disabled="option.disabled">
+        <ElOptionGroup
+          v-if="item.options && item.options.length > 0"
+          :label="String(item[props.props.label as 'label'])"
+          :disabled="item.disabled"
+        >
+          <ElOption
+            v-for="(option, index) in item.options"
+            :key="index"
+            :label="option[props.props.label as 'label']"
+            :value="option[props.props.value as any]"
+            :disabled="option.disabled"
+          >
             <slot :item="option" :index="index"></slot>
           </ElOption>
         </ElOptionGroup>
-        <ElOption v-else :label="item[props.props.label as 'label']" :value="item[props.props.value as any]"
-          :disabled="item.disabled">
+        <ElOption
+          v-else
+          :label="item[props.props.label as 'label']"
+          :value="item[props.props.value as any]"
+          :disabled="item.disabled"
+        >
           <slot :item="item" :index="index"></slot>
         </ElOption>
       </template>
@@ -24,40 +46,50 @@
   </ElSelect>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelSelect', inheritAttrs: false }
-</script>
-
-<script setup lang='ts'>
-import { computed, ref } from "vue"
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 import type { ElSelect, ElOption } from 'element-plus'
+import { getExcludeAttrs } from '../utils/utils'
+
+defineOptions({ name: 'AgelSelect' })
 
 type OptionProps = {
-  label?: string,
-  value?: string | number | boolean | Record<string, any>,
-  disabled?: boolean,
-  options?: OptionProps[],
+  label?: string
+  value?: string | number | boolean | Record<string, any>
+  disabled?: boolean
+  options?: OptionProps[]
   [k: string]: any
 }
 
-type SelectProps = InstanceType<typeof ElSelect>["$props"]
+type SelectProps = InstanceType<typeof ElSelect>['$props']
 
-interface Props extends  /* @vue-ignore */ Partial<SelectProps> {
-  options: OptionProps[] | string[],
-  props?: { label: string, value: string },
+interface Props extends /* @vue-ignore */ Partial<Omit<SelectProps,'popperAppendToBody'>> {
+  options: OptionProps[] | string[]
+  props?: { label: string; value: string }
 }
 
 const props = withDefaults(defineProps<Props>(), {
   options: () => [],
   props: () => {
     return { label: 'label', value: 'value' }
-  }
+  },
+  reserveKeyword: true,
+  teleported: true,
+  persistent: true,
+  suffixTransition: true,
+  validateEvent: true,
 })
 
+const emits = defineEmits(['update:model-value', 'change', 'visible-change', 'remove-tag', 'clear', 'blur', 'focus'])
+
 const elSelectRef = ref()
+const elSelectPorps = computed(() => {
+  const propKeys = ['options', 'props']
+  return getExcludeAttrs(propKeys, props)
+})
 
 const proxyOptions = computed(() => {
-  const options = props.options.map(v => {
+  const options = props.options.map((v) => {
     if (typeof v == 'string') return { label: v, value: v }
     return v
   })

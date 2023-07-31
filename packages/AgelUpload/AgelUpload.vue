@@ -1,8 +1,16 @@
 <template>
-  <ElUpload ref="elUpload" v-bind="$attrs" :file-list="modelValue"
-    :class="['agel-upload', { 'limit-hide-trigger': isLimitHide }]" :list-type="listType" :limit="limit"
-    :before-upload="beforeUploadHandler" :on-preview="onPreviewHandler" :on-exceed="onExceedHandler"
-    :on-error="onErrorHandler">
+  <ElUpload
+    ref="elUpload"
+    v-bind="elUploadProps"
+    :file-list="modelValue"
+    :class="['agel-upload', { 'limit-hide-trigger': isLimitHide }]"
+    :list-type="listType"
+    :limit="limit"
+    :before-upload="beforeUploadHandler"
+    :on-preview="onPreviewHandler"
+    :on-exceed="onExceedHandler"
+    :on-error="onErrorHandler"
+  >
     <template #trigger v-if="$slots.trigger">
       <slot name="trigger"></slot>
     </template>
@@ -13,7 +21,7 @@
     </template>
     <template #default>
       <slot name="default">
-        <template v-if="$attrs.drag === '' || $attrs.drag === true">
+        <template v-if="drag">
           <ElIcon class="el-icon--upload">
             <UploadFilled />
           </ElIcon>
@@ -30,32 +38,30 @@
   </ElUpload>
 </template>
 
-<script lang='ts'>
-export default { name: 'AgelUpload', inheritAttrs: false }
-</script>
+<script setup lang="ts">
+import { ElMessageBox, ElMessage } from 'element-plus'
+import { h, computed, ref, type VNode } from 'vue'
+import { getFileTypeByUrl, getExcludeAttrs } from '../utils/utils'
+import useLocale from '../utils/useLocale'
+import type {
+  UploadUserFile,
+  UploadProps,
+  UploadFile,
+  UploadRawFile,
+  messageType,
+  UploadInstance,
+  UploadStatus
+} from 'element-plus'
 
-<script setup lang='ts'>
-import { ElMessageBox, ElMessage } from "element-plus"
-import { h, computed, ref, type VNode } from "vue"
-import { getFileTypeByUrl } from "../utils/utils"
-import useLocale from "../utils/useLocale"
-import type { UploadUserFile, UploadProps, UploadFile, UploadRawFile, messageType, UploadInstance, UploadStatus } from "element-plus"
+defineOptions({ name: 'AgelUpload' })
 
-
-interface Props extends  /* @vue-ignore */  Partial<Omit<UploadProps, 'fileList'>> {
-  modelValue: UploadProps['fileList'],
-  preview?: boolean,
-  message?: boolean,
-  limitHide?: boolean,
-  limitSize?: number,
-  tip?: string,
-  // el-upload
-  limit?: UploadProps['limit'],
-  listType?: UploadProps['listType'],
-  onPreview?: UploadProps['onPreview'],
-  onError?: UploadProps['onError'],
-  onExceed?: UploadProps['onExceed'],
-  beforeUpload?: UploadProps['beforeUpload'],
+interface Props extends Partial<Omit<UploadProps, 'fileList'>> {
+  modelValue: UploadProps['fileList']
+  preview?: boolean
+  message?: boolean
+  limitHide?: boolean
+  limitSize?: number
+  tip?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -63,9 +69,18 @@ const props = withDefaults(defineProps<Props>(), {
   preview: true,
   message: true,
   listType: 'text',
+  showFileList: true,
+  autoUpload: true
 })
 
+console.log(props)
+
 const elUpload = ref<UploadInstance>()
+const elUploadProps = computed(() => {
+  const propKeys = ['modelValue', 'peview', 'message', 'limitHide', 'limitSize', 'tip']
+  return getExcludeAttrs(propKeys, props)
+})
+
 const locale = useLocale({
   'zh-cn': {
     limitSize: '最大允许上传大小',
@@ -74,7 +89,7 @@ const locale = useLocale({
     upload: '点击上传',
     drag: '将文件拖到此处，或'
   },
-  'en': {
+  en: {
     limitSize: 'Maximum allowed upload size',
     limit: 'Maximum number of uploads allowed',
     error: 'File upload failure',
@@ -121,7 +136,6 @@ function onErrorHandler(err: Error, file: UploadFile, fileList: UploadFile[]) {
   }
 }
 
-
 function onPreviewHandler(file: UploadFile) {
   if (file.url && props.preview) {
     const fileUrl = file.url
@@ -130,37 +144,37 @@ function onPreviewHandler(file: UploadFile) {
     let message: VNode | null = null
 
     if (type == 'img') {
-      message = h("img", {
-        class: "agel-upload-preview-img",
+      message = h('img', {
+        class: 'agel-upload-preview-img',
         src: fileUrl
       })
     } else if (type == 'video') {
-      message = h("video", {
-        class: "agel-upload-preview-video",
+      message = h('video', {
+        class: 'agel-upload-preview-video',
         src: fileUrl,
         controls: true
       })
     } else if (type == 'audio') {
-      message = h("audio", {
-        class: "agel-upload-preview-audio",
+      message = h('audio', {
+        class: 'agel-upload-preview-audio',
         src: fileUrl,
         controls: true
       })
     } else {
-      message = h("p", null, "该文件不支持预览")
+      message = h('p', null, '该文件不支持预览')
     }
     ElMessageBox({
-      title: "",
-      customClass: "agel-upload-preview-msgbox",
+      title: '',
+      customClass: 'agel-upload-preview-msgbox',
       center: true,
       message,
-      confirmButtonText: "下载",
-      showConfirmButton: false,
+      confirmButtonText: '下载',
+      showConfirmButton: false
     }).then(() => {
-      let a = document.createElement("a")
+      let a = document.createElement('a')
       a.href = fileUrl || ''
       a.download = file.name
-      a.target = "_blank"
+      a.target = '_blank'
       a.click()
       a = null as any
     })
@@ -186,10 +200,8 @@ function handleRemove(file: UploadFile) {
   elUpload.value?.handleRemove(file)
 }
 
-
 defineExpose({ abort, submit, clearFiles, handleStart, handleRemove })
 </script>
-
 
 <style>
 .agel-upload {
@@ -237,7 +249,6 @@ defineExpose({ abort, submit, clearFiles, handleStart, handleRemove })
   height: 100%;
 }
 
-
 .agel-upload .el-icon--close-tip {
   display: none !important;
 }
@@ -256,7 +267,7 @@ defineExpose({ abort, submit, clearFiles, handleStart, handleRemove })
 }
 
 .agel-upload-preview-msgbox .el-message-box__headerbtn {
-  top: 10px
+  top: 10px;
 }
 
 .agel-upload-preview-img {
