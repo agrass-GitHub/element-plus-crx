@@ -3,3 +3,9 @@ distdocs
 .temp
 .cache
 .DS_Store
+.idea/.gitignore
+.idea/element-plus-crx.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/jsLinters/eslint.xml
