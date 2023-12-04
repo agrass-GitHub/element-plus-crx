@@ -56,6 +56,7 @@ export function getFileTypeByUrl(url: string) {
   if (["png", "jpg", "jpeg", "bmp", "gif", 'svg'].includes(suffix)) return 'img'
   if (["mp4", "ogg", "webm"].includes(suffix)) return 'video'
   if (["mp3", "wav", "ogg"].includes(suffix)) return 'audio'
+  return ''
 }
 
 // 动态添加css
@@ -72,4 +73,19 @@ export const dynamicStyleRule = function (id: string, styleRule: string | null) 
     document.getElementsByTagName('head')[0].appendChild(styleElement)
     styleElement.appendChild(document.createTextNode(styleRule))
   }
+}
+
+type Func = (...args: any[]) => void;
+
+export function throttle(func: Func, delay: number): Func {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+
+  return function (this: any, ...args: any[]) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        func.apply(this, args);
+        timer = null;
+      }, delay);
+    }
+  };
 }
