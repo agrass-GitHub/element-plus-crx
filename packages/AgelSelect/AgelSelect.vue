@@ -63,7 +63,7 @@ type OptionProps = {
 
 type SelectProps = InstanceType<typeof ElSelect>['$props']
 
-interface Props extends /* @vue-ignore */ Partial<Omit<SelectProps,'popperAppendToBody'>> {
+interface Props extends /* @vue-ignore */ Partial<SelectProps> {
   options: OptionProps[] | string[]
   props?: { label: string; value: string }
 }
@@ -77,7 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
   teleported: true,
   persistent: true,
   suffixTransition: true,
-  validateEvent: true,
+  validateEvent: true
 })
 
 const emits = defineEmits(['update:model-value', 'change', 'visible-change', 'remove-tag', 'clear', 'blur', 'focus'])

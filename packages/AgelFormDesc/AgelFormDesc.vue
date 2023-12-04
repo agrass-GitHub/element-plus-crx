@@ -10,7 +10,7 @@
     :class="['agel-form-decs __hidelabel __inlinemsg __fullwidth __fixed-clearable ', { 'desc-hide-border': !border }]"
   >
     <slot name="prepend"></slot>
-    <ElDescriptionsItem v-for="(item, index) in formItems" :key="index" v-bind="getDescrItem(item, index)">
+    <ElDescriptionsItem v-for="(item, index) in formItems" :key="index" v-bind="getDescrItem(item)">
       <template #label>
         <DescItemLabel v-bind="item"></DescItemLabel>
       </template>
@@ -84,7 +84,7 @@ function getLabelWidth(item: ItemProps) {
   return { labelClassName, labelWidth }
 }
 
-function getDescrItem(item: ItemProps, i: number) {
+function getDescrItem(item: ItemProps) {
   let labelPosition = formContext?.labelPosition
   return {
     span: item.span,
@@ -97,7 +97,7 @@ function getDescrItem(item: ItemProps, i: number) {
 function getLabelStyleRule() {
   let styleRules = ''
   let classNames: (string | number)[] = []
-  formItems.value.forEach((item, i) => {
+  formItems.value.forEach((item) => {
     let { labelClassName, labelWidth } = getLabelWidth(item)
     if (!classNames.includes(labelClassName)) {
       classNames.push(labelClassName)

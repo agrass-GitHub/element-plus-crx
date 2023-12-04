@@ -54,6 +54,7 @@ export function useFormItems<T>(props: Props<T>) {
         if (rules.some(v => v?.required)) return className
       }
     }
+    return ''
   }
 
   function validate(callback: FormValidateCallback) {
@@ -63,7 +64,7 @@ export function useFormItems<T>(props: Props<T>) {
 
   function resetFields(props: string[]) {
     const propKeys = props || formItems.value.map(v => getFormItemProp(v.prop))
-    return formContext.resetFields(propKeys,)
+    return formContext.resetFields(propKeys)
   }
 
   function getRef(prop: string) {

@@ -73,8 +73,6 @@ const props = withDefaults(defineProps<Props>(), {
   autoUpload: true
 })
 
-console.log(props)
-
 const elUpload = ref<UploadInstance>()
 const elUploadProps = computed(() => {
   const propKeys = ['modelValue', 'peview', 'message', 'limitHide', 'limitSize', 'tip']

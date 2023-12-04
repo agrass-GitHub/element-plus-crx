@@ -3,7 +3,7 @@ import { computed } from "vue"
 
 export type strObj = { [k: string]: any }
 
-export default function (localeConfig: { 'zh-cn': strObj, 'en': strObj } & strObj ) {
+export default function (localeConfig: { 'zh-cn': strObj, 'en': strObj } & strObj) {
 
   const locale = computed(() => {
     const config = useGlobalConfig().value

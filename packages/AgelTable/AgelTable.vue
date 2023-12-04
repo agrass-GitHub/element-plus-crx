@@ -6,7 +6,7 @@
       v-loading="loading"
       v-bind="elTablePorps"
       :span-method="spanMethod"
-      :default-sort="defaultSort"
+      :default-sort="defaultSort as Sort"
       @sortChange="sortChange"
     >
       <slot name="prepend"></slot>
@@ -40,7 +40,7 @@ import { h, ref, computed, resolveComponent, useSlots, nextTick, watch, type Fun
 import { getExcludeAttrs, getFlatArray } from '../utils/utils'
 import useAutoMerge from './autoMerge'
 import useCrxGlobalConfig from '../utils/useCrxGlobalConfig'
-import type { TableProps, TableInstance } from 'element-plus'
+import type { TableProps, TableInstance, Sort } from 'element-plus'
 import type { ColumnProps, TableEmits, MergeProps, PageProps, SortParams } from './type'
 
 defineOptions({ name: 'AgelTable' })
@@ -89,6 +89,7 @@ const showPagination = computed(() => {
     (typeof total == 'number' || typeof pageCount == 'number')
   )
 })
+
 const defaultSort = computed(() => {
   if (!props.page) return
   return {

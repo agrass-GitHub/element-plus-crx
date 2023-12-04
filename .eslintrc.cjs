@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+// require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
@@ -14,8 +14,8 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 0,
     "no-unused-vars": 0,
-    'no-undef': 0,
-    "@typescript-eslint/no-unused-vars": 0,
+    'no-undef': 1,
+    "@typescript-eslint/no-unused-vars": 1,
     'semi': [1, 'never'],
   }
 }

@@ -3,7 +3,7 @@
     :ref="(v) => (formRefs.elTable = v)"
     class="agel-form-table __hidelabel __inlinemsg __fullwidth"
     v-bind="getExcludeAttrs(OmitTablePropKeys, props)"
-    :data="tableData.value"
+    :data="tableData"
   >
     <slot name="prepend"></slot>
     <slot>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, resolveComponent, ref, type FunctionalComponent } from 'vue'
+import { h, resolveComponent, computed, type FunctionalComponent } from 'vue'
 import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
 import useFormItems from '../utils/useFormItems'
 import { getIncludeAttrs, getExcludeAttrs, getFlatArray } from '../utils/utils'
@@ -68,12 +68,14 @@ const OmitTablePropKeys = ['items', 'modelProp']
 
 const { formContext, formRefs, getRequiredAsteriskClass, getRef } = useFormItems<ItemProps>(props)
 
-const tableData = formContext.model ? getProp(formContext.model, props.modelProp, []) : ref([])
+const tableData = computed(() => {
+  return formContext.model ? getProp(formContext.model, props.modelProp, []).value : []
+})
 
 const AgelFormColumns: FunctionalComponent<{ columns: ItemProps[] }> = ({ columns }) => {
   return columns
     .filter((v) => v.hidden !== true)
-    .map((column, key) => {
+    .map((column) => {
       const headerRender = () => {
         const label = typeof column.label === 'function' ? column.label() : h('span', column.label)
         const attrs = {

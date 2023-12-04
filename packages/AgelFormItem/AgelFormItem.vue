@@ -73,7 +73,7 @@ const props = withDefaults(defineProps<Props>(), {
 const scopeProps = useAttrs()
 const config = useCrxGlobalConfig().AgelFormItem
 const formContext = inject<FormContext>(formContextKey)
-const FormLayoutContext = inject<FormLayoutContext>(formLayoutContextKey)
+const layoutContext = inject<FormLayoutContext>(formLayoutContextKey)
 
 const model = ref<{ value: any }>({ value: undefined })
 const elRef = ref()
@@ -136,10 +136,10 @@ const FormItemEl: FunctionalComponent = () => {
   if (
     typeof props.slot == 'string' &&
     props.slot.indexOf('slot-') == 0 &&
-    FormLayoutContext &&
-    FormLayoutContext.slots[props.slot]
+    layoutContext &&
+    layoutContext.slots[props.slot]
   ) {
-    return FormLayoutContext.slots[props.slot]({ ...renderScopeProps.value })
+    return layoutContext.slots[props.slot]({ ...renderScopeProps.value })
   }
 
   // 组件/组件名称
@@ -179,14 +179,14 @@ function clearValidate() {
 }
 
 onMounted(() => {
-  if (FormLayoutContext && props.prop) {
-    FormLayoutContext.refs[props.prop] = elRef.value
+  if (layoutContext && props.prop) {
+    layoutContext.refs[props.prop] = elRef.value
   }
 })
 
 onUnmounted(() => {
-  if (FormLayoutContext && props.prop) {
-    FormLayoutContext.refs[props.prop] = undefined
+  if (layoutContext && props.prop) {
+    layoutContext.refs[props.prop] = undefined
   }
 })
 

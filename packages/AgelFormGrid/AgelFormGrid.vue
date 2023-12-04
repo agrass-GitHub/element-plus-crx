@@ -53,7 +53,7 @@ const resizeObserver = new ResizeObserver(function () {
   if (!el) return
   const width = el.clientWidth - props.gutter
   if (!props.responsive || width == 0) return
-  resizeSpan.value = props.responsiveMethod ? props.responsiveMethod(width) : responsiveMethod(width)
+  resizeSpan.value = props.responsiveMethod ? props.responsiveMethod(width) : defaultResponsiveMethod(width)
 })
 
 function getSpan(span?: number) {
@@ -62,7 +62,7 @@ function getSpan(span?: number) {
   return props.span
 }
 
-function responsiveMethod(width: number) {
+function defaultResponsiveMethod(width: number) {
   let span = 24
   if (width >= 500 && width < 800) span = 12
   if (width >= 800 && width < 1200) span = 8

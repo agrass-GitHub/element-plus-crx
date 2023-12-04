@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 import { getExcludeAttrs } from '../utils/utils'
 import type { CheckboxGroupProps } from 'element-plus'
 

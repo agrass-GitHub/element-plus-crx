@@ -1,4 +1,4 @@
-import type { TableProps, ElTableColumn, PaginationProps, RenderRowData, TableColumnCtx, Sort } from "element-plus"
+import type { ElTableColumn, PaginationProps, RenderRowData, TableColumnCtx, Sort } from "element-plus"
 import type { FilterMethods } from "element-plus/es/components/table/src/table-column/defaults"
 import type { VNodeChild } from "vue"
 
