@@ -1,13 +1,13 @@
 <template>
   <div class="demo">
     <AgelRadio v-model="direction" :options="options"></AgelRadio>
-    <AgelTable border :data="data" :columns="columns" :merge="merge">
+    <AgelTable border :data="data" :columns="columns" :merge="(merge as any)">
     </AgelTable>
   </div>
 </template>
 
 <script lang="tsx" setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from 'vue'
 
 const direction = ref('vertical')
 const options = [

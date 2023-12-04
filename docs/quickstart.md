@@ -1,9 +1,11 @@
 # 快速开始 [![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 
-## 特性
+:::tip
+组件源码未做打包处理，引用请使用 vue3.3 以上版本 / 确保项目支持 Typescript
+:::
 
-- Vue 3 Composition AP
-- TypeScript 编写
+
+## 特性
 
 数据配置
 
@@ -63,6 +65,3 @@ app.component(AgelTable.name, AgelTable);
 }
 ```
 
-:::tip
-组件源码是用 Typescript 编写，未做打包处理，如果你用的不是官方 vite 脚手架创建的 vue3 项目，则需要考虑添加 typescript 支持。
-:::

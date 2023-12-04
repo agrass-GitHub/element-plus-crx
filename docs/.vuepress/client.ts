@@ -2,7 +2,7 @@ import { defineClientConfig } from '@vuepress/client'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import ElementPlus from 'element-plus'
 import ElementPlusCrx from "../../packages"
-const exampleComponents = (import.meta as any).globEager("../../example/*.vue");
+const exampleComponents = (import.meta as any).glob("../../example/*.vue", { eager: true, import: 'default' });
 
 import './style.css'
 import 'element-plus/dist/index.css'
@@ -10,7 +10,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
-    
+
     app.use(ElementPlus)
     app.use(ElementPlusCrx)
     // icon
@@ -21,9 +21,9 @@ export default defineClientConfig({
     for (const key in exampleComponents) {
       const component = exampleComponents[key];
       const name = key.replace("../../example/", "").replace(".vue", "");
-      app.component(name, component.default);
+      app.component(name, component);
     }
   },
-  setup() {},
+  setup() { },
   rootComponents: [],
 })

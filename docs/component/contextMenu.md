@@ -6,6 +6,8 @@
 
 使用 `menus` 配置一个菜单，`contextMenu` 事件需要禁用默认行为避免弹出默认菜单。
 
+组件内置了可视区域的边缘处理，无需做额外的类似 `x + menu.width > window.width` 的计算。
+
 <ClientOnly><contextMenu/></ClientOnly>
 
 ::: details 点击查看代码

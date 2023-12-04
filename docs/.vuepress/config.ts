@@ -54,43 +54,46 @@ export default defineUserConfig({
       },
     ],
     sidebarDepth: 1,
-    sidebar: [
-      {
-        text: "Guide 使用指南",
-        children: ["/quickstart.md", "/language.md", "/globalconfig.md"],
-      },
-      {
-        text: "Form 表单组件",
-        children: [
-          "/component/formItems.md",
-          "/component/formGrid.md",
-          "/component/formDesc.md",
-          "/component/formTableditor.md",
-          "/component/checkbox.md",
-          "/component/radio.md",
-          "/component/select.md",
-          "/component/upload.md",
-          "/component/dynamicTags.md",
-          "/component/mapInput.md",
-        ],
-      },
-      {
-        text: "Data 数据展示",
-        children: [
-          "/component/table.md",
-          "/component/countTo.md",
-          "/component/ellipsis.md",
-        ],
-      },
-      {
-        text: "Navigation 导航",
-        children: [
-          "/component/menu.md",
-          "/component/contextMenu.md",
-          "/component/navTabs.md",
-        ],
-      },
-    ],
+    sidebar: {
+      '/': [
+        {
+          text: "Guide 使用指南",
+          children: ["/quickstart.md", "/language.md", "/globalconfig.md"],
+        },
+        {
+          text: "Form 表单组件",
+          collapsible: true,
+          children: [
+            "/component/formItems.md",
+            "/component/formGrid.md",
+            "/component/formDesc.md",
+            "/component/formTableditor.md",
+            "/component/checkbox.md",
+            "/component/radio.md",
+            "/component/select.md",
+            "/component/upload.md",
+            "/component/dynamicTags.md",
+            "/component/mapInput.md",
+          ],
+        },
+        {
+          text: "Data 数据展示",
+          children: [
+            "/component/table.md",
+            "/component/countTo.md",
+            "/component/ellipsis.md",
+          ],
+        },
+        {
+          text: "Navigation 导航",
+          children: [
+            "/component/menu.md",
+            "/component/contextMenu.md",
+            "/component/navTabs.md",
+          ],
+        },
+      ]
+    },
   }),
   markdown: {
     importCode: {

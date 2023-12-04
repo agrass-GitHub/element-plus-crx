@@ -2,7 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 
-提示：请使用 vue3.3 以上版本。
+
+> 组件源码未做打包处理，引用请使用 vue3.3 以上版本 / 确保项目支持 Typescript
 
 ## 文档
 
@@ -59,5 +60,8 @@ const table = reactive({
 })
 </script>
 ```
+
+
+
 
 
