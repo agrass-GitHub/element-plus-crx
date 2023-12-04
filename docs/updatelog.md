@@ -6,7 +6,6 @@ sidebar: auto
 ## v.1.1.1 （2023-12-02）
 
 ### fix
-- 修复在未支持 ts 的 vite 项目中导入报错的问题
 - __ContextMenu：__  添加屏幕边缘检测 [issues/10077](https://github.com/agrass-GitHub/element-plus-crx/issues/3)
 
 
