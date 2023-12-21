@@ -25,6 +25,8 @@
 | model-prop | string | - | 表单 model 键名 
 | scope | object | - | 表单项插槽作用域参数 
 | view-model | boolean | - | 视图模式，只渲染 value
+| label-width | string\| number | - | label 列宽度
+| content-width | string\| number | - | content 列最小宽度
 | border | boolean | true | 开启边框
 | column, border, title, extra | -  | - | [ElDescriptions 属性](https://element-plus.gitee.io/zh-CN/component/descriptions.html#descriptions-%E5%B1%9E%E6%80%A7)
 
@@ -32,7 +34,7 @@
 
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
-| ...... | -    | - | [AgelFormItem 属性](/component/formItem.html#属性)
+| ...... | -    | - | [AgelFormItem 属性](/element-plus-crx/component/formItems.html#itemprops)
 | span, className, labelClassName | -   |-|  [ElDescriptionsItem 属性](https://element-plus.gitee.io/zh-CN/component/descriptions.html#descriptions-item-%E5%B1%9E%E6%80%A7) |
 
 ## 方法

@@ -44,8 +44,9 @@ const table = reactive({
     })
   },
   onSelectionChange: () => {
-    const names = tableRef.value?.getRef().getSelectionRows().map((v: Row) => v.name).join()
-    names.length > 0 && ElMessage.success('选中：' + names)
+    console.log(tableRef.value.getRef())
+    // const names = tableRef.value?.getRef().getSelectionRows().map((v: Row) => v.name).join()
+    // names.length > 0 && ElMessage.success('选中：' + names)
   }
 })
 

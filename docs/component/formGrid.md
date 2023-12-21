@@ -46,9 +46,17 @@ grid 的 `span` 属性为表单设置全局的排版，item 的栅格属性优�
 
 | 属性 | 类型  | 默认值 | 说明  
 | --- | ---   | ---   | --- 
-| ...... | -    | - | [AgelFormItem 属性](/component/formItem.html#属性)
-| span, push, pull, offset  | -  |-|  [ElCol 属性](https://element-plus.gitee.io/zh-CN/component/layout.html#col-attributes) |
+| ...... | -    | - | [AgelFormItem 属性](/element-plus-crx/component/formItems.html#itemprops)
+| span, push, pull, offset  | -  |-|  [ElCol 属性](/component/layout.html#col-attributes) |
 
+
+## 方法
+
+| 名称            | 参数  |   说明                                   | 
+| -----------    | ------- | -----------------------------  |
+| getRef    | prop  |  获取组件实例        |
+| validate  | (callback)=>Promise  | 对整个 items 表单进行验证        |
+| resetFields | props | 重置表单
 
 
 ## 插槽

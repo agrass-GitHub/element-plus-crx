@@ -3,6 +3,17 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.1.2 （2023-12-21）
+
+### Feat
+- __FormGird、FormItems、FormDecs：__ label 渲染函数支持作用域参数
+- __FormDecs：__ 新增 contentWidth 配置列宽
+
+### fix
+- __Table：__ 修复 getRef 无效
+- __FormGird、FormItems：__ 修复 viewModel 无效的问题
+
+
 ## v.1.1.1 （2023-12-02）
 
 ### fix

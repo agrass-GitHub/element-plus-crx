@@ -1,10 +1,5 @@
 # 快速开始 [![npm](https://img.shields.io/npm/v/element-plus-crx.svg)](https://www.npmjs.com/package/element-plus-crx)
 
-:::tip
-组件源码未做打包处理，引用请使用 vue3.3 以上版本 / 确保项目支持 Typescript
-:::
-
-
 ## 特性
 
 数据配置
@@ -21,14 +16,52 @@
 
 ## 安装
 
+1. 依赖于 element-plus。
+
+`npm install element-plus @element-plus/icons-vue -s`
+
+2. 确保你的项目 vue 版本 >= 3.3。
+
 `npm install element-plus-crx -s`
 
+3. 源码为 ts 编写，未做编译打包处理，若你的项目不是 ts 项目，需要额外添加 ts 支持。
+
+`npm install typescript -d`
+
+在 vite.config.js 添加 ts 默认扩展名称。
+
+```js
+// vite.config.js
+export default defineConfig({
+  resolve: {
+    extensions: ['.js', '.vue', '.ts'],
+  }
+})
+```
+
+4. 为了事半功倍的开发体验，强烈建议引入 jsx [可选]
+
+`npm install @vitejs/plugin-vue-jsx -d`
+
+```js
+// vite.config.js
+import vueJsx from '@vitejs/plugin-vue-jsx'
+export default defineConfig({
+  plugins: [
+    vueJsx(),
+  ]
+})
+```
+
 ## 全局引用
+
+全局引入，省事。
 
 ```js
 import Vue from "vue";
 import ElementPlus from "element-plus";
 import ElementPlusCrx from "element-plus-crx";
+import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 
 app.use(ElementPlus);
@@ -41,14 +74,16 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 ## 按需引用
 
-每个组件有对应依赖的组件，需按照文档全局注册。
+`ElLoading` 是必须的， 建议其他类似 `ElDatePicker` 等表单组件也全局注册，便于配置表单。
 
 ```js
-import { AgelFormItems, AgelFormGrid, AgelTable } from "element-plus-crx";
+import { ElLoading, /* ...ElDatePicker 等其它全局组件 */ } from 'element-plus'
+import { AgelFormGrid, AgelTable } from "element-plus-crx";
+import 'element-plus/dist/index.css'
 
-app.component(AgelFormItems.name, AgelFormItems);
 app.component(AgelFormGrid.name, AgelFormGrid);
 app.component(AgelTable.name, AgelTable);
+app.use(ElLoading)
 ```
 
 ## Typescript 支持
@@ -64,4 +99,3 @@ app.component(AgelTable.name, AgelTable);
   }
 }
 ```
-
