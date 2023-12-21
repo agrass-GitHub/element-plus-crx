@@ -12,11 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import AgelMenuItem from './AgelMenuItem.vue'
-import { ref } from 'vue'
-import type { MenuProps } from 'element-plus'
-
 defineOptions({ name: 'AgelMenu' })
+
+import { ref } from 'vue'
+import { ElMenu, type MenuProps } from 'element-plus'
+import AgelMenuItem from './AgelMenuItem.vue'
 
 type MenuItem = InstanceType<typeof AgelMenuItem>['$props']
 

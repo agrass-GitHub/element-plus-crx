@@ -5,6 +5,7 @@ docs/
 example/
 
 .eslintrc.cjs
+.vuepress
 tsconfig.config.json
 tsconfig.json
 

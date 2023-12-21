@@ -16,12 +16,12 @@
 </template>
 
 <script setup lang="ts">
-import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import useFormItems from '../utils/useFormItems'
-import type { RowProps } from 'element-plus'
-
 defineOptions({ name: 'AgelFormGrid' })
+
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ElRow, ElCol, type RowProps } from 'element-plus'
+import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
+import useFormItems from '../utils/useFormItems'
 
 interface ItemProps extends AgelFormItemProps {
   span?: number

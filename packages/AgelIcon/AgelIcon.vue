@@ -1,17 +1,18 @@
 <template>
-  <img v-if="isImg" :src="icon as string" class="el-icon" v-bind="$attrs" />
+  <img v-if="typeof icon === 'string' && getFileTypeByUrl(icon) == 'img'" :src="icon" class="el-icon" v-bind="$attrs" />
   <ElIcon v-else v-bind="$attrs">
-    <component :is="icon"></component>
+    <component :is="typeof icon == 'string' && ElementPlusIcons[icon] ? ElementPlusIcons[icon] : icon"></component>
   </ElIcon>
 </template>
 
 <script setup lang="ts">
-import { computed, type Component } from 'vue'
-import { getFileTypeByUrl } from '../utils/utils'
-
 defineOptions({ name: 'AgelIcon' })
 
-const props = defineProps<{ icon: string | Component }>()
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import type { Component } from 'vue'
+import { ElIcon } from 'element-plus'
+import { getFileTypeByUrl } from '../utils/utils'
 
-const isImg = computed(() => typeof props.icon == 'string' && getFileTypeByUrl(props.icon) == 'img')
+defineProps<{ icon: string | Component }>()
+const ElementPlusIcons = ElementPlusIconsVue as { [k: string]: Component }
 </script>

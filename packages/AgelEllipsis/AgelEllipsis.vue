@@ -18,10 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, useSlots, nextTick, type VNode, type FunctionalComponent } from 'vue'
-import type { ElTooltipProps } from 'element-plus'
-
 defineOptions({ name: 'AgelEllipsis' })
+
+import { computed, ref, useSlots, nextTick, type VNode, type FunctionalComponent } from 'vue'
+import { ElTooltip, type ElTooltipProps } from 'element-plus'
 
 type TooltipProps = Pick<
   ElTooltipProps,

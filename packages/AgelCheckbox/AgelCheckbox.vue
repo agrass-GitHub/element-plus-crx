@@ -22,11 +22,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { getExcludeAttrs } from '../utils/utils'
-import type { CheckboxGroupProps } from 'element-plus'
-
 defineOptions({ name: 'AgelCheckbox' })
+
+import { computed } from 'vue'
+import { ElCheckboxGroup, ElCheckbox, ElCheckboxButton, type CheckboxGroupProps } from 'element-plus'
+import { getExcludeAttrs } from '../utils/utils'
 
 type CheckboxProps = {
   label?: string
@@ -66,5 +66,5 @@ const proxyOptions = computed(() => {
   return options as CheckboxProps[]
 })
 
-const checkBoxComponet = computed(() => (props.button ? 'ElCheckboxButton' : 'ElCheckbox'))
+const checkBoxComponet = computed(() => (props.button ? ElCheckboxButton : ElCheckbox))
 </script>

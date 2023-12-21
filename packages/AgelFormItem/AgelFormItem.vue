@@ -1,7 +1,5 @@
 <template>
-  <ViewModelEL v-if="viewModel"></ViewModelEL>
   <ElFormItem
-    v-show="!viewModel"
     :prop="prop"
     :label-width="labelWidth === 0 ? '0px' : labelWidth"
     :show-message="showMessage"
@@ -11,17 +9,17 @@
     :class="className"
     ref="formItemRef"
   >
-    <div class="vloading__content el-form-item__content" v-loading="loading">
-      <slot v-bind="renderScopeProps">
-        <FormItemEl></FormItemEl>
-      </slot>
-    </div>
-
     <template #label>
       <slot name="label">
         <FormItemLabel></FormItemLabel>
       </slot>
     </template>
+
+    <div class="vloading__content el-form-item__content" v-loading="loading">
+      <slot v-bind="renderScopeProps">
+        <FormItemEl></FormItemEl>
+      </slot>
+    </div>
 
     <template #error="scope">
       <slot name="error" v-bind="scope"> </slot>
@@ -29,18 +27,16 @@
   </ElFormItem>
 </template>
 
-<script lang="ts">
-export default { name: 'AgelFormItem', inheritAttrs: false }
-</script>
-
 <script setup lang="ts">
+defineOptions({ name: 'AgelFormItem', inheritAttrs: false })
+
 import { computed, inject, ref, h, resolveComponent, useAttrs, watchEffect, onMounted, onUnmounted } from 'vue'
-import { formContextKey, type FormContext, type FormItemRule } from 'element-plus'
+import { ElFormItem, ElInput, formContextKey, type FormContext, type FormItemRule } from 'element-plus'
 import { getProp } from 'element-plus/es/utils/objects'
 import useCrxGlobalConfig from '../utils/useCrxGlobalConfig'
 import useLocale from '../utils/useLocale'
 import { formLayoutContextKey, type FormLayoutContext } from '../utils/useFormItems'
-import type { Component, VNodeChild, FunctionalComponent } from 'vue'
+import type { Component, FunctionalComponent, VNodeChild } from 'vue'
 
 type RenderFunction = (scope?: any) => VNodeChild
 type Props = {
@@ -59,13 +55,13 @@ type Props = {
   slot?: string | Component | RenderFunction // 组件
   slots?: RenderFunction | { [k: string]: RenderFunction } // 组件插槽
   viewModel?: boolean // 查看模式
-  viewFormat?: (value: any) => VNodeChild | string | number // 查看模式 格式化
+  viewFormat?: (value: any) => VNodeChild | string | number // 查看格式化
   vmodel?: '.trim' | '.number'
   loading?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  slot: 'el-input',
+  slot: ElInput,
   showMessage: true,
   inlineMessage: false
 })
@@ -88,6 +84,7 @@ const locale = useLocale({
 })
 
 const className = computed(() => 'agel-form-item ' + props.class)
+
 const formItemRules = computed(() => {
   if (props.required) {
     const label = (props.label && typeof props.label == 'string' ? props.label : props.prop) || ''
@@ -114,19 +111,24 @@ const renderScopeProps = computed(() => {
   }
 })
 
-const ViewModelEL: FunctionalComponent = () => {
-  return props.viewFormat ? props.viewFormat({ ...renderScopeProps.value }) : h('span', {}, model.value.value)
-}
-
 const FormItemLabel: FunctionalComponent = () => {
-  if (typeof props.label == 'string') {
+  if (props.labelWidth === 0 || props.labelWidth === '0px') {
+    return null
+  } else if (typeof props.label == 'string') {
     return h('span', props.label)
   } else if (typeof props.label == 'function') {
-    return props.label()
+    return props.label({ ...renderScopeProps.value, label: '' })
+  } else {
+    return null
   }
 }
 
 const FormItemEl: FunctionalComponent = () => {
+  // 查看模式
+  if (props.viewModel) {
+    return props.viewFormat ? props.viewFormat({ ...renderScopeProps.value }) : h('span', {}, model.value.value)
+  }
+
   // 渲染函数
   if (typeof props.slot == 'function') {
     return (props.slot as RenderFunction)({ ...renderScopeProps.value })

@@ -46,6 +46,8 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'AgelContextMenu' })
+
 import {
   ref,
   onMounted,
@@ -59,8 +61,6 @@ import {
 } from 'vue'
 import { useZIndex } from 'element-plus/es/hooks/index'
 import { realtimeWindowWidth, reltimeWindowHeight, throttleWindowResizeWH } from './utils'
-
-defineOptions({ name: 'AgelContextMenu' })
 
 interface MenuItem {
   title: string // 名称

@@ -27,12 +27,12 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'AgelDynamicTags' })
+
 import { ref, watch, computed, nextTick } from 'vue'
-import { useDisabled, useFormItem, type ElInput, type TagProps } from 'element-plus'
+import { useDisabled, useFormItem, ElTag, ElInput, ElButton, type TagProps } from 'element-plus'
 import { debugWarn } from 'element-plus/es/utils/error'
 import { getIncludeAttrs } from '../utils/utils'
-
-defineOptions({ name: 'AgelDynamicTags' })
 
 interface Props extends Partial<Pick<TagProps, 'type' | 'closable' | 'hit' | 'color' | 'effect' | 'round'>> {
   modelValue: string[]

@@ -47,11 +47,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import type { ElSelect, ElOption } from 'element-plus'
-import { getExcludeAttrs } from '../utils/utils'
-
 defineOptions({ name: 'AgelSelect' })
+
+import { computed, ref } from 'vue'
+import { ElSelect, ElOption, ElOptionGroup } from 'element-plus'
+import { getExcludeAttrs } from '../utils/utils'
 
 type OptionProps = {
   label?: string

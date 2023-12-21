@@ -4,9 +4,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-
 defineOptions({ name: 'AgelCountTo' })
+
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 
 interface Props {
   from?: number

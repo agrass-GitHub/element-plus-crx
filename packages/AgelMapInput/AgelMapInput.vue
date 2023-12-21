@@ -84,13 +84,11 @@
   </div>
 </template>
 
-<script lang="ts">
-export default { name: 'AgelMapInput', inheritAttrs: false }
-</script>
-
 <script setup lang="ts">
-import type { InputProps } from 'element-plus'
+defineOptions({ name: 'AgelMapInput' })
+
 import { ref, computed, nextTick } from 'vue'
+import { ElInput, ElDialog, type InputProps } from 'element-plus'
 import useLocale from '../utils/useLocale'
 
 type mapInputProps = Partial<

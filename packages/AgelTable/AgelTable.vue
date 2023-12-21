@@ -2,11 +2,11 @@
   <div class="agel-table agel-table-resize">
     <ElTable
       class="agel-table-resize"
-      ref="elTable"
+      ref="elTableRef"
       v-loading="loading"
       v-bind="elTablePorps"
       :span-method="spanMethod"
-      :default-sort="defaultSort as Sort"
+      :default-sort="defaultSort"
       @sortChange="sortChange"
     >
       <slot name="prepend"></slot>
@@ -36,14 +36,14 @@
 </template>
 
 <script setup lang="ts">
-import { h, ref, computed, resolveComponent, useSlots, nextTick, watch, type FunctionalComponent } from 'vue'
+defineOptions({ name: 'AgelTable' })
+
+import { h, ref, computed, useSlots, nextTick, watch, type FunctionalComponent } from 'vue'
+import { ElTable, ElTableColumn, ElPagination, type TableProps, type TableInstance, type Sort } from 'element-plus'
 import { getExcludeAttrs, getFlatArray } from '../utils/utils'
 import useAutoMerge from './autoMerge'
 import useCrxGlobalConfig from '../utils/useCrxGlobalConfig'
-import type { TableProps, TableInstance, Sort } from 'element-plus'
 import type { ColumnProps, TableEmits, MergeProps, PageProps, SortParams } from './type'
-
-defineOptions({ name: 'AgelTable' })
 
 interface Props extends Omit<TableProps<any>, 'default-sort'>, TableEmits<any> {
   columns?: ColumnProps[]
@@ -95,7 +95,7 @@ const defaultSort = computed(() => {
   return {
     prop: props.page.sortProp,
     order: props.page.sortOrder
-  }
+  } as Sort
 })
 
 const spanMethod = props.merge ? useAutoMerge(props) : props.spanMethod
@@ -121,7 +121,7 @@ const AgelTableColumns: FunctionalComponent<{ columns: ColumnProps[] }> = ({ col
       } else if (typeof column.slot === 'string' && column.slot.indexOf('slot-') === 0 && slots[column.slot]) {
         columnlots.default = slots[column.slot]
       }
-      return h(resolveComponent('ElTableColumn') as any, columnProps, columnlots)
+      return h(ElTableColumn, columnProps, columnlots)
     })
 }
 

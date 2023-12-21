@@ -28,20 +28,24 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'AgelFormDesc' })
+
+import { computed, h, onBeforeUnmount, watchEffect } from 'vue'
+import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
 import useFormItems from '../utils/useFormItems'
-import { computed, h, onBeforeUnmount, watchEffect } from 'vue'
 import { dynamicStyleRule, guid } from '../utils/utils'
-
-defineOptions({ name: 'AgelFormDesc' })
 
 interface ItemProps extends AgelFormItemProps {
   span?: number
+  contentWidth?: string | number
   className?: string
   labelClassName?: string
 }
 
 interface Props {
+  labelWidth?: string | number
+  contentWidth?: string | number
   items: ItemProps[]
   modelProp?: string
   scope?: { [k: string]: any }
@@ -78,10 +82,12 @@ const DescItemLabel = function (item: ItemProps) {
 }
 
 function getLabelWidth(item: ItemProps) {
-  let width = item.labelWidth || formContext?.labelWidth || 'auto'
-  let labelWidth = typeof width === 'number' ? width + 'px' : width
+  let labelW = item.labelWidth || props.labelWidth || formContext?.labelWidth || 'auto'
+  let contentW = item.contentWidth || props.contentWidth || 'auto'
+  let labelWidth = typeof labelW === 'number' ? labelW + 'px' : labelW
+  let contentWidth = typeof contentW === 'number' ? contentW + 'px' : contentW
   let labelClassName = '__label-width-' + labelWidth
-  return { labelClassName, labelWidth }
+  return { labelClassName, labelWidth, contentWidth }
 }
 
 function getDescrItem(item: ItemProps) {
@@ -98,13 +104,17 @@ function getLabelStyleRule() {
   let styleRules = ''
   let classNames: (string | number)[] = []
   formItems.value.forEach((item) => {
-    let { labelClassName, labelWidth } = getLabelWidth(item)
+    let { labelClassName, labelWidth, contentWidth } = getLabelWidth(item)
     if (!classNames.includes(labelClassName)) {
       classNames.push(labelClassName)
       styleRules += `
         #${styleId} .${labelClassName} {
-          width:${labelWidth} 
-        }  `
+          width:${labelWidth} !important; 
+        }  
+        #${styleId} .${labelClassName}+td{
+          min-width:${contentWidth};  
+        }  
+        `
     }
   })
   return styleRules

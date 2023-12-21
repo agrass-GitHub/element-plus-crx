@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'AgelFormItems' })
+
 import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
 import useFormItems from '../utils/useFormItems'
-
-defineOptions({ name: 'AgelFormItems' })
 
 interface Props {
   items: AgelFormItemProps[]

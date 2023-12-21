@@ -22,16 +22,12 @@
     <template #default>
       <slot name="default">
         <template v-if="drag">
-          <ElIcon class="el-icon--upload">
-            <UploadFilled />
-          </ElIcon>
+          <AgelIcon icon="UploadFilled" class="el-icon--upload"></AgelIcon>
           <div class="el-upload__text">
             {{ locale.drag }} <em>{{ locale.upload }}</em>
           </div>
         </template>
-        <ElIcon v-else-if="listType == 'picture-card'">
-          <Plus />
-        </ElIcon>
+        <AgelIcon v-else-if="listType == 'picture-card'" icon="Plus"></AgelIcon>
         <ElButton v-else type="primary">{{ locale.upload }}</ElButton>
       </slot>
     </template>
@@ -39,8 +35,11 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessageBox, ElMessage } from 'element-plus'
+defineOptions({ name: 'AgelUpload' })
+
 import { h, computed, ref, type VNode } from 'vue'
+import { ElMessageBox, ElMessage, ElUpload, ElButton } from 'element-plus'
+import AgelIcon from '../AgelIcon'
 import { getFileTypeByUrl, getExcludeAttrs } from '../utils/utils'
 import useLocale from '../utils/useLocale'
 import type {
@@ -52,8 +51,6 @@ import type {
   UploadInstance,
   UploadStatus
 } from 'element-plus'
-
-defineOptions({ name: 'AgelUpload' })
 
 interface Props extends Partial<Omit<UploadProps, 'fileList'>> {
   modelValue: UploadProps['fileList']

@@ -20,15 +20,15 @@
 </template>
 
 <script setup lang="ts">
-import { h, resolveComponent, computed, type FunctionalComponent } from 'vue'
+defineOptions({ name: 'AgelFormTableditor' })
+
+import { h, computed, type FunctionalComponent } from 'vue'
+import { ElTable, ElTableColumn, type TableProps } from 'element-plus'
 import AgelFormItem, { type AgelFormItemProps } from '../AgelFormItem'
 import useFormItems from '../utils/useFormItems'
 import { getIncludeAttrs, getExcludeAttrs, getFlatArray } from '../utils/utils'
 import { getProp } from 'element-plus/es/utils/objects'
-import type { TableProps, ElTableColumn } from 'element-plus'
 import type { TableEmits } from '../AgelTable/type'
-
-defineOptions({ name: 'AgelFormTableditor' })
 
 type TableColumnProps = Pick<
   InstanceType<typeof ElTableColumn>['$props'],
@@ -94,13 +94,13 @@ const AgelFormColumns: FunctionalComponent<{ columns: ItemProps[] }> = ({ column
         const prop = getFormItemProp(column.prop, $index)
         const scope = { rowData: row, rowIndex: $index }
         const viewModel = typeof column.viewModel == 'boolean' ? column.viewModel : row._view_
-        return h(AgelFormItem, { ...scope, ...column, prop, viewModel })
+        return h(AgelFormItem, { ...scope, ...column, prop, viewModel, labelWidth: '0px' })
       }
 
       const columnProps = getIncludeAttrs(PickColumnPropKeys, column)
       const columnSlots = { header: headerRender, default: cellReneder }
 
-      return h(resolveComponent('ElTableColumn') as any, columnProps, columnSlots)
+      return h(ElTableColumn, columnProps, columnSlots)
     })
 }
 

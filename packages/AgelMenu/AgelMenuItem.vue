@@ -16,15 +16,13 @@
   </template>
 </template>
 
-<script lang="ts">
-export default { name: 'AgelMenuItem', inheritAttrs: false }
-</script>
-
 <script setup lang="ts">
+defineOptions({ name: 'AgelMenuItem' })
+
+import { computed } from 'vue'
+import { ElSubMenu, ElMenuItem, type SubMenuProps } from 'element-plus'
 import AgelIcon from '../AgelIcon'
 import { getExcludeAttrs } from '../utils/utils'
-import type { SubMenuProps } from 'element-plus'
-import { computed } from 'vue'
 
 interface MenuItem extends Partial<Omit<SubMenuProps, 'popperAppendToBody'>> {
   index: string

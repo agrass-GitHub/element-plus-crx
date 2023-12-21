@@ -21,11 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { RadioGroupProps } from 'element-plus'
-import { getExcludeAttrs } from '../utils/utils'
-
 defineOptions({ name: 'AgelRadio' })
+
+import { computed } from 'vue'
+import { ElRadio, ElRadioButton, ElRadioGroup, type RadioGroupProps } from 'element-plus'
+import { getExcludeAttrs } from '../utils/utils'
 
 type RadioProps = { label?: string; value?: string | number | boolean; disabled?: boolean; [k: string]: any }
 
@@ -58,7 +58,7 @@ const proxyOptions = computed(() => {
   return options as RadioProps[]
 })
 
-const radioComponet = computed(() => (props.button ? 'ElRadioButton' : 'ElRadio'))
+const radioComponet = computed(() => (props.button ? ElRadioButton : ElRadio))
 </script>
 
 <style scoped></style>

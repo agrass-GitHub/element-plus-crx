@@ -73,11 +73,12 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'AgelNavTabs' })
+
 import { computed, nextTick, reactive, ref } from 'vue'
+import { ElTabs, ElTabPane, ElButton, ElPopover } from 'element-plus'
 import AgelIcon from '../AgelIcon'
 import useLocale from '../utils/useLocale'
-
-defineOptions({ name: 'AgelNavTabs' })
 
 type TabProps = {
   title: string
