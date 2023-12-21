@@ -2,7 +2,7 @@
 
 一个地图选择器，从高德地图选地点，常用于搭配表单。
 
-依赖组件： `ElInput` `ElDialog` `ElAutocomplete` `ElButton`，需先全局注册，依赖高德地图插件：`AMap` `AMap.PlaceSearch` `AMap.Autocomplete` `AMap.Geocoder`，[高德地图 JSAPI 的加载](https://developer.amap.com/api/jsapi-v2/guide/abc/load)。
+依赖高德地图插件：`AMap` `AMap.PlaceSearch` `AMap.Autocomplete` `AMap.Geocoder`，[高德地图 JSAPI 的加载](https://developer.amap.com/api/jsapi-v2/guide/abc/load)。
 
 ## 使用
 

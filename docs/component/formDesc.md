@@ -2,8 +2,6 @@
 
 快速的数据化配置一个描述列表布局表单。
 
-依赖组件： `ElDescriptions` `ElDescriptionsItem` `AgelFormItem` ，需先全局注册。
-
 
 ## 基础使用
 

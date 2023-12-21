@@ -88,7 +88,7 @@
 defineOptions({ name: 'AgelMapInput' })
 
 import { ref, computed, nextTick } from 'vue'
-import { ElInput, ElDialog, type InputProps } from 'element-plus'
+import { ElInput, ElAutocomplete, ElDialog, ElButton, type InputProps } from 'element-plus'
 import useLocale from '../utils/useLocale'
 
 type mapInputProps = Partial<

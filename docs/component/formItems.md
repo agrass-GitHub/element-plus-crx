@@ -2,9 +2,6 @@
 
 快速的数据化配置一个表单。
 
-依赖组件：`ElFormItem` `ElInput`，依赖指令：`v-loading`，需先全局注册。
-
-
 ## 典型表单
 
 使用内置数据化的表单项组件比如 `agel-select`、`agel-radio`、`agel-checkbox`等，可快速完成一个包含各种输入表单项的基础表单。

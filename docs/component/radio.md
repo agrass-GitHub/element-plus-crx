@@ -2,8 +2,6 @@
 
 快速的数据化配置一个单选框组，常用于搭配数据表单。
 
-依赖组件： `ElRadioGroup` `ElRadio` `ElRadioButton` ，需先全局注册。
-
 ## 基础使用
 
 <ClientOnly><radioBase/></ClientOnly>

@@ -2,8 +2,6 @@
 
 快速的数据化配置一个下拉框，常用于搭配数据表单。
 
-依赖组件： `ElSelect` `ElOption` `ElOptionGroup`，需先全局注册。
-
 ## 基础使用
 
 <ClientOnly><selectBase/></ClientOnly>

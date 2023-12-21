@@ -2,8 +2,6 @@
 
 快速的数据化配置一个递归菜单，常用于后台管理系统中。
 
-依赖组件： `ElMenu` `ElSubMenu` `ElMenuItem` `ElIcon`，需先全局注册。
-
 ## 基础使用
 
 传递 `menus` 生成快速生成一个菜单。

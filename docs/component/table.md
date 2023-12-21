@@ -2,9 +2,6 @@
 
 快速的数据化配置一个带有分页排序的表格布局表单。
 
-依赖组件： `ElTable` `ElTableColumn` `ElPagination` ，需先全局注册。
-
-
 ## 基础使用
 
 当分页和排序发生变化，会同步参数到 `page` 对象，同时触发 `request` 请求。

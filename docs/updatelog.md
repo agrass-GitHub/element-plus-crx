@@ -3,9 +3,10 @@ title: 更新日志
 sidebar: auto
 ---
 
-## v.1.1.2 （2023-12-21）
+## v.1.2.0 （2023-12-21）
 
 ### Feat
+- __ElementPlusCrx：__ 优化导入流程，按需导入时不再需要全局注册依赖组件
 - __FormGird、FormItems、FormDecs：__ label 渲染函数支持作用域参数
 - __FormDecs：__ 新增 contentWidth 配置列宽
 

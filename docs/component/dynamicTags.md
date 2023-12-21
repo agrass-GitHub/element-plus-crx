@@ -2,8 +2,6 @@
 
 一个可添加删除的动态编辑标签，常用于搭配表单。
 
-依赖组件： `ElTag` `ElInput` `ElButton`，需先全局注册。
-
 ## 基础使用
 
 <ClientOnly><dynamicTags/></ClientOnly>
