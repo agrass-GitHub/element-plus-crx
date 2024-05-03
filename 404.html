@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="VuePress 2.0.0-rc.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.9" />
     <style>
       :root {
         --c-bg: #fff;
@@ -11,24 +11,27 @@
       html.dark {
         --c-bg: #22272e;
       }
-      html, body {
+      html,
+      body {
         background-color: var(--c-bg);
       }
     </style>
     <script>
-      const userMode = localStorage.getItem('vuepress-color-scheme');
-			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
-				document.documentElement.classList.toggle('dark', true);
-			}
+      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+        document.documentElement.classList.toggle('dark', true)
+      }
     </script>
     <link rel="icon" href="https://element-plus.org/images/element-plus-logo-small.svg"><title>Element Plus Crx</title><meta name="description" content="一个基于 ElementPlus 的扩展组件库">
-    <link rel="preload" href="/element-plus-crx/assets/style-bxS9ZApE.css" as="style"><link rel="stylesheet" href="/element-plus-crx/assets/style-bxS9ZApE.css">
-    <link rel="modulepreload" href="/element-plus-crx/assets/app-x2AfKQmF.js"><link rel="modulepreload" href="/element-plus-crx/assets/404.html-1qmOkByJ.js"><link rel="modulepreload" href="/element-plus-crx/assets/404.html-6Yl8cQE3.js">
-    <link rel="prefetch" href="/element-plus-crx/assets/index.html-bdVldSJK.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/globalconfig.html-a1e3o2VF.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/language.html-Byc8xhfv.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/quickstart.html-T7Vx_EtB.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/sponsor.html-OCjQwslP.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/test.html-LZJOX2PP.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/updatelog.html-GmdmRgNg.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/checkbox.html-XmgUh7tH.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/contextMenu.html-PHRz-iTl.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/countTo.html-zboIuBhe.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/dynamicTags.html-tCsyo4AV.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/ellipsis.html-l-AFRAo9.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formDesc.html-C7tDFNvK.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formGrid.html-xEJmY0YJ.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formItems.html-mV-bdniO.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formTableditor.html-6s1aOZYE.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/mapInput.html-UZ8-altZ.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/menu.html-02e1gBWM.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/navTabs.html-O6KyYo5M.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/radio.html-rAEk0Ypt.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/select.html-pPpRzSvy.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/table.html-pJ8xTr0S.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/upload.html-tzqKyf9K.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/index.html-R_B0ni7u.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/globalconfig.html-6DLEBUC4.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/language.html-FgYr1Q0L.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/quickstart.html-Gb29yZRU.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/sponsor.html-z3EH99tU.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/test.html-kr6sHFOF.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/updatelog.html-v-d1YFud.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/checkbox.html-wclDodZo.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/contextMenu.html-oGpeGRnW.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/countTo.html-L6uKH2T4.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/dynamicTags.html-lPnsy7gh.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/ellipsis.html-s4ezc3Nz.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formDesc.html-BwbgpfPH.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formGrid.html-sxQ0ypYf.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formItems.html-uhQo4QTd.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formTableditor.html-weFcKW57.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/mapInput.html-XtKeAlju.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/menu.html-wLjfx5YX.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/navTabs.html-PMMHoazs.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/radio.html-iDMRS5I9.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/select.html-Yc1Q9vMP.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/table.html-lqBmqRa7.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/upload.html-NztJXonW.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/index-DhvRTtj0.js" as="script">
+    <link rel="preload" href="/element-plus-crx/assets/style-C24q6VBG.css" as="style"><link rel="stylesheet" href="/element-plus-crx/assets/style-C24q6VBG.css">
+    <link rel="modulepreload" href="/element-plus-crx/assets/app-BrKV2lTV.js"><link rel="modulepreload" href="/element-plus-crx/assets/404.html-D71RKtCy.js">
+    <link rel="prefetch" href="/element-plus-crx/assets/index.html-NzNt_Hno.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/globalconfig.html-qLw29ELd.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/language.html-BhFd3fQR.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/quickstart.html-TSRQ_8M0.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/sponsor.html-BA7iQuA1.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/test.html-CPxcq0gU.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/updatelog.html-BUUZJiyM.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/checkbox.html-L_aqltpY.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/contextMenu.html-C7XlWKyj.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/countTo.html-Btg2STS5.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/dynamicTags.html-bPT9eVal.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/ellipsis.html-C9qq9wkY.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formDesc.html-Dl3Jh_TY.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formGrid.html-CxlCuW7v.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formItems.html-B_ZZ57iV.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/formTableditor.html-BJ6ZvprW.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/mapInput.html-D3jVYXBj.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/menu.html-CW8HSflG.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/navTabs.html-BCLY3dfR.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/radio.html-PbNWb2kt.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/select.html-Cf6IcekJ.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/table.html-BkSSobRI.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/upload.html-CRs17Qwu.js" as="script"><link rel="prefetch" href="/element-plus-crx/assets/index-ClAYIUSK.js" as="script">
   </head>
   <body>
-    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>How did we get here?</blockquote><a href="/element-plus-crx/" class="">Take me home</a></div></main></div><!----><!--]--></div>
-    <script type="module" src="/element-plus-crx/assets/app-x2AfKQmF.js" defer></script>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>There&#39;s nothing here.</blockquote><a class="route-link" href="/element-plus-crx/">Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/element-plus-crx/assets/app-BrKV2lTV.js" defer></script>
   </body>
 </html>

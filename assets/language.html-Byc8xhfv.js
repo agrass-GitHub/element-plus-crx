@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-391c6e28","path":"/language.html","title":"语言切换","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1675249946000,"contributors":[{"name":"agrass","email":"992951674@qq.com","commits":1}]},"filePathRelative":"language.md"}');export{a as data};
