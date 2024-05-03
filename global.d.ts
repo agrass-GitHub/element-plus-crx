@@ -20,5 +20,5 @@ declare module '@vue/runtime-core' {
     AgelEllipsis: typeof import('./packages')['AgelEllipsis'],
   }
 }
-export { };
+export { }
 

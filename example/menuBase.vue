@@ -1,16 +1,16 @@
 <template>
   <div class="demo">
     <ElRadioGroup v-model="mode" style="margin: 0px 20px 20px 0px">
-      <ElRadioButton label="vertical">竖向菜单</ElRadioButton>
-      <ElRadioButton label="horizontal">横向菜单</ElRadioButton>
+      <ElRadioButton value="vertical">竖向菜单</ElRadioButton>
+      <ElRadioButton value="horizontal">横向菜单</ElRadioButton>
     </ElRadioGroup>
 
     <ElRadioGroup v-model="isCollapse">
-      <ElRadioButton :label="false">展开</ElRadioButton>
-      <ElRadioButton :label="true">收起</ElRadioButton>
+      <ElRadioButton :value="false">展开</ElRadioButton>
+      <ElRadioButton :value="true">收起</ElRadioButton>
     </ElRadioGroup>
 
-    <AgelMenu class="demo-menu" :mode="(mode as any)"  :menus="menuData" :collapse="isCollapse"> </AgelMenu>
+    <AgelMenu class="demo-menu" :mode="mode as any" :menus="menuData" :collapse="isCollapse"> </AgelMenu>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
-const mode = ref('vertical') 
+const mode = ref('vertical')
 
 const isCollapse = ref(false)
 const menuData = [

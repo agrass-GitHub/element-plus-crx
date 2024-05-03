@@ -11,6 +11,7 @@
       :key="index"
       :border="border"
       :label="item[props.props.value as 'value']"
+      :value="item[props.props.value as 'value']"
       :disabled="item.disabled"
     >
       <slot :item="item" :index="index">

@@ -2,11 +2,9 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
-    "types": [
-      "element-plus/global"
-    ],
+    "types": ["element-plus/global"],
     "paths": {
-      "@/*": [ "./packages/*"]
+      "@/*": ["./packages/*"]
     }
   },
   "include": [
@@ -15,8 +13,8 @@
     "packages/**/*",
     "packages/**/*.vue",
     "example/**/*",
-    "example/**/*.vue", 
-    "global.ts",
+    "example/**/*.vue",
+    "global.ts"
   ],
   "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"]
 }

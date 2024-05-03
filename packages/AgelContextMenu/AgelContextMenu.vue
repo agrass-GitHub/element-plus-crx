@@ -59,7 +59,6 @@ import {
   type CSSProperties,
   nextTick
 } from 'vue'
-import { useZIndex } from 'element-plus/es/hooks/index'
 import { realtimeWindowWidth, reltimeWindowHeight, throttleWindowResizeWH } from './utils'
 
 interface MenuItem {
@@ -87,8 +86,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emits = defineEmits(['update:modelValue', 'select'])
-const { nextZIndex } = useZIndex()
-const zIndex = ref(nextZIndex())
 const menuRef = ref<HTMLDivElement>()
 const hoverIndex = ref(-1)
 const isRoot = getCurrentInstance()?.parent?.type?.name !== 'BaseTransition'
@@ -112,8 +109,7 @@ const menuStyle = computed<CSSProperties>(() => {
     const maxX = realtimeWindowWidth.value - menuRect.width
     const maxY = reltimeWindowHeight.value - menuRect.height
     const obj = {
-      position: 'absolute',
-      zIndex: zIndex.value
+      position: 'absolute'
     }
     if (props.x <= maxX && props.y <= maxY) {
       return {
@@ -147,7 +143,6 @@ const menuStyle = computed<CSSProperties>(() => {
   const maxY = window.innerHeight - menuRect.height
   return {
     position: 'fixed',
-    zIndex: zIndex.value,
     top: Math.min(props.y, maxY) + 'px',
     left: Math.min(props.x, maxX) + 'px'
   }
@@ -250,6 +245,7 @@ onUnmounted(() => {
   box-shadow: var(--el-box-shadow-light);
   background-color: var(--el-bg-color);
   min-width: 120px;
+  z-index: 2099;
 }
 
 .agel-context-menu-item {

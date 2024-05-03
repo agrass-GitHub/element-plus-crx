@@ -11,7 +11,7 @@ type ElColumnProps = Omit<InstanceType<typeof ElTableColumn>["$props"], 'label'>
 
 export type SortParams = Sort & { column: TableColumnCtx<any> }
 
-export type PageProps = { sortProp?: Sort['prop'], sortOrder?: Sort['order'] } & Partial<PaginationProps>
+export type PageProps = { sortProp?: string, sortOrder?: string | null } & Partial<PaginationProps>
 
 export type MergeProps = { keys: string[], direction: 'vertical' | 'horizontal' | 'auto' } // 'vertical' | 'horizontal'
 
