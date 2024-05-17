@@ -1,9 +1,8 @@
 <template>
   <div class="demo">
     <p><b>普通样式</b></p>
-    <AgelSelect v-model="value2" :options="['optionA', 'optionB', 'optionC']" disabled placeholder="测试"> </AgelSelect>
     <p><b>分组样式</b></p>
-    <AgelSelect v-model="value" :options="options"></AgelSelect>
+    <AgelSelect v-model="value" :options="options" @change="change" test="1"></AgelSelect>
   </div>
 </template>
 
@@ -31,4 +30,5 @@ const options = [
     ]
   }
 ]
+const change = (v: number) => console.log(v)
 </script>

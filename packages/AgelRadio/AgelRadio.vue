@@ -1,10 +1,5 @@
 <template>
-  <ElRadioGroup
-    class="agel-radio-group"
-    v-bind="elRadioGroupProps"
-    @update:model-value="emits('update:model-value', $event)"
-    @change="emits('change', $event)"
-  >
+  <ElRadioGroup class="agel-radio-group" v-bind="elRadioGroupProps">
     <component
       :is="radioComponet"
       v-for="(item, index) in proxyOptions"
@@ -24,7 +19,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'AgelRadio' })
 
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { ElRadio, ElRadioButton, ElRadioGroup, type RadioGroupProps } from 'element-plus'
 import { getExcludeAttrs } from '../utils/utils'
 
@@ -44,11 +39,10 @@ const props = withDefaults(defineProps<Props>(), {
   },
   validateEvent: true
 })
-const emits = defineEmits(['update:model-value', 'change'])
 
 const elRadioGroupProps = computed(() => {
   const propKeys = ['options', 'props', 'button', 'border']
-  return getExcludeAttrs(propKeys, props)
+  return getExcludeAttrs(propKeys, { ...props, ...useAttrs() })
 })
 
 const proxyOptions = computed(() => {

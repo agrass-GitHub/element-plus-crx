@@ -10,7 +10,8 @@
       <ElRadioButton :value="true">收起</ElRadioButton>
     </ElRadioGroup>
 
-    <AgelMenu class="demo-menu" :mode="mode as any" :menus="menuData" :collapse="isCollapse"> </AgelMenu>
+    <AgelMenu class="demo-menu" :mode="mode" :menus="menuData" :collapse="isCollapse" @select="select"> </AgelMenu>
+    <ElMenu :model="mode"></ElMenu>
   </div>
 </template>
 
@@ -18,8 +19,7 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
-const mode = ref('vertical')
-
+const mode = ref<'vertical' | 'horizontal'>('vertical')
 const isCollapse = ref(false)
 const menuData = [
   {
@@ -55,7 +55,7 @@ const menuData = [
   })
 ]
 
-function select(index: string, indexPath: string) {
+function select(index: string, indexPath: string[]) {
   ElMessage.success('选中菜单' + index + indexPath)
 }
 </script>

@@ -1,16 +1,13 @@
 <template>
-  <ElCheckboxGroup
-    class="agel-checkbox-group"
-    v-bind="elCheckboxGroupProps"
-    @update:model-value="emits('update:model-value', $event)"
-    @change="emits('change', $event)"
-  >
+  <ElCheckboxGroup class="agel-checkbox-group" v-bind="elCheckboxGroupProps">
+    /** 2.6.0+ 使用 vlaue 代替 label */
     <component
       :is="checkBoxComponet"
       v-for="(item, index) in proxyOptions"
       :key="index"
       :border="border"
       :label="item[props.props.value as 'value']"
+      :value="item[props.props.value as 'value']"
       :disabled="item.disabled"
       :checked="item.checked"
     >
@@ -24,7 +21,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'AgelCheckbox' })
 
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { ElCheckboxGroup, ElCheckbox, ElCheckboxButton, type CheckboxGroupProps } from 'element-plus'
 import { getExcludeAttrs } from '../utils/utils'
 
@@ -51,11 +48,9 @@ const props = withDefaults(defineProps<Props>(), {
   validateEvent: true
 })
 
-const emits = defineEmits(['update:model-value', 'change'])
-
 const elCheckboxGroupProps = computed(() => {
   const propKeys = ['options', 'props', 'button', 'border']
-  return getExcludeAttrs(propKeys, props)
+  return getExcludeAttrs(propKeys, { ...props, ...useAttrs() })
 })
 
 const proxyOptions = computed(() => {

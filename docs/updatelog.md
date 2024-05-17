@@ -3,6 +3,12 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.1.5 （2024-05-17）
+
+### Fix
+
+- **AgelSelect：** change 事件无效
+
 ## v.1.1.4 （2024-05-03）
 
 ### Feat

@@ -32,7 +32,14 @@
 defineOptions({ name: 'AgelFormItem', inheritAttrs: false })
 
 import { computed, inject, ref, h, resolveComponent, useAttrs, watchEffect, onMounted, onUnmounted } from 'vue'
-import { ElFormItem, ElInput, formContextKey, type FormContext, type FormItemRule } from 'element-plus'
+import {
+  ElFormItem,
+  ElInput,
+  formContextKey,
+  type FormContext,
+  type FormItemRule,
+  type FormItemValidateState
+} from 'element-plus'
 import { getProp } from 'element-plus/es/utils/objects'
 import useCrxGlobalConfig from '../utils/useCrxGlobalConfig'
 import useLocale from '../utils/useLocale'
@@ -50,7 +57,7 @@ type Props = {
   error?: string
   showMessage?: boolean
   inlineMessage?: boolean
-  validateStatus?: 'error' | 'validating' | 'success' | ''
+  validateStatus?: FormItemValidateState
   // extend props
   class?: string
   attrs?: { [k: string]: any } // 组件属性

@@ -6,6 +6,7 @@
 
 <script lang="tsx" setup>
 import { reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
 
 const formLayoutRef = ref()
 const form = reactive({
@@ -17,25 +18,31 @@ const form = reactive({
       required: true
     },
     {
-      prop: "zone",
-      label: "Activity zone",
+      prop: 'zone',
+      label: 'Activity zone',
       slot: 'agel-select',
       attrs: {
         options: [
           { label: 'Zone one', value: 'shanghai' },
-          { label: 'Zone two', value: 'beijing' },
-        ]
+          { label: 'Zone two', value: 'beijing' }
+        ],
+        onChange: (v: string) => {
+          ElMessage({
+            message: `change ${v}`,
+            type: 'success'
+          })
+        }
       }
     },
     {
-      prop: "date",
-      label: "Activity date",
-      slot: "el-date-picker",
+      prop: 'date',
+      label: 'Activity date',
+      slot: 'el-date-picker'
     },
     {
       prop: 'delivery',
       label: 'Instant delivery',
-      slot: "el-switch"
+      slot: 'el-switch'
     },
     {
       prop: 'type',
@@ -54,7 +61,7 @@ const form = reactive({
     {
       prop: 'decs',
       label: 'Activity Form',
-      attrs: { type: 'textarea' },
+      attrs: { type: 'textarea' }
     },
     {
       slot: 'ElButton',
@@ -65,7 +72,7 @@ const form = reactive({
           formLayoutRef.value?.validate()
           formLayoutRef.value?.getRef('zone').focus()
         }
-      },
+      }
     }
   ]
 })

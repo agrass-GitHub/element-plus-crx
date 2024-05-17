@@ -23,7 +23,7 @@ export default defineUserConfig({
     ],
   ],
   theme: defaultTheme({
-    logo: "https://element-plus.gitee.io/images/element-plus-logo-small.svg",
+    logo: "https://element-plus.org/images/element-plus-logo.svg",
     navbar: [
       {
         text: "文档",

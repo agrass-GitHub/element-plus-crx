@@ -34,7 +34,7 @@
 // vite.config.js
 export default defineConfig({
   resolve: {
-    extensions: ['.js', '.vue', '.ts'],
+    extensions: ['.js', '.vue', '.ts']
   }
 })
 ```
@@ -47,9 +47,7 @@ export default defineConfig({
 // vite.config.js
 import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
-  plugins: [
-    vueJsx(),
-  ]
+  plugins: [vueJsx()]
 })
 ```
 
@@ -58,32 +56,32 @@ export default defineConfig({
 全局引入，省事。
 
 ```js
-import Vue from "vue";
-import ElementPlus from "element-plus";
-import ElementPlusCrx from "element-plus-crx";
+import Vue from 'vue'
+import ElementPlus from 'element-plus'
+import ElementPlusCrx from 'element-plus-crx'
 import 'element-plus/dist/index.css'
-import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-app.use(ElementPlus);
-app.use(ElementPlusCrx);
+app.use(ElementPlus)
+app.use(ElementPlusCrx)
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component);
+  app.component(key, component)
 }
 ```
 
 ## 按需引用
 
-`ElLoading` 是必须的， 建议其他类似 `ElDatePicker` 等表单组件也全局注册，便于配置表单。
+强烈建议 `ElDatePicker` `ElInput` 等表单组件全局注册，便于使用组件名称配置表单。
 
 ```js
-import { ElLoading, /* ...ElDatePicker 等其它全局组件 */ } from 'element-plus'
-import { AgelFormGrid, AgelTable } from "element-plus-crx";
+import { ElInput /* ...ElDatePicker 等其它全局组件 */ } from 'element-plus'
+import { AgelFormGrid, AgelTable } from 'element-plus-crx'
 import 'element-plus/dist/index.css'
 
-app.component(AgelFormGrid.name, AgelFormGrid);
-app.component(AgelTable.name, AgelTable);
-app.use(ElLoading)
+app.component(AgelFormGrid.name, AgelFormGrid)
+app.component(AgelTable.name, AgelTable)
+app.component(ElInput.name, ElInput)
 ```
 
 ## Typescript 支持
