@@ -1,15 +1,5 @@
 <template>
-  <ElSelect
-    ref="elSelectRef"
-    class="agel-select"
-    v-bind="elSelectPorps"
-    @update:model-value="emits('update:model-value', $event)"
-    @visible-change="emits('visible-change', $event)"
-    @remove-tag="emits('remove-tag', $event)"
-    @clear="emits('clear', $event)"
-    @blur="emits('blur', $event)"
-    @focus="emits('focus', $event)"
-  >
+  <ElSelect ref="elSelectRef" class="agel-select" v-bind="elSelectPorps">
     <template #default>
       <template v-for="(item, index) in proxyOptions" :key="index">
         <ElOptionGroup
@@ -49,7 +39,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'AgelSelect' })
 
-import { computed, ref } from 'vue'
+import { computed, ref, useAttrs } from 'vue'
 import { ElSelect, ElOption, ElOptionGroup } from 'element-plus'
 import { getExcludeAttrs } from '../utils/utils'
 
@@ -80,12 +70,10 @@ const props = withDefaults(defineProps<Props>(), {
   validateEvent: true
 })
 
-const emits = defineEmits(['update:model-value', 'change', 'visible-change', 'remove-tag', 'clear', 'blur', 'focus'])
-
 const elSelectRef = ref()
 const elSelectPorps = computed(() => {
   const propKeys = ['options', 'props']
-  return getExcludeAttrs(propKeys, props)
+  return getExcludeAttrs(propKeys, { ...props, ...useAttrs() })
 })
 
 const proxyOptions = computed(() => {
