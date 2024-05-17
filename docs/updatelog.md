@@ -8,12 +8,9 @@ sidebar: auto
 ### Fix
 
 - **AgelSelect：** change 事件无效
+- **AgelRadio：** 兼容废弃语法 label 与新语法 value [参考](https://element-plus.org/zh-CN/component/radio.html)
 
 ## v.1.1.4 （2024-05-03）
-
-### Feat
-
-- **AgelRadio：** 兼容废弃语法 label 与新语法 value [参考](https://element-plus.org/zh-CN/component/radio.html)
 
 ### Fix
 
