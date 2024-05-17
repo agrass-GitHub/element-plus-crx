@@ -6,6 +6,7 @@
     :inline-message="inlineMessage"
     :error="error"
     :rules="formItemRules"
+    :validateStatus="validateStatus"
     :class="className"
     ref="formItemRef"
   >
@@ -49,8 +50,9 @@ type Props = {
   error?: string
   showMessage?: boolean
   inlineMessage?: boolean
-  class?: string
+  validateStatus?: 'error' | 'validating' | 'success' | ''
   // extend props
+  class?: string
   attrs?: { [k: string]: any } // 组件属性
   slot?: string | Component | RenderFunction // 组件
   slots?: RenderFunction | { [k: string]: RenderFunction } // 组件插槽
