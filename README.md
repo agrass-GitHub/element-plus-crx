@@ -5,7 +5,6 @@
 ## 文档
 
 - [使用文档 github](https://agrass-github.github.io/element-plus-crx/)
-- [使用文档 gitee](https://agrass.gitee.io/element-plus-crx/)
 
 ## 安装使用
 
@@ -13,16 +12,19 @@
 
 ## 特性
 
-- Vue 3 Composition AP
+- Vue 3 Composition API
 - TypeScript 编写
 
 数据配置
+
 - 数据配置表单/表格，极简的思想，完全的数据驱动，拥有绝对的灵活性。
 
 扩展组件
+
 - 更多丰富的扩展组件，在 ElementPlus 没有找到的这里或许会有。
 
 快捷使用
+
 - 适配双语言，黑暗模式，完整的typescript提示，更方便的全局配置。
 
 ![docs](https://s1.ax1x.com/2023/03/10/ppuN6Ej.jpg)
@@ -41,9 +43,9 @@
 import { reactive } from 'vue'
 
 const arr = [
-  { label: '名称', prop: "name" },
+  { label: '名称', prop: 'name' },
   { label: '日期', prop: 'date' },
-  { label: '地址', prop: 'address'},
+  { label: '地址', prop: 'address' }
 ]
 
 const form = reactive({
@@ -57,8 +59,3 @@ const table = reactive({
 })
 </script>
 ```
-
-
-
-
-
