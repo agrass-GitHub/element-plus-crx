@@ -176,6 +176,7 @@ defineExpose({ getRef })
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow: auto;
 }
 
 .agel-table .el-table__empty-block {
