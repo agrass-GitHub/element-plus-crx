@@ -28,7 +28,7 @@
 
 `npm install typescript -d`
 
-在 vite.config.js 添加 ts 默认扩展名称。
+在 vite.config.js 添加 ts 默认扩展名称（有的项目或许需要该配置）。
 
 ```js
 // vite.config.js

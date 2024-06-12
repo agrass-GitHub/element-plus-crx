@@ -16,20 +16,20 @@ const form = reactive({
   items: [
     {
       label: () => <el-tag>自定义 label</el-tag>,
-      slot: () => <el-button>自定义 slot1</el-button>,
+      slot: () => <el-button>自定义 slot1</el-button>
     },
     {
       label: '模板插槽',
-      slot: 'slot-date',
+      slot: 'slot-date'
     },
     {
-      label: "组件子插槽",
-      slot: "el-input",
+      label: '组件子插槽',
+      slot: 'el-input',
       slots: {
         prepend: () => 'http://',
         append: () => '.com'
       }
-    },
+    }
   ]
 })
 </script>

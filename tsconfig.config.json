@@ -2,7 +2,9 @@
   "extends": "@vue/tsconfig/tsconfig.node.json",
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*"],
   "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
     "composite": true,
-    "types": ["node"],
+    "types": ["node"]
   }
 }

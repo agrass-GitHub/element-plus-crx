@@ -1348,18 +1348,9 @@
     "@vueuse/core" "^10.9.0"
     vue "^3.4.23"
 
-"@vuepress/plugin-back-to-top@next":
+"@vuepress/plugin-back-to-top@next", "@vuepress/plugin-back-to-top@~2.0.0-rc.26":
   version "2.0.0-rc.26"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-back-to-top/-/plugin-back-to-top-2.0.0-rc.26.tgz"
-  integrity sha512-1pkSPmXc6CyhDu/KrXbhF0tUzRbOFEXItCMedvjgYBH1eJ9upUZm/M/xbQICfm/Vt8zB3asU7pIW0Q4RBJk/eQ==
-  dependencies:
-    "@vuepress/helper" "~2.0.0-rc.26"
-    "@vueuse/core" "^10.9.0"
-    vue "^3.4.23"
-
-"@vuepress/plugin-back-to-top@~2.0.0-rc.26":
-  version "2.0.0-rc.26"
-  resolved "https://registry.npmmirror.com/@vuepress/plugin-back-to-top/-/plugin-back-to-top-2.0.0-rc.26.tgz#65f0f5818dccdbd10b3c988a7e102d3f0256e4d9"
   integrity sha512-1pkSPmXc6CyhDu/KrXbhF0tUzRbOFEXItCMedvjgYBH1eJ9upUZm/M/xbQICfm/Vt8zB3asU7pIW0Q4RBJk/eQ==
   dependencies:
     "@vuepress/helper" "~2.0.0-rc.26"
@@ -1414,16 +1405,9 @@
     medium-zoom "^1.1.0"
     vue "^3.4.23"
 
-"@vuepress/plugin-nprogress@next":
+"@vuepress/plugin-nprogress@next", "@vuepress/plugin-nprogress@~2.0.0-rc.26":
   version "2.0.0-rc.26"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-nprogress/-/plugin-nprogress-2.0.0-rc.26.tgz"
-  integrity sha512-DXuPEc7TXfNm9yg3cOk9gQzmYBinb0BamJpZEpn3JPibfEsB8M2mzWxDHt/QU/ERSEkBy4BODOUKYq824+LAZQ==
-  dependencies:
-    vue "^3.4.23"
-
-"@vuepress/plugin-nprogress@~2.0.0-rc.26":
-  version "2.0.0-rc.26"
-  resolved "https://registry.npmmirror.com/@vuepress/plugin-nprogress/-/plugin-nprogress-2.0.0-rc.26.tgz#4fee0fa3a9b9c2eea26d1de2f3428d69d3349802"
   integrity sha512-DXuPEc7TXfNm9yg3cOk9gQzmYBinb0BamJpZEpn3JPibfEsB8M2mzWxDHt/QU/ERSEkBy4BODOUKYq824+LAZQ==
   dependencies:
     vue "^3.4.23"

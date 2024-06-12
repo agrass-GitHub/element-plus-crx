@@ -24,7 +24,7 @@ const isCollapse = ref(false)
 const menuData = [
   {
     title: '1 级菜单',
-    icon: new URL('./img/logo.svg', import.meta.url).href,
+    icon: 'https://element-plus.org/images/element-plus-logo.svg',
     index: '/home-1',
     children: [
       {

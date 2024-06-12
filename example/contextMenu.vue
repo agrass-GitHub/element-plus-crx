@@ -35,7 +35,7 @@ const contextMenu = reactive({
     },
     {
       title: '1-3 菜单',
-      icon: new URL('./img/logo.svg', import.meta.url).href,
+      icon: 'https://element-plus.org/images/element-plus-logo.svg',
       children: [
         { title: '1-3-1 菜单', remark: 'Ctrl+A' },
         { title: '1-3-2 菜单', disabled: true },
