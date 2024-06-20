@@ -48,6 +48,10 @@ export default defineUserConfig({
             text: "AgelAdmin",
             link: "https://github.com/agrass-GitHub/agel-admin",
           },
+          {
+            text: "AgelForm (Vue2)",
+            link: "https://agrass-github.github.io/agel-form",
+          },
         ],
       },
       {

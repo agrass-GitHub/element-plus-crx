@@ -3,6 +3,12 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.1.6 （2024-06-20）
+
+### Fix
+
+- **ContextMenu、Menu** ：修复 icon 不支持 base64Img 的报错 [issues](https://github.com/agrass-GitHub/element-plus-crx/issues/7)
+
 ## v.1.1.5 （2024-05-17）
 
 ### Fix
