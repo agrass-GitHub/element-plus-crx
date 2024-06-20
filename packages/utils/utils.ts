@@ -48,6 +48,11 @@ export function getFlatArray<T>(columns: treeNode[]): T[] {
   }, [] as any)
 }
 
+export function isBase64Image(str: string) {
+  // 检查字符串是否以 "data:image" 开头，且包含正确的 Base64 编码标识
+  return /^data:image\/[a-z]+;base64,/.test(str)
+}
+
 // 获取文件类型
 export function getFileTypeByUrl(url: string) {
   const a = url.split(".").pop()
@@ -78,14 +83,14 @@ export const dynamicStyleRule = function (id: string, styleRule: string | null) 
 type Func = (...args: any[]) => void;
 
 export function throttle(func: Func, delay: number): Func {
-  let timer: ReturnType<typeof setTimeout> | null = null;
+  let timer: ReturnType<typeof setTimeout> | null = null
 
   return function (this: any, ...args: any[]) {
     if (!timer) {
       timer = setTimeout(() => {
-        func.apply(this, args);
-        timer = null;
-      }, delay);
+        func.apply(this, args)
+        timer = null
+      }, delay)
     }
-  };
+  }
 }
