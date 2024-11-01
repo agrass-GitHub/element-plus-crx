@@ -27,7 +27,7 @@
         </ElOption>
       </template>
     </template>
-    <template #prefix>
+    <template #prefix v-if="$slots.prefix">
       <slot name="prefix"></slot>
     </template>
     <template #empty v-if="$slots.empty">

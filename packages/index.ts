@@ -16,11 +16,10 @@ import AgelIcon from './AgelIcon'
 import AgelContextMenu from './AgelContextMenu'
 import AgelCountTo from './AgelCountTo'
 import AgelEllipsis from './AgelEllipsis'
-import type { ElementPlusCrxConfig } from './utils/useCrxGlobalConfig'
-import { ElLoading } from 'element-plus'
+export type { ElementPlusCrxConfig } from './utils/useCrxGlobalConfig'
+export { formContextKey } from "element-plus"
 
 export {
-  ElementPlusCrxConfig,
   AgelFormItem,
   AgelFormItems,
   AgelFormGrid,
@@ -63,7 +62,6 @@ export default {
       AgelCountTo,
       AgelEllipsis,
     ]
-    app.use(ElLoading)
     components.forEach(el => app.component(el.name, el))
   },
 }
