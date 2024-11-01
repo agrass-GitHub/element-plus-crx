@@ -1,9 +1,10 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "ignoreDeprecations": "5.0",
+    "allowJs": true,
+    "maxNodeModuleJsDepth": 2,
     "types": ["element-plus/global"],
     "paths": {
       "@/*": ["./packages/*"]
@@ -12,11 +13,15 @@
   "include": [
     "env.d.ts",
     "global.d.ts",
-    "packages/**/*",
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
     "packages/**/*.vue",
-    "example/**/*",
+    "example/**/*.ts",
+    "example/**/*.d.ts",
+    "example/**/*.tsx",
     "example/**/*.vue",
     "global.ts"
   ],
-  "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"]
+  "exclude": ["node_modules", "tests/server", "dist"]
 }

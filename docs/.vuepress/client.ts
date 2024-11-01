@@ -1,4 +1,4 @@
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import ElementPlus from 'element-plus'
 import ElementPlusCrx from "../../packages"

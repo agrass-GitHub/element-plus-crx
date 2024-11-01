@@ -1,34 +1,28 @@
 <template>
-  <div class="demo">
-    <p><b>普通样式</b></p>
-    <p><b>分组样式</b></p>
-    <AgelSelect v-model="value" :options="options" @change="change" test="1"></AgelSelect>
-  </div>
+  <ElForm label-width="80px" :model="form.model" class="demo">
+    <AgelFormGrid :items="form.items" :span="8" :gutter="10">
+      <template #slot-input>
+        <ElInput v-model="form.model.sex" placeholder="请输入123" @change="inputChange" />
+      </template>
+    </AgelFormGrid>
+  </ElForm>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const value = ref('')
-const value2 = ref([])
-
-const options = [
-  {
-    label: '选项A',
-    value: 'A',
-    options: [
-      { label: '选项A-1', value: 'A1' },
-      { label: '选项A-2', value: 'A2' }
-    ]
+<script setup>
+import { reactive } from 'vue'
+const form = reactive({
+  model: {
+    sex: ''
   },
-  {
-    label: '选项B',
-    value: 'B',
-    options: [
-      { label: '选项B-1', value: 'D1' },
-      { label: '选项B-2', value: 'D2', disabled: true }
-    ]
-  }
-]
-const change = (v: number) => console.log(v)
+  items: [
+    { prop: 'name', label: '姓名' },
+    { prop: 'sex', label: '性别', slot: 'slot-input' },
+    { prop: 'intor', label: '介绍' },
+    { prop: 'address', label: '地址', span: 24 }
+  ]
+})
+
+function inputChange(v) {
+  console.log(v)
+}
 </script>
