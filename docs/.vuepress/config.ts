@@ -1,9 +1,7 @@
-import { defaultTheme } from '@vuepress/theme-default'
-import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
+import { defaultTheme } from '@vuepress/theme-default'
+import { defineUserConfig } from 'vuepress'
 import { getDirname, path } from '@vuepress/utils'
-import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
-import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 const __dirname = getDirname(import.meta.url)
@@ -112,5 +110,4 @@ export default defineUserConfig({
       plugins: [vueJsx()],
     },
   }),
-  plugins: [backToTopPlugin(), nprogressPlugin()],
 });

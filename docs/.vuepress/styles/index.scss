@@ -1,27 +1,28 @@
 :root {
   --c-brand: var(--el-color-primary);
-  --c-tip:var(--el-color-primary-light-3);
+  --c-tip: var(--el-color-primary-light-3);
   --c-brand-light: var(--el-color-primary-light-3);
   --c-text-lighter: var(--c-text-accent);
 }
 
-html.dark{
-  --c-brand:  var(--el-color-primary);
-  --c-tip:var(--el-color-primary-light-3);
+html.dark {
+  --c-brand: var(--el-color-primary);
+  --c-tip: var(--el-color-primary-light-3);
   --c-brand-light: var(--el-color-primary-light-3);
   --c-text-lighter: var(--c-text-accent);
 }
 
 
-.navbar .site-name{
+.navbar .site-name {
   color: var(--el-color-primary);
   font-size: 1.4rem;
 }
 
-.home .hero .description{
+.home .hero .description {
   color: var(--c-text-light);
 }
-.home .feature p{
+
+.home .feature p {
   color: var(--c-text-light);
 }
 
