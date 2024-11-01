@@ -3,6 +3,12 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.1.7 （2024-11-01）
+
+### Fix
+
+- **Select:** 修复内容缩进对齐的问题 [issues](https://github.com/agrass-GitHub/element-plus-crx/issues/12)
+
 ## v.1.1.6 （2024-06-20）
 
 ### Fix
