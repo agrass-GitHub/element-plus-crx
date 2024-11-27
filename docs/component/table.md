@@ -18,7 +18,7 @@
 
 ## 插槽使用
 
-属性 `label`  `slot` 可以为一个渲染函数，使用 `jsx` 大幅提高体验。
+属性 `label` `slot` 可以为一个渲染函数，使用 `jsx` 大幅提高体验。
 
 开启模板插槽，`slot` 属性必须 `slot-` 开头。
 
@@ -42,50 +42,51 @@
 
 ## 属性
 
-| 属性 | 类型  | 默认值 | 说明  
-| --- | ---   | ---   | --- 
-| loading | boolean | - | 是否加载中
-| columns | ColumnProps[] | - | 表格配置项 
-| page | PageProps  | - | 分页排序参数  |
-| merge| | MergeProps | 自动合并单元格
-| ...... | -  | - | [ElTable 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-%E5%B1%9E%E6%80%A7)
+| 属性    | 类型          | 默认值     | 说明                                                                                         |
+| ------- | ------------- | ---------- | -------------------------------------------------------------------------------------------- |
+| loading | boolean       | -          | 是否加载中                                                                                   |
+| columns | ColumnProps[] | -          | 表格配置项                                                                                   |
+| page    | PageProps     | -          | 分页排序参数                                                                                 |
+| merge   |               | MergeProps | 自动合并单元格                                                                               |
+| ......  | -             | -          | [ElTable 属性](https://element-plus.org/zh-CN/component/table.html#table-%E5%B1%9E%E6%80%A7) |
 
 ### ColumnProps
 
-| 属性 | 类型  | 默认值 | 说明  
-| --- | ---   | ---   | --- 
-| label | string \| RenderFunction | - | 列标题 
-| slot | string  \| RenderFunction | - | 列插槽
-| hidden | boolean | - | 列是否不可见
-| children | ColumnProps[] | - | 多级表头
-| ...... | -  |-|  [ElTableColumn 属性](https://element-plus.gitee.io/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7) |
+| 属性     | 类型                     | 默认值 | 说明                                                                                                      |
+| -------- | ------------------------ | ------ | --------------------------------------------------------------------------------------------------------- |
+| label    | string \| RenderFunction | -      | 列标题                                                                                                    |
+| slot     | string \| RenderFunction | -      | 列插槽                                                                                                    |
+| hidden   | boolean                  | -      | 列是否不可见                                                                                              |
+| children | ColumnProps[]            | -      | 多级表头                                                                                                  |
+| ......   | -                        | -      | [ElTableColumn 属性](https://element-plus.org/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7) |
 
 ### PageProps
-| 属性 | 类型  | 默认值 | 说明  
-| --- | ---   | ---   | --- 
-| sortProp  | string | - | 排序列 prop
-| sortOrder | 'ascending'\|'descending'\|null | - | 排序列方式
-| ... | -  | - | [ElPagination 属性](https://element-plus.gitee.io/zh-CN/component/pagination.html#%E5%B1%9E%E6%80%A7)
+
+| 属性      | 类型                            | 默认值 | 说明                                                                                             |
+| --------- | ------------------------------- | ------ | ------------------------------------------------------------------------------------------------ |
+| sortProp  | string                          | -      | 排序列 prop                                                                                      |
+| sortOrder | 'ascending'\|'descending'\|null | -      | 排序列方式                                                                                       |
+| ...       | -                               | -      | [ElPagination 属性](https://element-plus.org/zh-CN/component/pagination.html#%E5%B1%9E%E6%80%A7) |
 
 ### MergeProps
-| 属性 | 类型  | 默认值 | 说明  
-| --- | ---   | ---   | --- 
-| keys  | string[] | - | 合并列的prop集合
-| direction | 'vertical' \| 'horizontal'\| 'auto' | 'auto' | 合并方向
+
+| 属性      | 类型                                | 默认值 | 说明             |
+| --------- | ----------------------------------- | ------ | ---------------- |
+| keys      | string[]                            | -      | 合并列的prop集合 |
+| direction | 'vertical' \| 'horizontal'\| 'auto' | 'auto' | 合并方向         |
 
 ## 方法
 
-| 名称            | 参数  |   说明       | 
-| -----------    | ------- | -----------------------------  |
-| getRef    | -  |  获取 elTable 组件实例        |
-
+| 名称   | 参数 | 说明                  |
+| ------ | ---- | --------------------- |
+| getRef | -    | 获取 elTable 组件实例 |
 
 ## 插槽
 
-| 名称            | 插槽作用域 |   说明                                   | 
-| -----------    |   ------- | -----------------------------  |
-| slot-xx        | {row,$index,column} |  列具名插槽           | 
-| prepend        | - |   columns 前置插槽           |
-| append         | - |   columns 后置插槽            |
-| empty          | - |    ELTable empty 插槽            |
-| append-row     | - |    ELTable append 插槽            |
+| 名称       | 插槽作用域          | 说明                |
+| ---------- | ------------------- | ------------------- |
+| slot-xx    | {row,$index,column} | 列具名插槽          |
+| prepend    | -                   | columns 前置插槽    |
+| append     | -                   | columns 后置插槽    |
+| empty      | -                   | ELTable empty 插槽  |
+| append-row | -                   | ELTable append 插槽 |

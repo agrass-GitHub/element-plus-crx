@@ -4,12 +4,13 @@ sidebar: false
 ---
 
 :::tip 赞助
-独立开发，精力有限，如果该项目对你有帮助，可以选择赞助我一杯咖啡或可乐，感谢。
+独立开发，精力有限，如果该项目对你学习或开发有帮助，可以选择赞助一杯咖啡或可乐，感谢
 
-若有组件上的问题，可联系作者：agrass1029@foxmail.com
+若有组件上的问题提 [GitHub Issuse ](https://github.com/agrass-GitHub/element-plus-crx/issues)
+
+若有其它问题可有偿联系作者：agrass-weixin
 :::
 
-
 ## 赞助
-![赞助](./assets/pay.jpg)
 
+![赞助](./assets/pay.jpg)

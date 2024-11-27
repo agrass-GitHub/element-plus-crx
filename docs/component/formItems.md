@@ -69,21 +69,21 @@ FormGrid，FormDesc，FormTableEditor 等表单布局组件都适用以下规则
 
 ### ItemProps
 
-| 属性                                                 | 类型                                  | 默认值  | 说明                                                                                        |
-| ---------------------------------------------------- | ------------------------------------- | ------- | ------------------------------------------------------------------------------------------- |
-| prop                                                 | string                                | -       | model 键名，支持 'obj.xx.xx'                                                                |
-| label                                                | string \| RenderFunction              | -       | 标签文本                                                                                    |
-| required                                             | boolean                               | -       | 自动生成必填规则                                                                            |
-| slot                                                 | string \| Component \| RenderFunction | ElInput | 表单项组件                                                                                  |
-| slots                                                | Slots ｜ RenderFunction               | -       | 表单项组件的插槽                                                                            |
-| attrs                                                | object                                | -       | 表单项组件的属性                                                                            |
-| viewModel                                            | boolean                               | -       | 视图模式，只渲染 value                                                                      |
-| viewFormat                                           | RenderFunction                        | -       | 视图模式的格式化工具                                                                        |
-| vmodel                                               | '.trim' \| '.number'                  | -       | v-model 修饰符                                                                              |
-| loading                                              | boolean                               | -       | 是否显示加载                                                                                |
-| hidden                                               | boolean                               | -       | 是否隐藏                                                                                    |
-| class                                                | string                                | -       | formitem class                                                                              |
-| labelWidth, rules, error, showMessage, inlineMessage |                                       | ...     | [ElFormIten 属性](https://element-plus.gitee.io/zh-CN/component/layout.html#col-attributes) |
+| 属性                                                 | 类型                                  | 默认值  | 说明                                                                                   |
+| ---------------------------------------------------- | ------------------------------------- | ------- | -------------------------------------------------------------------------------------- |
+| prop                                                 | string                                | -       | model 键名，支持 'obj.xx.xx'                                                           |
+| label                                                | string \| RenderFunction              | -       | 标签文本                                                                               |
+| required                                             | boolean                               | -       | 自动生成必填规则                                                                       |
+| slot                                                 | string \| Component \| RenderFunction | ElInput | 表单项组件                                                                             |
+| slots                                                | Slots ｜ RenderFunction               | -       | 表单项组件的插槽                                                                       |
+| attrs                                                | object                                | -       | 表单项组件的属性                                                                       |
+| viewModel                                            | boolean                               | -       | 视图模式，只渲染 value                                                                 |
+| viewFormat                                           | RenderFunction                        | -       | 视图模式的格式化工具                                                                   |
+| vmodel                                               | '.trim' \| '.number'                  | -       | v-model 修饰符                                                                         |
+| loading                                              | boolean                               | -       | 是否显示加载                                                                           |
+| hidden                                               | boolean                               | -       | 是否隐藏                                                                               |
+| class                                                | string                                | -       | formitem class                                                                         |
+| labelWidth, rules, error, showMessage, inlineMessage |                                       | ...     | [ElFormIten 属性](https://element-plus.org/zh-CN/component/layout.html#col-attributes) |
 
 ## 方法
 

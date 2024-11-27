@@ -3,6 +3,17 @@ title: 更新日志
 sidebar: auto
 ---
 
+## v.1.1.8 （2024-11-27）
+
+### Fix
+
+- **FormDecs:** 修复插槽占位高度的问题 [issues](https://github.com/agrass-GitHub/element-plus-crx/issues/13)
+- **Upload:** 修复 limit-hide 无效的问题
+
+### Feat
+
+- **DynamicTags:** 新增 button-text 属性用于自定义按钮文本，添加 margin-bottom 样式
+
 ## v.1.1.7 （2024-11-01）
 
 ### Fix

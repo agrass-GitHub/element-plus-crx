@@ -10,7 +10,6 @@
 
 <ClientOnly><mapInputWrap/></ClientOnly>
 
-
 ::: details 点击查看代码
 @[code](@example/mapInputBase.vue)
 :::
@@ -21,37 +20,34 @@
 若使用的是高德地图v.2.0，则需要把 `AMap.Autocomplete` 修改为 `AMap.AutoComplete`。
 :::
 
-
 ```vue
 <template>
   <AgelMapInput :AMap="mapLoader"></AgelMapInput>
 </template>
- 
+
 <script>
-import AMapLoader from "@amap/amap-jsapi-loader";
+import AMapLoader from '@amap/amap-jsapi-loader'
 export default {
   methods: {
     mapLoader(reslove) {
       AMapLoader.load({
-        key: "xxxxxxxx",    // map key
-        plugins:["AMap.PlaceSearch", "AMap.Autocomplete", "AMap.Geocoder"],   // 所需要插件列表
-      }).then((AMap) => reslove(AMap));
-    },
-  },
-};
+        key: 'xxxxxxxx', // map key
+        plugins: ['AMap.PlaceSearch', 'AMap.Autocomplete', 'AMap.Geocoder'] // 所需要插件列表
+      }).then((AMap) => reslove(AMap))
+    }
+  }
+}
 </script>
 ```
 
-
 ## 属性
 
-| 属性         | 类型            |  默认值  | 说明                                 | 
-| ------------ | ------------    | ------ | ------------------------------------ | 
-| value        | array / string    | []     | 绑定值                |  
-| AMap         | function        | (cb)=> cb(Window.AMap)      | AMap Loader       |
-| keyword-search| boolean         | true   | 是否可关键字检索            |  
-| clearable    | boolean         | false  | 是否可清空                |  
-| editable     | boolean         | false  | 是否可编辑                |  
-| destroy-dialog-on-close| boolean  | false  | dialog 关闭时是否销毁     |
-| ......       | -  | - | [ElInput 属性](https://element-plus.gitee.io/zh-CN/component/input.html)
-
+| 属性                    | 类型           | 默认值                 | 说明                                                                |
+| ----------------------- | -------------- | ---------------------- | ------------------------------------------------------------------- |
+| value                   | array / string | []                     | 绑定值                                                              |
+| AMap                    | function       | (cb)=> cb(Window.AMap) | AMap Loader                                                         |
+| keyword-search          | boolean        | true                   | 是否可关键字检索                                                    |
+| clearable               | boolean        | false                  | 是否可清空                                                          |
+| editable                | boolean        | false                  | 是否可编辑                                                          |
+| destroy-dialog-on-close | boolean        | false                  | dialog 关闭时是否销毁                                               |
+| ......                  | -              | -                      | [ElInput 属性](https://element-plus.org/zh-CN/component/input.html) |

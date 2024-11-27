@@ -16,19 +16,19 @@
 
 ## 属性
 
-| 属性   | 类型            | 默认值 | 说明                                                                                           |
-| ------ | --------------- | ------ | ---------------------------------------------------------------------------------------------- |
-| menus  | MenuItemProps[] | -      | 菜单配置                                                                                       |
-| ...... | -               | -      | [ElMenu 属性](https://element-plus.gitee.io/zh-CN/component/menu.html#menu-%E5%B1%9E%E6%80%A7) |
+| 属性   | 类型            | 默认值 | 说明                                                                                      |
+| ------ | --------------- | ------ | ----------------------------------------------------------------------------------------- |
+| menus  | MenuItemProps[] | -      | 菜单配置                                                                                  |
+| ...... | -               | -      | [ElMenu 属性](https://element-plus.org/zh-CN/component/menu.html#menu-%E5%B1%9E%E6%80%A7) |
 
 ### MenuItemProps
 
-| 属性     | 类型            | 默认值 | 说明                                                                                                 |
-| -------- | --------------- | ------ | ---------------------------------------------------------------------------------------------------- |
-| title    | string          | -      | 菜单名称，必须                                                                                       |
-| index    | index           | -      | 路由地址，必须                                                                                       |
-| icon     | string          | -      | 菜单图标或图片地址                                                                                   |
-| disabled | boolean         | -      | 是否禁用                                                                                             |
-| hidden   | boolean         | -      | 是否隐藏                                                                                             |
-| children | MenuItemProps[] | -      | 菜单配置                                                                                             |
-| ......   | -               | -      | [ElSubMenu 属性](https://element-plus.gitee.io/zh-CN/component/menu.html#submenu-%E5%B1%9E%E6%80%A7) |
+| 属性     | 类型            | 默认值 | 说明                                                                                            |
+| -------- | --------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| title    | string          | -      | 菜单名称，必须                                                                                  |
+| index    | index           | -      | 路由地址，必须                                                                                  |
+| icon     | string          | -      | 菜单图标或图片地址                                                                              |
+| disabled | boolean         | -      | 是否禁用                                                                                        |
+| hidden   | boolean         | -      | 是否隐藏                                                                                        |
+| children | MenuItemProps[] | -      | 菜单配置                                                                                        |
+| ......   | -               | -      | [ElSubMenu 属性](https://element-plus.org/zh-CN/component/menu.html#submenu-%E5%B1%9E%E6%80%A7) |
