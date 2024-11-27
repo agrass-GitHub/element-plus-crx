@@ -10,6 +10,7 @@
     :on-preview="onPreviewHandler"
     :on-exceed="onExceedHandler"
     :on-error="onErrorHandler"
+    :on-remove="onRemoveHandler"
   >
     <template #trigger v-if="$slots.trigger">
       <slot name="trigger"></slot>
@@ -39,8 +40,8 @@ defineOptions({ name: 'AgelUpload' })
 
 import { h, computed, ref, type VNode } from 'vue'
 import { ElMessageBox, ElMessage, ElUpload, ElButton } from 'element-plus'
-import AgelIcon from '../AgelIcon'
 import { getFileTypeByUrl, getExcludeAttrs } from '../utils/utils'
+import AgelIcon from '../AgelIcon'
 import useLocale from '../utils/useLocale'
 import type {
   UploadUserFile,
@@ -69,6 +70,7 @@ const props = withDefaults(defineProps<Props>(), {
   showFileList: true,
   autoUpload: true
 })
+const emit = defineEmits(['update:modelValue'])
 
 const elUpload = ref<UploadInstance>()
 const elUploadProps = computed(() => {
@@ -128,6 +130,13 @@ function onErrorHandler(err: Error, file: UploadFile, fileList: UploadFile[]) {
   onMessage('error', `${locale.value.error}`)
   if (props.onError) {
     return props.onError(err, file, fileList)
+  }
+}
+
+function onRemoveHandler(file: UploadFile, fileList: UploadFile[]) {
+  emit('update:modelValue', fileList)
+  if (props.onRemove) {
+    return props.onRemove(file, fileList)
   }
 }
 

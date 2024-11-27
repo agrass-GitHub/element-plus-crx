@@ -21,7 +21,7 @@
         @blur="handleInputConfirm"
       >
       </ElInput>
-      <ElButton v-else class="new-tag-button" :disabled="isDisabled" @click="showInput">+ New Tag</ElButton>
+      <ElButton v-else class="new-tag-button" :disabled="isDisabled" @click="showInput">{{ buttonText }}</ElButton>
     </template>
   </div>
 </template>
@@ -38,6 +38,7 @@ interface Props extends Partial<Pick<TagProps, 'type' | 'closable' | 'hit' | 'co
   modelValue: string[]
   createable?: boolean
   repeatable?: boolean
+  buttonText?: string
   disabled?: boolean
   validateEvent?: boolean
   customTagProp?: (tag: string, index: number) => Record<any, any> | undefined
@@ -46,6 +47,7 @@ interface Props extends Partial<Pick<TagProps, 'type' | 'closable' | 'hit' | 'co
 const props = withDefaults(defineProps<Props>(), {
   createable: true,
   closable: true,
+  buttonText: '+ New Tag',
   validateEvent: true
 })
 
@@ -110,12 +112,14 @@ watch(
   line-height: calc(var(--tags-height) - 2px);
   padding: 0 10px;
   margin-right: 10px;
+  margin-bottom: 8px;
 }
 
 .agel-dynamic-tags .new-tag-input {
   height: var(--tags-height);
   width: 90px;
   vertical-align: bottom;
+  margin-bottom: 8px;
 }
 
 .agel-dynamic-tags .new-tag-input .el-input__inner {
@@ -124,10 +128,10 @@ watch(
 }
 
 .agel-dynamic-tags .new-tag-button {
-  width: 90px;
   height: var(--tags-height);
   line-height: var(--tags-height);
   padding-top: 0px;
   padding-bottom: 0px;
+  margin-bottom: 8px;
 }
 </style>

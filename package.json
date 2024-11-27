@@ -1,6 +1,6 @@
 {
   "name": "element-plus-crx",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "packages/index.ts",
   "description": "a easy extension component package based on element-plus",
   "homepage": "https://github.com/agrass-GitHub/element-plus-crx",
@@ -24,20 +24,22 @@
   "devDependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "latest",
-    "@vitejs/plugin-vue-jsx": "3.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
     "@vue/tsconfig": "0.5.1",
     "@vuepress/bundler-vite": "2.0.0-rc.7",
+    "@vuepress/utils": "2.0.0-rc.7",
     "@vuepress/theme-default": "2.0.0-rc.12",
     "element-plus": "latest",
     "eslint": "^8.32.0",
     "eslint-plugin-vue": "^9.9.0",
     "gh-pages": "^5.0.0",
     "prettier": "^3.0.0",
-    "sass": "^1.80.5",
+    "sass": "1.63.2",
     "typescript": "5.6.2",
     "vue": "^3.4.0",
     "vue-tsc": "^1.6.4",
     "vuepress": "2.0.0-rc.7"
-  }
+  },
+  "dependencies": {}
 }

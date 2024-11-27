@@ -18,10 +18,10 @@
     </ElDescriptionsItem>
     <slot name="append"></slot>
 
-    <template #extra>
+    <template #extra v-if="$slots.extra">
       <slot name="extra"></slot>
     </template>
-    <template #title>
+    <template #title v-if="$slots.title">
       <slot name="title"></slot>
     </template>
   </ElDescriptions>
