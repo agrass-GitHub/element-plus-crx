@@ -1,7 +1,7 @@
 <template>
-  <div class="agel-table agel-table-resize">
+  <div :class="['agel-table', isFlexResize ? 'agel-table-resize' : '']">
     <ElTable
-      class="agel-table-resize"
+      :class="[isFlexResize ? 'agel-table-resize' : '']"
       ref="elTableRef"
       v-loading="loading"
       v-bind="elTablePorps"
@@ -80,6 +80,9 @@ const elPaginationProps = computed(() => {
   return { ...elPaginationConfig, ...props.page }
 })
 
+const isFlexResize = computed(() => {
+  return elTablePorps.value.height === undefined && elTablePorps.value.maxHeight === undefined
+})
 const showPagination = computed(() => {
   if (!props.page) return false
   const { currentPage, pageSize, total, pageCount } = props.page
@@ -172,11 +175,14 @@ defineExpose({ getRef })
 </script>
 
 <style>
+.agel-table {
+  width: 100%;
+  overflow: auto !important;
+}
 .agel-table-resize {
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow: auto;
 }
 
 .agel-table .el-table__empty-block {
